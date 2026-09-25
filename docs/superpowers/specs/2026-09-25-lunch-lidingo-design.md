@@ -23,7 +23,7 @@ Ankarlänkar i de ursprungliga adresserna (`#lunch`, `#meny`) ignoreras; hela si
 
 ## Arkitektur
 
-Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron i UTC, justeras för sommar/vintertid genom två cron-rader eller genom att jobbet själv kontrollerar lokal tid).
+Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron körs i UTC, så jobbet schemaläggs både 07:00 och 08:00 UTC; det ger 09 och 10 svensk tid på sommaren och 08 och 09 på vintern. Två körningar per dag är ofarligt eftersom resultatet blir detsamma om inget ändrats, och jobbet committar bara om filerna faktiskt ändrats).
 
 Flöde per körning:
 
