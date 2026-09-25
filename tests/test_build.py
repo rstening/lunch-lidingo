@@ -136,3 +136,9 @@ def test_cards_are_outlined_not_filled():
     card = re.search(r"\.restaurang \{([^}]*)\}", css).group(1)
     assert "background: var(--bg)" in card
     assert "border: 1px solid var(--line)" in card
+
+
+def test_weekday_tabs_share_one_row():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    tabs = re.search(r"\.flikar \{([^}]*)\}", css).group(1)
+    assert "grid-template-columns: repeat(5, minmax(0, 1fr))" in tabs
