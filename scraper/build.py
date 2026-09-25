@@ -269,6 +269,10 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     parts.append('<html lang="sv"><head><meta charset="utf-8">')
     parts.append('<meta name="viewport" content="width=device-width, initial-scale=1">')
     parts.append("<title>Dagens lunch. Lidingö.</title>")
+    parts.append('<link rel="icon" href="favicon.svg" type="image/svg+xml">')
+    parts.append('<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">')
+    parts.append('<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">')
+    parts.append('<link rel="apple-touch-icon" href="apple-touch-icon.png">')
     parts.append(f"<style>{CSS}\n{_tab_css()}</style></head><body><main>")
     for n in range(1, 6):
         checked = " checked" if n == shown.isoweekday() else ""
