@@ -267,3 +267,12 @@ def test_day_picker_shows_weekdays_only_and_marks_today():
     assert "--accent: #24cc5c" in css and "background: var(--accent)" in css
     # On a weekend the page shows next week, so no day in it is today.
     assert 'class="idag"' not in render(DATA, date(2026, 9, 26))
+
+
+def test_page_links_the_icons_and_they_exist():
+    from pathlib import Path
+    head = render(DATA, date(2026, 9, 25)).split("</head>")[0]
+    for href in ("favicon.svg", "favicon-32.png", "icon-192.png", "apple-touch-icon.png"):
+        assert f'href="{href}"' in head
+        assert (Path("docs") / href).is_file(), href
+    assert 'rel="apple-touch-icon"' in head
