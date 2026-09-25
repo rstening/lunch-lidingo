@@ -276,3 +276,11 @@ def test_page_links_the_icons_and_they_exist():
         assert f'href="{href}"' in head
         assert (Path("docs") / href).is_file(), href
     assert 'rel="apple-touch-icon"' in head
+
+
+def test_page_asks_search_engines_not_to_index_it():
+    from pathlib import Path
+    head = render(DATA, date(2026, 9, 25)).split("</head>")[0]
+    assert '<meta name="robots" content="noindex, nofollow, noarchive">' in head
+    # A robots.txt that blocks crawling would hide the noindex tag from Google.
+    assert not (Path("docs") / "robots.txt").exists()
