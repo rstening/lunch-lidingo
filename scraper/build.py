@@ -58,8 +58,7 @@ header p { margin: 0 0 12px; }
 .restaurang h3 { font-size: 1rem; margin: 0 0 2px; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
 .restaurang h3 a:hover { text-decoration: underline; }
-.adress { margin: 0; font-size: 1rem; }
-.tider { margin: 0 0 8px; font-size: 1rem; font-weight: 600; }
+.tider { margin: 0 0 8px; font-size: 1rem; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
 .restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
                  padding: 6px 0; border-top: 1px solid var(--line); }
@@ -209,8 +208,6 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
                day: int, now: datetime) -> str:
     out = ['<article class="restaurang">']
     out.append(f'<h3><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h3>')
-    if r.get("address"):
-        out.append(f'<p class="adress">{escape(r["address"])}</p>')
     if r.get("lunch_hours"):
         out.append(f'<p class="tider">Lunch {escape(r["lunch_hours"])}</p>')
     if _is_stale(r, now):

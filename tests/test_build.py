@@ -193,3 +193,12 @@ def test_footer_uses_secondary_colour_and_new_copy():
     assert "--text-2: rgba(18, 18, 18, 0.595)" in html
     assert "footer { margin: 28px 0 8px; font-size: 14px; color: var(--text-2); }" in html
     assert "Dubbelkolla gärna på restaurangens hemsida." in html
+
+
+def test_cards_show_hours_but_not_address():
+    html = render(DATA, date(2026, 9, 25))
+    assert 'class="adress"' not in html and "Gatan 1" not in html
+    assert '<p class="tider">Lunch 11-14</p>' in html
+    css = html.split("<style>")[1].split("</style>")[0]
+    tider = re.search(r"\.tider \{([^}]*)\}", css).group(1)
+    assert "font-weight" not in tider
