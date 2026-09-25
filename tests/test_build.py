@@ -312,3 +312,41 @@ def test_notice_for_a_recent_fetch_error_is_a_full_sentence():
          "weeks": [{"year": 2026, "week": 39, "week_known": True, "notes": "",
                     "days": {"5": [{"name": "Rätt", "price": None, "tags": []}]}}]}]}
     assert '<p class="notis">Senast hämtad 23 september.</p>' in render(data, date(2026, 9, 25))
+
+
+def test_allergen_markings_are_removed_from_dishes():
+    from scraper.build import without_allergens
+    cases = {
+        "Vegetarisk lasagne, ruccola (Gluten, Laktos, Ägg)": "Vegetarisk lasagne, ruccola",
+        "Äppelpaj & vaniljsås (G/L) (Gluten, Laktos)": "Äppelpaj & vaniljsås",
+        "Broccoli-& ädelostpaj med sallad G,L,Ä": "Broccoli-& ädelostpaj med sallad",
+        "Friterade risbollar med örtcrème. (Ä)(G)(L)": "Friterade risbollar med örtcrème.",
+        "Gnocchi, parmesan (Laktos, Svaveldioxid och Sulfit)": "Gnocchi, parmesan",
+        "Fläskarré (Laktos, Svaveldioxid och Sulfit, Fläsk)": "Fläskarré",
+        "Kyckling (från Sverige) med ris": "Kyckling (från Sverige) med ris",
+        "Sallad (tomat och gurka)": "Sallad (tomat och gurka)",
+        "Pasta pesto med mozzarella och tomat": "Pasta pesto med mozzarella och tomat",
+    }
+    for raw, expected in cases.items():
+        assert without_allergens(raw) == expected, raw
+
+
+def test_info_keeps_only_what_is_included():
+    from scraper.build import included_text
+    assert included_text("I lunchen ingår alltid salladsbuffé och kaka. Dagens lunch kostar 145 :- "
+                         "mellan 10.00-11:00. (L) = laktos") == "I lunchen ingår alltid salladsbuffé och kaka."
+    assert included_text("Ink sallad, bröd och kaffe") == "Ink sallad, bröd och kaffe."
+    assert included_text("Lunchens öppettider 11:30-13:00") == ""
+    assert included_text("") == ""
+
+
+def test_render_applies_both_filters():
+    data = {"generated_at": "2026-09-25T07:02:11Z", "restaurants": [
+        {"id": "f", "name": "Foo", "url": "https://f", "address": "",
+         "last_success": "2026-09-25T07:02:11Z", "error": None,
+         "weeks": [{"year": 2026, "week": 39, "week_known": True,
+                    "notes": "Lunchens öppettider 11:30-13:00",
+                    "days": {"5": [{"name": "Pannbiff med lök G,L", "price": 150, "tags": []}]}}]}]}
+    html = render(data, date(2026, 9, 25))
+    assert '<span class="ratt">Pannbiff med lök</span>' in html
+    assert "öppettider" not in html and 'class="info"' not in html

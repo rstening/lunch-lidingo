@@ -1,5 +1,6 @@
 """Render data/menus.json into docs/index.html (static, no JavaScript)."""
 import json
+import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from html import escape
@@ -200,13 +201,39 @@ def _last_success_text(restaurant: dict) -> Optional[str]:
     return f"Senast hämtad {format_date(dt.date())}."
 
 
+# Words and one-letter codes restaurants use to mark allergens (and, at Pocket, meat type).
+_ALLERGEN_WORDS = ("gluten|laktos|mjölk|ägg|fisk|skaldjur|kräftdjur|blötdjur|soja|sesam|senap|selleri"
+                   "|nötter|jordnötter|mandel|lupin|svaveldioxid|sulfit|fågel|fläsk|nötkött|lamm|vilt")
+_ALLERGEN_PARENS = re.compile(
+    r"\s*\((?:\s*(?:" + _ALLERGEN_WORDS + r"|[glän])\s*(?:[,/]|\boch\b)?)+\s*\)", re.IGNORECASE)
+_ALLERGEN_TAIL = re.compile(r"\s+[GLÄN](?:\s*,\s*[GLÄN])*\s*$")
+_INCLUDED = re.compile(r"\b(?:ingår|ink|inkl|inklusive)\b", re.IGNORECASE)
+
+
+def without_allergens(name: str) -> str:
+    """Drop allergen markings like "(Gluten, Laktos)", "(G/L)" or a trailing "G,L,Ä"."""
+    text = _ALLERGEN_PARENS.sub("", name)
+    text = _ALLERGEN_TAIL.sub("", text)
+    return text.strip()
+
+
+def included_text(notes: str) -> str:
+    """Keep only the sentence(s) saying what the lunch includes, ending with a period."""
+    sentences = re.split(r"(?<=[.!?])\s+", " ".join(notes.split()))
+    kept = [x for x in sentences if _INCLUDED.search(x)]
+    if not kept:
+        return ""
+    text = " ".join(kept)
+    return text if text.endswith((".", "!", "?")) else text + "."
+
+
 def _dish_html(d: dict) -> str:
     parts = ["<li>"]
     tags = d.get("tags") or []
     if tags:
         badges = "".join(f'<span class="tagg">{escape(t)}</span>' for t in tags)
         parts.append(f'<span class="taggar">{badges}</span>')
-    parts.append(f'<span class="ratt">{escape(d.get("name", ""))}</span>')
+    parts.append(f'<span class="ratt">{escape(without_allergens(d.get("name", "")))}</span>')
     if d.get("price") is not None:
         parts.append(f'<span class="pris">{int(d["price"])} kr</span>')
     parts.append("</li>")
@@ -238,8 +265,9 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
         out.append(f'<p class="notis">{escape(" ".join(notices))}</p>')
-    if week.get("notes"):
-        out.append(f'<p class="info">{escape(week["notes"])}</p>')
+    info = included_text(week.get("notes") or "")
+    if info:
+        out.append(f'<p class="info">{escape(info)}</p>')
     out.append("</article>")
     return "\n".join(out)
 
