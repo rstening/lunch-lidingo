@@ -66,7 +66,10 @@ header p { margin: 0; color: var(--text-2); }
 .restaurang ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
 .restaurang li { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
 .ratt { flex: 1 1 auto; min-width: 0; }
-.tagg { color: var(--text-2); font-size: 1rem; text-transform: capitalize; margin-right: 8px; }
+.tagg { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; margin-right: 8px;
+        border-radius: 999px; background: var(--line); color: var(--text-2);
+        font-size: 14px; font-weight: 500; line-height: 1; text-transform: capitalize;
+        vertical-align: 1px; white-space: nowrap; }
 .pris { color: var(--text-2); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 .notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
 footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }

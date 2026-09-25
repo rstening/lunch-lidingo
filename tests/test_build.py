@@ -88,7 +88,7 @@ def test_render_escapes_html():
     assert "&lt;b&gt;X&lt;/b&gt;" in html and "Fisk &amp; &lt;chips&gt;" in html
 
 
-def test_all_text_is_16px_except_footer():
+def test_all_text_is_16px_except_footer_and_badges():
     css = CSS + "\n" + _tab_css()
     root_px = 16  # from `html { font-size: 16px; }` in CSS
     assert "html { font-size: 16px; }" in css
@@ -96,8 +96,10 @@ def test_all_text_is_16px_except_footer():
     sizes = re.findall(r"font-size:\s*([0-9.]+)(px|rem)", css)
     assert sizes, "expected at least one font-size declaration"
     footer = re.search(r"footer \{([^}]*)\}", css).group(1)
-    assert "font-size: 14px" in footer  # the footer is the one deliberate exception
-    body_css = css.replace(footer, "")
+    badge = re.search(r"\.tagg \{([^}]*)\}", css).group(1)
+    assert "font-size: 14px" in footer  # deliberate exceptions: footer and badges
+    assert "font-size: 14px" in badge
+    body_css = css.replace(footer, "").replace(badge, "")
     for value, unit in re.findall(r"font-size:\s*([0-9.]+)(px|rem)", body_css):
         px = float(value) if unit == "px" else float(value) * root_px
         assert px == 16, f"font-size {value}{unit} computes to {px}px, expected 16px"
@@ -206,3 +208,11 @@ def test_cards_show_hours_but_not_address():
     css = html.split("<style>")[1].split("</style>")[0]
     tider = re.search(r"\.tider \{([^}]*)\}", css).group(1)
     assert "font-weight" not in tider
+
+
+def test_tags_are_round_calm_badges():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    badge = re.search(r"\.tagg \{([^}]*)\}", css).group(1)
+    for rule in ("border-radius: 999px", "background: var(--line)", "color: var(--text-2)"):
+        assert rule in badge
+    assert "border:" not in badge and "box-shadow" not in badge
