@@ -120,7 +120,7 @@ Särskilt per läsare:
 
 - Fel i en läsare loggas som varning med restaurang-id och orsak; övriga fortsätter.
 - Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notis "Senast hämtad 24 sep".
-- Veckokontroll: visas den exakta innevarande veckan, ingen notis om vecka. Har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, ej uppdaterad än". Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
+- Veckokontroll: visas den exakta innevarande veckan, ingen notis om vecka. Har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, inte uppdaterad än". Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
 - Actions-jobbet failar (och GitHub mejlar) bara när alla läsare misslyckas eller bygget kraschar.
 
 ## Sidan
@@ -130,7 +130,7 @@ En sida, `docs/index.html`, ren HTML och CSS utan JavaScript och utan externa re
 - Rubrik "Dagens lunch på Lidingö", datum och veckodag, rad "Uppdaterad 25 sep 09:02".
 - Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
 - Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Rutan innehåller namn (länk till källan), rätter som lista med pris och tagg där det finns, samt eventuell notis.
-- Restaurang utan rätter för dagen visas ändå, med "Ingen lunch angiven".
+- Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen".
 - Stor text (minst 18px), hög kontrast, en kolumn på mobil och två på skärmar bredare än 800px. Allt på svenska. Ingen vidare design i första versionen.
 
 ## Testning
