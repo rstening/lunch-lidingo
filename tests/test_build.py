@@ -248,6 +248,7 @@ def test_load_order_reads_restaurants_yaml():
 def test_header_date_and_week_format():
     html = render(DATA, date(2026, 9, 25))
     assert "<h1>Dagens lunch. Lidingö.</h1>" in html
+    assert "<title>Dagens lunch. Lidingö.</title>" in html
     assert '<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>' in html
     assert '<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>' in html
     assert "#dag-2:checked ~ header #h-2 { display: block; }" in html

@@ -268,7 +268,7 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     parts.append("<!DOCTYPE html>")
     parts.append('<html lang="sv"><head><meta charset="utf-8">')
     parts.append('<meta name="viewport" content="width=device-width, initial-scale=1">')
-    parts.append("<title>Dagens lunch på Lidingö</title>")
+    parts.append("<title>Dagens lunch. Lidingö.</title>")
     parts.append(f"<style>{CSS}\n{_tab_css()}</style></head><body><main>")
     for n in range(1, 6):
         checked = " checked" if n == shown.isoweekday() else ""
