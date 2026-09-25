@@ -52,7 +52,7 @@ Devservern (`lunch-dev` i `.claude/launch.json`) bygger om sidan vid varje omlad
 - Taggarna är runda kapslar och står till höger, direkt före priset. Rättens text börjar alltid vid vänsterkanten.
 - Dagväljaren visar bara veckodagar. Sidhuvudet visar den valda dagens datum, och veckan på en egen rad under som inte flyttar när man byter dag. Dagens veckodag har en grön prick.
 - Lunchtider skrivs alltid som `HH:MM-HH:MM` i `restaurants.yaml`, till exempel `10:00-14:00`. Ett test kontrollerar det.
-- Alla notiser och andra meningar på sidan slutar med punkt. Lunchtiden är en etikett och har ingen punkt. Ett test kontrollerar notiserna.
+- Alla notiser och andra meningar på sidan slutar med punkt. Undantag utan punkt, eftersom de är etiketter: lunchtiden och sidfotens två rader ("Uppdaterad …" och "© …"). Ett test kontrollerar notiserna.
 - Visa aldrig en annan veckas rätter som den här veckans. Saknas veckans meny står det "Veckans meny är inte upplagd än.", och har restaurangen redan bytt till nästa vecka står det "Veckans meny saknas."
 - Allergenmärkning, som "(Gluten, Laktos)", "(G/L)" eller "G,L,Ä" sist i en rätt, tas bort när sidan byggs (`without_allergens` i `scraper/build.py`). Datan i `data/menus.json` behåller allt.
 - Infotexten under en restaurang visar bara meningen om vad som ingår i lunchen (`included_text`). Övrigt, som priser och öppettider, visas inte.
