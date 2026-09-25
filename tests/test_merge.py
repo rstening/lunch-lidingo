@@ -54,3 +54,38 @@ def test_merge_missing_result_without_previous_is_error():
 def test_merge_keeps_yaml_order():
     out = merge({}, RESTAURANTS, {"b": MENU, "a": MENU}, NOW)
     assert [r["id"] for r in out["restaurants"]] == ["a", "b"]
+
+
+def test_merge_keeps_old_week_alongside_new_week():
+    # A restaurant that had week 39 published now also has week 40 (some
+    # restaurants publish next week's menu before this week is over). Both
+    # must survive: losing week 39 would show next week's dishes as today's.
+    previous = merge({}, RESTAURANTS, {"a": MENU, "b": MENU}, NOW)
+    week40 = [WeekMenu(2026, 40, True, {"1": [Dish("Ny rätt", None, [])]}, "")]
+    out = merge(previous, RESTAURANTS, {"a": week40, "b": MENU}, NOW)
+    a = out["restaurants"][0]
+    assert [(w["year"], w["week"]) for w in a["weeks"]] == [(2026, 39), (2026, 40)]
+
+
+def test_merge_replaces_same_week_with_new_data():
+    previous = merge({}, RESTAURANTS, {"a": MENU, "b": MENU}, NOW)
+    updated = [WeekMenu(2026, 39, True, {"1": [Dish("Uppdaterad rätt", 99, [])]}, "ny notis")]
+    out = merge(previous, RESTAURANTS, {"a": updated, "b": MENU}, NOW)
+    a = out["restaurants"][0]
+    assert len(a["weeks"]) == 1
+    assert a["weeks"][0]["days"]["1"][0]["name"] == "Uppdaterad rätt"
+    assert a["weeks"][0]["notes"] == "ny notis"
+
+
+def test_merge_drops_weeks_older_than_last_week():
+    # NOW is 2026-09-25 (ISO week 39); anything older than week 38 is dropped.
+    old_weeks = [
+        {"year": 2026, "week": 36, "week_known": True, "days": {}, "notes": ""},
+        {"year": 2026, "week": 38, "week_known": True, "days": {}, "notes": ""},
+    ]
+    previous = {"restaurants": [{"id": "a", "name": "A", "url": "https://a",
+                                 "address": "Gatan 1", "last_success": None,
+                                 "error": "x", "weeks": old_weeks}]}
+    out = merge(previous, RESTAURANTS, {"a": MENU, "b": MENU}, NOW)
+    a = out["restaurants"][0]
+    assert [(w["year"], w["week"]) for w in a["weeks"]] == [(2026, 38), (2026, 39)]
