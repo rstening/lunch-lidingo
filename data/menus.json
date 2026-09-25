@@ -1,335 +1,13 @@
 {
-  "generated_at": "2026-09-25T19:30:03Z",
+  "generated_at": "2026-09-25T20:37:38Z",
   "restaurants": [
-    {
-      "id": "firren",
-      "name": "Firren",
-      "url": "https://firren.org/bistro/",
-      "address": "Friggavägen 18",
-      "lunch_hours": "11-14",
-      "last_success": "2026-09-25T19:30:03Z",
-      "error": null,
-      "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Scampi Indiana med grönsaksris",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "2": [
-              {
-                "name": "Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "3": [
-              {
-                "name": "Fläskschnitzel med kapris, sardeller, citron och stekt potatis",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "4": [
-              {
-                "name": "Skaldjurslasagne med stark cheddar och ruccolasallad",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "5": [
-              {
-                "name": "Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré",
-                "price": null,
-                "tags": []
-              }
-            ]
-          },
-          "notes": ""
-        }
-      ]
-    },
-    {
-      "id": "ronneberga",
-      "name": "Rönneberga",
-      "url": "https://ronneberga.se/restaurang/lunchmeny/",
-      "address": "Rönnebergavägen 1",
-      "lunch_hours": "11:30-13",
-      "last_success": "2026-09-25T19:30:03Z",
-      "error": null,
-      "weeks": [
-        {
-          "year": 2026,
-          "week": 40,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Isterband med stuvad potatis, senap & rödbetor",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Linsbolognese med pasta",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "2": [
-              {
-                "name": "Fisk- & skaldjursgryta med smak av tomat & saffran. kokt potatis, basilikaaioli samt vitlöksbröd",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Vegetarisk moussaka",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "3": [
-              {
-                "name": "Fläskschnitzel med rövinssky, anjovis- & kaprissmör samt stekt potatis",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Wok med tofu",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "4": [
-              {
-                "name": "Biffstroganoff med ris, smetana samt saltgurka",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Pannoumi paneer",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Pannkakor",
-                "price": null,
-                "tags": []
-              }
-            ],
-            "5": [
-              {
-                "name": "Grillbuffé - med olika sortes kött & goda tillbehör",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Vegetarisk pizza",
-                "price": null,
-                "tags": []
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": []
-              }
-            ]
-          },
-          "notes": "Lunchens öppettider 11:30-13:00"
-        }
-      ]
-    },
-    {
-      "id": "golf",
-      "name": "Lidingö Golfrestaurang",
-      "url": "https://www.lidingogolfrestaurang.com/",
-      "address": "Trolldalsvägen 2",
-      "lunch_hours": "11-14",
-      "last_success": "2026-09-25T19:30:03Z",
-      "error": null,
-      "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Pocherad flundrafilé med skaldjurssås, potatismos och tomatsallad. (L)",
-                "price": 165,
-                "tags": []
-              },
-              {
-                "name": "Gulaschgryta serveras med jasminris och gräddfil. (L)",
-                "price": 165,
-                "tags": [
-                  "buffé"
-                ]
-              },
-              {
-                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
-                "price": 165,
-                "tags": [
-                  "veg"
-                ]
-              },
-              {
-                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
-                "price": 165,
-                "tags": [
-                  "lätt"
-                ]
-              }
-            ],
-            "2": [
-              {
-                "name": "Pocherad sejfilé med ägg, räkor och kokt potatis samt brynt smör och pepparrot. (L)(Ä)",
-                "price": 165,
-                "tags": []
-              },
-              {
-                "name": "Nudelwok med kyckling och grönsaker serveras med chilicrème. (Ä)(G)",
-                "price": 165,
-                "tags": [
-                  "buffé"
-                ]
-              },
-              {
-                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
-                "price": 165,
-                "tags": [
-                  "veg"
-                ]
-              },
-              {
-                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
-                "price": 165,
-                "tags": [
-                  "lätt"
-                ]
-              }
-            ],
-            "3": [
-              {
-                "name": "Pannbiff med stekt lök, skysås och rårörda lingon samt kokt potatis. (Ä)(L)(G)",
-                "price": 165,
-                "tags": []
-              },
-              {
-                "name": "Pocherad Alaskafilé med sauce florentin, potatismos och marinerade bönor. (L)",
-                "price": 165,
-                "tags": [
-                  "buffé"
-                ]
-              },
-              {
-                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
-                "price": 165,
-                "tags": [
-                  "veg"
-                ]
-              },
-              {
-                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
-                "price": 165,
-                "tags": [
-                  "lätt"
-                ]
-              }
-            ],
-            "4": [
-              {
-                "name": "Stekt flundrafilé med remouladsås, kokt potatis och citron samt picklad fänkål. (Ä)(G)",
-                "price": 165,
-                "tags": []
-              },
-              {
-                "name": "Ärtsoppa med fläsk samt pannkakor med sylt och grädde. (Ä)(L)(G)",
-                "price": 165,
-                "tags": [
-                  "buffé"
-                ]
-              },
-              {
-                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
-                "price": 165,
-                "tags": [
-                  "veg"
-                ]
-              },
-              {
-                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
-                "price": 165,
-                "tags": [
-                  "lätt"
-                ]
-              }
-            ],
-            "5": [
-              {
-                "name": "Panerad fläskschnitzel med pommes, rödvinssås och bearnaise samt tomatsallad. (Ä)(L)(G)",
-                "price": 165,
-                "tags": []
-              },
-              {
-                "name": "Fiskgryta med krutonger och aioli. (Ä)(G)",
-                "price": 165,
-                "tags": [
-                  "buffé"
-                ]
-              },
-              {
-                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
-                "price": 165,
-                "tags": [
-                  "veg"
-                ]
-              },
-              {
-                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
-                "price": 165,
-                "tags": [
-                  "lätt"
-                ]
-              }
-            ]
-          },
-          "notes": "Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka"
-        }
-      ]
-    },
     {
       "id": "pocket",
       "name": "Pocket",
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14",
-      "last_success": "2026-09-25T19:30:03Z",
+      "last_success": "2026-09-25T20:37:38Z",
       "error": null,
       "weeks": [
         {
@@ -560,7 +238,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10-14",
-      "last_success": "2026-09-25T19:30:03Z",
+      "last_success": "2026-09-25T20:37:38Z",
       "error": null,
       "weeks": [
         {
@@ -679,7 +357,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-09-25T19:30:03Z",
+      "last_success": "2026-09-25T20:37:38Z",
       "error": null,
       "weeks": [
         {
@@ -1174,12 +852,334 @@
       ]
     },
     {
+      "id": "firren",
+      "name": "Firren",
+      "url": "https://firren.org/bistro/",
+      "address": "Friggavägen 18",
+      "lunch_hours": "11-14",
+      "last_success": "2026-09-25T20:37:38Z",
+      "error": null,
+      "weeks": [
+        {
+          "year": 2026,
+          "week": 39,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Scampi Indiana med grönsaksris",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "2": [
+              {
+                "name": "Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "3": [
+              {
+                "name": "Fläskschnitzel med kapris, sardeller, citron och stekt potatis",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "4": [
+              {
+                "name": "Skaldjurslasagne med stark cheddar och ruccolasallad",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "5": [
+              {
+                "name": "Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré",
+                "price": null,
+                "tags": []
+              }
+            ]
+          },
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "ronneberga",
+      "name": "Rönneberga",
+      "url": "https://ronneberga.se/restaurang/lunchmeny/",
+      "address": "Rönnebergavägen 1",
+      "lunch_hours": "11:30-13",
+      "last_success": "2026-09-25T20:37:38Z",
+      "error": null,
+      "weeks": [
+        {
+          "year": 2026,
+          "week": 40,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Isterband med stuvad potatis, senap & rödbetor",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Linsbolognese med pasta",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "2": [
+              {
+                "name": "Fisk- & skaldjursgryta med smak av tomat & saffran. kokt potatis, basilikaaioli samt vitlöksbröd",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Vegetarisk moussaka",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "3": [
+              {
+                "name": "Fläskschnitzel med rövinssky, anjovis- & kaprissmör samt stekt potatis",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Wok med tofu",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "4": [
+              {
+                "name": "Biffstroganoff med ris, smetana samt saltgurka",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Pannoumi paneer",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Pannkakor",
+                "price": null,
+                "tags": []
+              }
+            ],
+            "5": [
+              {
+                "name": "Grillbuffé - med olika sortes kött & goda tillbehör",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Vegetarisk pizza",
+                "price": null,
+                "tags": []
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": []
+              }
+            ]
+          },
+          "notes": "Lunchens öppettider 11:30-13:00"
+        }
+      ]
+    },
+    {
+      "id": "golf",
+      "name": "Lidingö Golfrestaurang",
+      "url": "https://www.lidingogolfrestaurang.com/",
+      "address": "Trolldalsvägen 2",
+      "lunch_hours": "11-14",
+      "last_success": "2026-09-25T20:37:38Z",
+      "error": null,
+      "weeks": [
+        {
+          "year": 2026,
+          "week": 39,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Pocherad flundrafilé med skaldjurssås, potatismos och tomatsallad. (L)",
+                "price": 165,
+                "tags": []
+              },
+              {
+                "name": "Gulaschgryta serveras med jasminris och gräddfil. (L)",
+                "price": 165,
+                "tags": [
+                  "buffé"
+                ]
+              },
+              {
+                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
+                "price": 165,
+                "tags": [
+                  "veg"
+                ]
+              },
+              {
+                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
+                "price": 165,
+                "tags": [
+                  "lätt"
+                ]
+              }
+            ],
+            "2": [
+              {
+                "name": "Pocherad sejfilé med ägg, räkor och kokt potatis samt brynt smör och pepparrot. (L)(Ä)",
+                "price": 165,
+                "tags": []
+              },
+              {
+                "name": "Nudelwok med kyckling och grönsaker serveras med chilicrème. (Ä)(G)",
+                "price": 165,
+                "tags": [
+                  "buffé"
+                ]
+              },
+              {
+                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
+                "price": 165,
+                "tags": [
+                  "veg"
+                ]
+              },
+              {
+                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
+                "price": 165,
+                "tags": [
+                  "lätt"
+                ]
+              }
+            ],
+            "3": [
+              {
+                "name": "Pannbiff med stekt lök, skysås och rårörda lingon samt kokt potatis. (Ä)(L)(G)",
+                "price": 165,
+                "tags": []
+              },
+              {
+                "name": "Pocherad Alaskafilé med sauce florentin, potatismos och marinerade bönor. (L)",
+                "price": 165,
+                "tags": [
+                  "buffé"
+                ]
+              },
+              {
+                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
+                "price": 165,
+                "tags": [
+                  "veg"
+                ]
+              },
+              {
+                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
+                "price": 165,
+                "tags": [
+                  "lätt"
+                ]
+              }
+            ],
+            "4": [
+              {
+                "name": "Stekt flundrafilé med remouladsås, kokt potatis och citron samt picklad fänkål. (Ä)(G)",
+                "price": 165,
+                "tags": []
+              },
+              {
+                "name": "Ärtsoppa med fläsk samt pannkakor med sylt och grädde. (Ä)(L)(G)",
+                "price": 165,
+                "tags": [
+                  "buffé"
+                ]
+              },
+              {
+                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
+                "price": 165,
+                "tags": [
+                  "veg"
+                ]
+              },
+              {
+                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
+                "price": 165,
+                "tags": [
+                  "lätt"
+                ]
+              }
+            ],
+            "5": [
+              {
+                "name": "Panerad fläskschnitzel med pommes, rödvinssås och bearnaise samt tomatsallad. (Ä)(L)(G)",
+                "price": 165,
+                "tags": []
+              },
+              {
+                "name": "Fiskgryta med krutonger och aioli. (Ä)(G)",
+                "price": 165,
+                "tags": [
+                  "buffé"
+                ]
+              },
+              {
+                "name": "Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)",
+                "price": 165,
+                "tags": [
+                  "veg"
+                ]
+              },
+              {
+                "name": "Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.",
+                "price": 165,
+                "tags": [
+                  "lätt"
+                ]
+              }
+            ]
+          },
+          "notes": "Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka"
+        }
+      ]
+    },
+    {
       "id": "jernet",
       "name": "Brasserie Jernet",
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-09-25T19:30:03Z",
+      "last_success": "2026-09-25T20:37:38Z",
       "error": null,
       "weeks": [
         {
