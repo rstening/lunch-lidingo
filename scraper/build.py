@@ -37,7 +37,8 @@ header p { margin: 0; color: var(--text-2); }
           -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
                 justify-content: center; min-height: 48px; padding: 0 2px; border-radius: 999px;
-                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center; }
+                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center;
+                color: var(--text-2); transition: color 160ms ease; }
 .flikar label.idag::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px;
                             margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
 .indikator { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 5);
@@ -158,7 +159,8 @@ def _tab_css() -> str:
         rules.append(f"#dag-{n}:checked ~ header #h-{n} {{ display: block; }}")
         rules.append(f"#dag-{n}:checked ~ .flikar .indikator "
                      f"{{ transform: translateX({(n - 1) * 100}%); }}")
-        rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] {{ font-weight: 600; }}')
+        rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] '
+                     "{ font-weight: 600; color: var(--text); }")
         rules.append(f"#dag-{n}:focus-visible ~ .flikar .indikator::before "
                      "{ outline: 2px solid var(--text); outline-offset: 2px; }")
     return "\n".join(rules)

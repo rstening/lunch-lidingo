@@ -28,7 +28,8 @@ header p { margin: 0; color: var(--text-2); }
           -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
                 justify-content: center; min-height: 48px; padding: 0 2px; border-radius: 999px;
-                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center; }
+                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center;
+                color: var(--text-2); transition: color 160ms ease; }
 .flikar label.idag::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px;
                             margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
 .indikator { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 5);
@@ -75,27 +76,27 @@ footer p { margin: 0 0 4px; }
 #dag-1:checked ~ #d-1 { display: block; }
 #dag-1:checked ~ header #h-1 { display: block; }
 #dag-1:checked ~ .flikar .indikator { transform: translateX(0%); }
-#dag-1:checked ~ .flikar label[for="dag-1"] { font-weight: 600; }
+#dag-1:checked ~ .flikar label[for="dag-1"] { font-weight: 600; color: var(--text); }
 #dag-1:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-2:checked ~ #d-2 { display: block; }
 #dag-2:checked ~ header #h-2 { display: block; }
 #dag-2:checked ~ .flikar .indikator { transform: translateX(100%); }
-#dag-2:checked ~ .flikar label[for="dag-2"] { font-weight: 600; }
+#dag-2:checked ~ .flikar label[for="dag-2"] { font-weight: 600; color: var(--text); }
 #dag-2:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-3:checked ~ #d-3 { display: block; }
 #dag-3:checked ~ header #h-3 { display: block; }
 #dag-3:checked ~ .flikar .indikator { transform: translateX(200%); }
-#dag-3:checked ~ .flikar label[for="dag-3"] { font-weight: 600; }
+#dag-3:checked ~ .flikar label[for="dag-3"] { font-weight: 600; color: var(--text); }
 #dag-3:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-4:checked ~ #d-4 { display: block; }
 #dag-4:checked ~ header #h-4 { display: block; }
 #dag-4:checked ~ .flikar .indikator { transform: translateX(300%); }
-#dag-4:checked ~ .flikar label[for="dag-4"] { font-weight: 600; }
+#dag-4:checked ~ .flikar label[for="dag-4"] { font-weight: 600; color: var(--text); }
 #dag-4:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-5:checked ~ #d-5 { display: block; }
 #dag-5:checked ~ header #h-5 { display: block; }
 #dag-5:checked ~ .flikar .indikator { transform: translateX(400%); }
-#dag-5:checked ~ .flikar label[for="dag-5"] { font-weight: 600; }
+#dag-5:checked ~ .flikar label[for="dag-5"] { font-weight: 600; color: var(--text); }
 #dag-5:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }</style></head><body><main>
 <input type="radio" name="dag" class="dagval" id="dag-1" checked>
 <input type="radio" name="dag" class="dagval" id="dag-2">
