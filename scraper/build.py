@@ -286,9 +286,7 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
         for r, w, notice in restaurant_weeks:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
-    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
-                 "<p>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
-                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna på restaurangens hemsida.</p></footer>")
+    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p></footer>")
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 
