@@ -132,7 +132,7 @@ def test_page_uses_only_the_two_brand_colours():
     html = render(DATA, date(2026, 9, 25))
     css = html.split("<style>")[1].split("</style>")[0]
     hexes = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{3,6}\b", css)}
-    assert hexes == {"#fafafa", "#121212"}, hexes
+    assert hexes == {"#fafafa", "#121212", "#24cc5c"}, hexes  # two colours plus the today accent
     rgbas = set(re.findall(r"rgba\(([^)]*)\)", css))
     for value in rgbas:  # translucent versions of the two colours only
         r, g, b, _alpha = [x.strip() for x in value.split(",")]
@@ -248,5 +248,21 @@ def test_load_order_reads_restaurants_yaml():
 def test_header_date_and_week_format():
     html = render(DATA, date(2026, 9, 25))
     assert "<h1>Dagens lunch. Lidingö.</h1>" in html
-    assert "<p>Fredag 25 september. Vecka 39.</p></header>" in html
-    assert "<p>Måndag 28 september. Vecka 40.</p></header>" in render(DATA, date(2026, 9, 26))
+    assert '<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>' in html
+    assert '<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>' in html
+    assert "#dag-2:checked ~ header #h-2 { display: block; }" in html
+    weekend = render(DATA, date(2026, 9, 26))
+    assert '<p class="datumrad" id="h-1">Måndag 28 september. Vecka 40.</p>' in weekend
+    assert 'id="dag-1" checked' in weekend
+
+
+def test_day_picker_shows_weekdays_only_and_marks_today():
+    html = render(DATA, date(2026, 9, 23))
+    nav = html.split('<nav class="flikar"')[1].split("</nav>")[0]
+    assert "<small>" not in nav and "/9" not in nav
+    assert '<label for="dag-3" class="idag" aria-label="Ons, idag">Ons</label>' in nav
+    assert nav.count('class="idag"') == 1
+    css = html.split("<style>")[1].split("</style>")[0]
+    assert "--accent: #24cc5c" in css and "background: var(--accent)" in css
+    # On a weekend the page shows next week, so no day in it is today.
+    assert 'class="idag"' not in render(DATA, date(2026, 9, 26))

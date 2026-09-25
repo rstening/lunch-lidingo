@@ -19,7 +19,7 @@ CSS = """
 @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
              font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { color-scheme: light; --bg: #fafafa; --text: #121212; --text-2: rgba(18, 18, 18, 0.595);
-        --line: rgba(18, 18, 18, 0.068); }
+        --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
 * { box-sizing: border-box; }
 html { font-size: 16px; }
 body { margin: 0; padding: 48px 16px 32px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -28,15 +28,17 @@ main { max-width: 640px; margin: 0 auto; }
 @media (min-width: 640px) { body { padding: 96px 24px 48px; } }
 header h1 { font-size: 1rem; font-weight: 500; margin: 0; }
 header p { margin: 0; color: var(--text-2); }
+.datumrad { display: none; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
 .flikar { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
           margin: 32px 0 48px; padding: 4px; border-radius: 999px;
           background: var(--line); box-shadow: inset 0 1px 2px rgba(18, 18, 18, 0.06);
           -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
-                justify-content: center; min-height: 52px; padding: 6px 2px; border-radius: 999px;
+                justify-content: center; min-height: 48px; padding: 0 2px; border-radius: 999px;
                 cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center; }
-.flikar label small { display: block; font-weight: 400; font-size: 1rem; }
+.flikar label.idag::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px;
+                            margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
 .indikator { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 5);
              border-radius: 999px; transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1); }
 .indikator::before { content: ""; position: absolute; inset: 0; border-radius: inherit;
@@ -151,6 +153,7 @@ def _tab_css() -> str:
     rules = []
     for n in range(1, 6):
         rules.append(f"#dag-{n}:checked ~ #d-{n} {{ display: block; }}")
+        rules.append(f"#dag-{n}:checked ~ header #h-{n} {{ display: block; }}")
         rules.append(f"#dag-{n}:checked ~ .flikar .indikator "
                      f"{{ transform: translateX({(n - 1) * 100}%); }}")
         rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] {{ font-weight: 600; }}')
@@ -271,13 +274,17 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
         checked = " checked" if n == shown.isoweekday() else ""
         parts.append(f'<input type="radio" name="dag" class="dagval" id="dag-{n}"{checked}>')
     parts.append("<header><h1>Dagens lunch. Lidingö.</h1>")
-    parts.append(f"<p>{DAY_NAMES[shown.isoweekday() - 1].capitalize()} {format_date(shown)}. "
-                 f"Vecka {week}.</p></header>")
+    # One date line per weekday; CSS shows the one for the selected day.
+    for n in range(1, 6):
+        parts.append(f'<p class="datumrad" id="h-{n}">{DAY_NAMES[n - 1].capitalize()} '
+                     f'{format_date(dates[n - 1])}. Vecka {week}.</p>')
+    parts.append("</header>")
     parts.append('<nav class="flikar" aria-label="Välj dag">')
     parts.append('<span class="indikator" aria-hidden="true"></span>')
     for n in range(1, 6):
-        d = dates[n - 1]
-        parts.append(f'<label for="dag-{n}">{DAY_SHORT[n - 1]}<small>{d.day}/{d.month}</small></label>')
+        today_cls = ' class="idag"' if dates[n - 1] == today else ""
+        today_label = ' aria-label="' + DAY_SHORT[n - 1] + ', idag"' if dates[n - 1] == today else ""
+        parts.append(f'<label for="dag-{n}"{today_cls}{today_label}>{DAY_SHORT[n - 1]}</label>')
     parts.append("</nav>")
     for n in range(1, 6):
         parts.append(f'<section class="dag" id="d-{n}">')
