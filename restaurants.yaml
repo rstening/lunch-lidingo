@@ -6,19 +6,19 @@
 # - id: golf
 #   name: Lidingö Golfrestaurang
 #   address: Trolldalsvägen 2
-#   lunch_hours: "11-14"
+#   lunch_hours: "11:00-14:00"
 #   url: https://www.lidingogolfrestaurang.com/
 #   reader: golf
 - id: pocket
   name: Pocket
   address: Lidingö stadshus, Stockholmsvägen 50
-  lunch_hours: "10:30-14"
+  lunch_hours: "10:30-14:00"
   url: https://www.nordrest.se/restaurang/pocket-lidingo/
   reader: pocket
 - id: saluhallen
   name: Lidingö Saluhall
   address: Pyrolavägen 7
-  lunch_hours: "10-14"
+  lunch_hours: "10:00-14:00"
   url: https://www.lidingosaluhall.com/
   reader: saluhallen
 - id: bibliothek
@@ -30,13 +30,13 @@
 - id: firren
   name: Firren
   address: Friggavägen 18
-  lunch_hours: "11-14"
+  lunch_hours: "11:00-14:00"
   url: https://firren.org/bistro/
   reader: firren
 - id: ronneberga
   name: Rönneberga
   address: Rönnebergavägen 1
-  lunch_hours: "11:30-13"
+  lunch_hours: "11:30-13:00"
   url: https://ronneberga.se/restaurang/lunchmeny/
   reader: ronneberga
 - id: jernet

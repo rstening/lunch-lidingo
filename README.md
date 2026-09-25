@@ -16,15 +16,15 @@ och på vardagar även kl 10:30 och 12:00, hämtar GitHub Actions menyerna, och 
 
 Notiserna på sidan betyder:
 
-- "Kunde inte hämta menyn, se restaurangens sida": hämtningen har inte
+- "Veckans meny är inte upplagd än.": restaurangen har inte lagt upp den här
+  veckans meny. Sidan visar aldrig en gammal veckas rätter som den här veckans.
+- "Veckans meny saknas.": restaurangen har redan bytt till nästa vecka, men vi
+  hann inte spara den här veckans meny.
+- "Ingen meny för den här dagen.": veckans meny finns, men inte för just den dagen.
+- "Kunde inte hämta menyn, se restaurangens sida.": hämtningen har inte
   fungerat på mer än 7 dagar, eller aldrig.
-- "Nästa veckas meny finns på restaurangens sida": restaurangen har lagt upp
-  nästa vecka men vi har inte den här veckans meny. Sidan visar då ingenting
-  hellre än fel veckas rätter.
-- "Ingen aktuell meny, se restaurangens sida": den senaste menyn vi har är
-  mer än en vecka gammal.
-- "Visar vecka N, inte uppdaterad än": restaurangen har inte lagt upp den här
-  veckans meny, så förra veckans visas.
+- "Senast hämtad 23 september.": senaste hämtningen misslyckades, men menyn
+  från det datumet visas.
 
 ## Köra lokalt
 

@@ -1,5 +1,6 @@
 """Render data/menus.json into docs/index.html (static, no JavaScript)."""
 import json
+import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from html import escape
@@ -176,12 +177,10 @@ def pick_week(restaurant: dict, year: int, week: int) -> Tuple[Optional[dict], O
     if latest_key > this_key:
         # Only weeks newer than today's exist: never show a future week as
         # today's lunch.
-        return None, "Nästa veckas meny finns på restaurangens sida"
-    monday = date.fromisocalendar(year, week, 1)
-    one_week_older = (monday - timedelta(weeks=1)).isocalendar()[:2]
-    if latest_key == one_week_older:
-        return latest, f"Visar vecka {latest['week']}, inte uppdaterad än"
-    return None, "Ingen aktuell meny, se restaurangens sida"
+        return None, "Veckans meny saknas."
+    # Only older weeks exist: the restaurant has not put this week's menu up yet.
+    # Never show an old week's dishes as this week's.
+    return None, "Veckans meny är inte upplagd än."
 
 
 def _is_stale(restaurant: dict, now: datetime) -> bool:
@@ -199,7 +198,33 @@ def _last_success_text(restaurant: dict) -> Optional[str]:
     if not restaurant.get("error") or not last:
         return None
     dt = datetime.strptime(last, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(TZ)
-    return f"Senast hämtad {format_date(dt.date())}"
+    return f"Senast hämtad {format_date(dt.date())}."
+
+
+# Words and one-letter codes restaurants use to mark allergens (and, at Pocket, meat type).
+_ALLERGEN_WORDS = ("gluten|laktos|mjölk|ägg|fisk|skaldjur|kräftdjur|blötdjur|soja|sesam|senap|selleri"
+                   "|nötter|jordnötter|mandel|lupin|svaveldioxid|sulfit|fågel|fläsk|nötkött|lamm|vilt")
+_ALLERGEN_PARENS = re.compile(
+    r"\s*\((?:\s*(?:" + _ALLERGEN_WORDS + r"|[glän])\s*(?:[,/]|\boch\b)?)+\s*\)", re.IGNORECASE)
+_ALLERGEN_TAIL = re.compile(r"\s+[GLÄN](?:\s*,\s*[GLÄN])*\s*$")
+_INCLUDED = re.compile(r"\b(?:ingår|ink|inkl|inklusive)\b", re.IGNORECASE)
+
+
+def without_allergens(name: str) -> str:
+    """Drop allergen markings like "(Gluten, Laktos)", "(G/L)" or a trailing "G,L,Ä"."""
+    text = _ALLERGEN_PARENS.sub("", name)
+    text = _ALLERGEN_TAIL.sub("", text)
+    return text.strip()
+
+
+def included_text(notes: str) -> str:
+    """Keep only the sentence(s) saying what the lunch includes, ending with a period."""
+    sentences = re.split(r"(?<=[.!?])\s+", " ".join(notes.split()))
+    kept = [x for x in sentences if _INCLUDED.search(x)]
+    if not kept:
+        return ""
+    text = " ".join(kept)
+    return text if text.endswith((".", "!", "?")) else text + "."
 
 
 def _dish_html(d: dict) -> str:
@@ -208,7 +233,7 @@ def _dish_html(d: dict) -> str:
     if tags:
         badges = "".join(f'<span class="tagg">{escape(t)}</span>' for t in tags)
         parts.append(f'<span class="taggar">{badges}</span>')
-    parts.append(f'<span class="ratt">{escape(d.get("name", ""))}</span>')
+    parts.append(f'<span class="ratt">{escape(without_allergens(d.get("name", "")))}</span>')
     if d.get("price") is not None:
         parts.append(f'<span class="pris">{int(d["price"])} kr</span>')
     parts.append("</li>")
@@ -239,9 +264,10 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
         out.append('<p class="tom">Ingen meny för den här dagen.</p>')
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
-        out.append(f'<p class="notis">{escape(". ".join(notices))}</p>')
-    if week.get("notes"):
-        out.append(f'<p class="info">{escape(week["notes"])}</p>')
+        out.append(f'<p class="notis">{escape(" ".join(notices))}</p>')
+    info = included_text(week.get("notes") or "")
+    if info:
+        out.append(f'<p class="info">{escape(info)}</p>')
     out.append("</article>")
     return "\n".join(out)
 
@@ -303,7 +329,8 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
         for r, w, notice in restaurant_weeks:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
-    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
+    # Footer lines are labels, not sentences, so they have no final period.
+    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}</p>"
                  f'<p class="upphov">© {updated.year} Richard Stening</p></footer>')
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
