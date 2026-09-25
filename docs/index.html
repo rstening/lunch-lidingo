@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dagens lunch på Lidingö</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 16px; font: 19px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+       color: #1a1a1a; background: #f6f4ef; }
+main { max-width: 1100px; margin: 0 auto; }
+header h1 { font-size: 1.9rem; margin: 0 0 4px; }
+header p { margin: 0 0 12px; color: #444; }
+.dagval { position: absolute; opacity: 0; pointer-events: none; }
+.flikar { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+.flikar label { display: block; padding: 10px 14px; border: 2px solid #1a1a1a; border-radius: 8px;
+                background: #fff; cursor: pointer; font-weight: 600; }
+.flikar label small { display: block; font-weight: 400; font-size: 0.8rem; color: #444; }
+.dag { display: none; }
+.dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
+.lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
+.restaurang { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; }
+.restaurang h2 { font-size: 1.3rem; margin: 0 0 2px; }
+.restaurang h2 a { color: #0b4f9c; text-decoration: none; }
+.restaurang h2 a:hover { text-decoration: underline; }
+.adress { margin: 0 0 8px; color: #555; font-size: 0.95rem; }
+.restaurang ul { list-style: none; margin: 0; padding: 0; }
+.restaurang li { padding: 6px 0; border-top: 1px solid #eee; }
+.tagg { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .03em;
+        background: #e9efe4; color: #2f4f2f; border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
+.pris { float: right; color: #444; white-space: nowrap; margin-left: 8px; }
+.notis { margin: 8px 0 0; color: #8a4b00; font-size: 0.95rem; }
+.info { margin: 8px 0 0; color: #555; font-size: 0.9rem; }
+.tom { margin: 4px 0 0; color: #666; font-style: italic; }
+footer { margin: 28px 0 8px; color: #666; font-size: 0.9rem; }
+
+#dag-1:checked ~ #d-1 { display: block; }
+#dag-1:checked ~ .flikar label[for="dag-1"] { background: #1a1a1a; color: #fff; }
+#dag-1:checked ~ .flikar label[for="dag-1"] small { color: #ddd; }
+#dag-2:checked ~ #d-2 { display: block; }
+#dag-2:checked ~ .flikar label[for="dag-2"] { background: #1a1a1a; color: #fff; }
+#dag-2:checked ~ .flikar label[for="dag-2"] small { color: #ddd; }
+#dag-3:checked ~ #d-3 { display: block; }
+#dag-3:checked ~ .flikar label[for="dag-3"] { background: #1a1a1a; color: #fff; }
+#dag-3:checked ~ .flikar label[for="dag-3"] small { color: #ddd; }
+#dag-4:checked ~ #d-4 { display: block; }
+#dag-4:checked ~ .flikar label[for="dag-4"] { background: #1a1a1a; color: #fff; }
+#dag-4:checked ~ .flikar label[for="dag-4"] small { color: #ddd; }
+#dag-5:checked ~ #d-5 { display: block; }
+#dag-5:checked ~ .flikar label[for="dag-5"] { background: #1a1a1a; color: #fff; }
+#dag-5:checked ~ .flikar label[for="dag-5"] small { color: #ddd; }</style></head><body><main>
+<input type="radio" name="dag" class="dagval" id="dag-1">
+<input type="radio" name="dag" class="dagval" id="dag-2">
+<input type="radio" name="dag" class="dagval" id="dag-3">
+<input type="radio" name="dag" class="dagval" id="dag-4">
+<input type="radio" name="dag" class="dagval" id="dag-5" checked>
+<header><h1>Dagens lunch på Lidingö</h1>
+<p>Fredag 25 september, vecka 39. Uppdaterad 25 september 19:54.</p></header>
+<nav class="flikar">
+<label for="dag-1">Mån<small>21/9</small></label>
+<label for="dag-2">Tis<small>22/9</small></label>
+<label for="dag-3">Ons<small>23/9</small></label>
+<label for="dag-4">Tor<small>24/9</small></label>
+<label for="dag-5">Fre<small>25/9</small></label>
+</nav>
+<section class="dag" id="d-1">
+<h2 class="dagrubrik">Måndag 21 september</h2>
+<div class="lista">
+<article class="restaurang">
+<h2><a href="https://firren.org/bistro/">Firren</a></h2>
+<p class="adress">Friggavägen 18</p>
+<ul><li>Scampi Indiana med grönsaksris</li></ul>
+</article>
+<article class="restaurang">
+<h2><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h2>
+<p class="adress">Rönnebergavägen 1</p>
+<ul><li>Isterband med stuvad potatis, senap &amp; rödbetor</li><li>Linsbolognese med pasta</li><li>Dagens soppa</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">Lunchens öppettider 11:30-13:00</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h2>
+<p class="adress">Trolldalsvägen 2</p>
+<ul><li>Pocherad flundrafilé med skaldjurssås, potatismos och tomatsallad. (L)<span class="pris">165 kr</span></li><li><span class="tagg">buffé</span>Gulaschgryta serveras med jasminris och gräddfil. (L)<span class="pris">165 kr</span></li><li><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)<span class="pris">165 kr</span></li><li><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.<span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h2>
+<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
+<ul><li><span class="tagg">veg</span>Vegetarisk lasagne, sojafärs, grönsaker, parmesankräk, ruccola (Gluten, Laktos, Ägg)<span class="pris">135 kr</span></li><li>Krämig kycklingkorma, ris, rostad broccoli, koriander (Laktos, Fågel)<span class="pris">135 kr</span></li><li><span class="tagg">fisk</span>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)<span class="pris">135 kr</span></li></ul>
+<p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h2>
+<p class="adress">Pyrolavägen 7</p>
+<ul><li>Fläsknoisette med senapssås, glaserade morötter &amp; persiljestompad potatis G,L</li><li>Långafilé med bechamelsås, ärtor, bacon &amp; kokt potatis G,L</li><li><span class="tagg">veg</span>Broccoli-&amp; ädelostpaj med sallad &amp; örtcrème G,L,Ä</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://bibliothek.nu/menyer">Bibliothek</a></h2>
+<p class="adress">Lejonstigen 5</p>
+<ul><li><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås<span class="pris">185 kr</span></li><li><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås<span class="pris">175 kr</span></li><li><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör<span class="pris">185 kr</span></li><li><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli<span class="pris">175 kr</span></li></ul>
+<p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h2>
+<p class="adress">Stockholmsvägen 56</p>
+<ul><li><span class="tagg">kött</span>Kalvfärsbiffar serveras med ugnsrostad potatis och gräddsås<span class="pris">139 kr</span></li><li><span class="tagg">fisk</span>Ugnsbakad röding serveras med krämig tartarsås och kokt potatis<span class="pris">149 kr</span></li><li><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat<span class="pris">139 kr</span></li></ul>
+</article>
+</div></section>
+<section class="dag" id="d-2">
+<h2 class="dagrubrik">Tisdag 22 september</h2>
+<div class="lista">
+<article class="restaurang">
+<h2><a href="https://firren.org/bistro/">Firren</a></h2>
+<p class="adress">Friggavägen 18</p>
+<ul><li>Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis</li></ul>
+</article>
+<article class="restaurang">
+<h2><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h2>
+<p class="adress">Rönnebergavägen 1</p>
+<ul><li>Fisk- &amp; skaldjursgryta med smak av tomat &amp; saffran. kokt potatis, basilikaaioli samt vitlöksbröd</li><li>Vegetarisk moussaka</li><li>Dagens soppa</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">Lunchens öppettider 11:30-13:00</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h2>
+<p class="adress">Trolldalsvägen 2</p>
+<ul><li>Pocherad sejfilé med ägg, räkor och kokt potatis samt brynt smör och pepparrot. (L)(Ä)<span class="pris">165 kr</span></li><li><span class="tagg">buffé</span>Nudelwok med kyckling och grönsaker serveras med chilicrème. (Ä)(G)<span class="pris">165 kr</span></li><li><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)<span class="pris">165 kr</span></li><li><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.<span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h2>
+<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
+<ul><li><span class="tagg">veg</span>Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök &amp; citron (Gluten, Laktos, Ägg)<span class="pris">135 kr</span></li><li>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)<span class="pris">135 kr</span></li><li>Fläskkotlett, kantarellsås, persiljeslungad potatis, vitlöksrostade morötter (Laktos, Fläsk)<span class="pris">135 kr</span></li><li>Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</li></ul>
+<p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h2>
+<p class="adress">Pyrolavägen 7</p>
+<ul><li>Pad kra pao med stekt ägg, basilika &amp; ris G,Ä</li><li>Gösfilé meunière med kapris, rödbetor, brynt smör, citron &amp; kokt potatis G,L</li><li><span class="tagg">veg</span>Broccoli-&amp; ädelostpaj med sallad &amp; örtcrème G,L,Ä</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://bibliothek.nu/menyer">Bibliothek</a></h2>
+<p class="adress">Lejonstigen 5</p>
+<ul><li><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås<span class="pris">185 kr</span></li><li><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås<span class="pris">175 kr</span></li><li><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör<span class="pris">185 kr</span></li><li><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli<span class="pris">175 kr</span></li></ul>
+<p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h2>
+<p class="adress">Stockholmsvägen 56</p>
+<ul><li><span class="tagg">kött</span>Lövbiff med gorgonzolasås och mos<span class="pris">139 kr</span></li><li><span class="tagg">fisk</span>Pocherad torsk med Bitte blanchsås och kokt potatis<span class="pris">149 kr</span></li><li><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat<span class="pris">139 kr</span></li></ul>
+</article>
+</div></section>
+<section class="dag" id="d-3">
+<h2 class="dagrubrik">Onsdag 23 september</h2>
+<div class="lista">
+<article class="restaurang">
+<h2><a href="https://firren.org/bistro/">Firren</a></h2>
+<p class="adress">Friggavägen 18</p>
+<ul><li>Fläskschnitzel med kapris, sardeller, citron och stekt potatis</li></ul>
+</article>
+<article class="restaurang">
+<h2><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h2>
+<p class="adress">Rönnebergavägen 1</p>
+<ul><li>Fläskschnitzel med rövinssky, anjovis- &amp; kaprissmör samt stekt potatis</li><li>Wok med tofu</li><li>Dagens soppa</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">Lunchens öppettider 11:30-13:00</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h2>
+<p class="adress">Trolldalsvägen 2</p>
+<ul><li>Pannbiff med stekt lök, skysås och rårörda lingon samt kokt potatis. (Ä)(L)(G)<span class="pris">165 kr</span></li><li><span class="tagg">buffé</span>Pocherad Alaskafilé med sauce florentin, potatismos och marinerade bönor. (L)<span class="pris">165 kr</span></li><li><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)<span class="pris">165 kr</span></li><li><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.<span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h2>
+<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
+<ul><li><span class="tagg">veg</span>Falafel, vitlöksdressing, feferoni, tomat, lök, bulgur (Gluten, Laktos, Ägg)<span class="pris">135 kr</span></li><li>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)<span class="pris">135 kr</span></li><li>Coq au vin med krossad potatis, dijonaise och örter (Ägg, Senap, Fågel)<span class="pris">135 kr</span></li></ul>
+<p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h2>
+<p class="adress">Pyrolavägen 7</p>
+<ul><li>Parmesankyckling med smörslungad broccoli &amp; potatisstomp L</li><li>Fisk-&amp; skaldjursqueneller med havskräftssås, haricot verts &amp; krossad potatis G,L,Ä</li><li><span class="tagg">veg</span>Broccoli-&amp; ädelostpaj med sallad &amp; örtcrème G,L,Ä</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://bibliothek.nu/menyer">Bibliothek</a></h2>
+<p class="adress">Lejonstigen 5</p>
+<ul><li><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås<span class="pris">185 kr</span></li><li><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås<span class="pris">175 kr</span></li><li><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör<span class="pris">185 kr</span></li><li><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli<span class="pris">175 kr</span></li></ul>
+<p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h2>
+<p class="adress">Stockholmsvägen 56</p>
+<ul><li><span class="tagg">kött</span>Noisetter med rosemarinsås och ris. Grillad kyckling med ris<span class="pris">139 kr</span></li><li><span class="tagg">fisk</span>Stekt röding med citronsås och kokt potatis<span class="pris">149 kr</span></li><li><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat<span class="pris">139 kr</span></li></ul>
+</article>
+</div></section>
+<section class="dag" id="d-4">
+<h2 class="dagrubrik">Torsdag 24 september</h2>
+<div class="lista">
+<article class="restaurang">
+<h2><a href="https://firren.org/bistro/">Firren</a></h2>
+<p class="adress">Friggavägen 18</p>
+<ul><li>Skaldjurslasagne med stark cheddar och ruccolasallad</li></ul>
+</article>
+<article class="restaurang">
+<h2><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h2>
+<p class="adress">Rönnebergavägen 1</p>
+<ul><li>Biffstroganoff med ris, smetana samt saltgurka</li><li>Pannoumi paneer</li><li>Dagens soppa</li><li>Pannkakor</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">Lunchens öppettider 11:30-13:00</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h2>
+<p class="adress">Trolldalsvägen 2</p>
+<ul><li>Stekt flundrafilé med remouladsås, kokt potatis och citron samt picklad fänkål. (Ä)(G)<span class="pris">165 kr</span></li><li><span class="tagg">buffé</span>Ärtsoppa med fläsk samt pannkakor med sylt och grädde. (Ä)(L)(G)<span class="pris">165 kr</span></li><li><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)<span class="pris">165 kr</span></li><li><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.<span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h2>
+<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
+<ul><li>Krämig tryffelpasta, stekt svamp, körvel, ruccola (Gluten, Laktos)<span class="pris">135 kr</span></li><li>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)<span class="pris">135 kr</span></li><li>Pannbiff, löksky, stekt potatis, saltgurka (Ägg, Fläsk)<span class="pris">135 kr</span></li></ul>
+<p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h2>
+<p class="adress">Pyrolavägen 7</p>
+<ul><li>Örtrostad porchetta med chilibakad spetskål, rödvinssås &amp; rostade rotfrukter</li><li>Stekt sejfilé med kräftröra, citron &amp; färskpotatis G,Ä</li><li>Ärtsoppa med pannkakor, sylt &amp; grädde G,L,Ä</li><li><span class="tagg">veg</span>Broccoli-&amp; ädelostpaj med sallad &amp; örtcrème G,L,Ä</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://bibliothek.nu/menyer">Bibliothek</a></h2>
+<p class="adress">Lejonstigen 5</p>
+<ul><li><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås<span class="pris">185 kr</span></li><li><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås<span class="pris">175 kr</span></li><li><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör<span class="pris">185 kr</span></li><li><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli<span class="pris">175 kr</span></li></ul>
+<p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h2>
+<p class="adress">Stockholmsvägen 56</p>
+<ul><li><span class="tagg">kött</span>Skomakarlåda biff med baconsky och mos<span class="pris">139 kr</span></li><li><span class="tagg">fisk</span>Stekt röding serveras med rotsellericreme och kokt potatis<span class="pris">149 kr</span></li><li><span class="tagg">veg</span>Chèvresallad eller Halloumisallad<span class="pris">139 kr</span></li></ul>
+</article>
+</div></section>
+<section class="dag" id="d-5">
+<h2 class="dagrubrik">Fredag 25 september</h2>
+<div class="lista">
+<article class="restaurang">
+<h2><a href="https://firren.org/bistro/">Firren</a></h2>
+<p class="adress">Friggavägen 18</p>
+<ul><li>Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré</li></ul>
+</article>
+<article class="restaurang">
+<h2><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h2>
+<p class="adress">Rönnebergavägen 1</p>
+<ul><li>Grillbuffé - med olika sortes kött &amp; goda tillbehör</li><li>Vegetarisk pizza</li><li>Dagens soppa</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">Lunchens öppettider 11:30-13:00</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h2>
+<p class="adress">Trolldalsvägen 2</p>
+<ul><li>Panerad fläskschnitzel med pommes, rödvinssås och bearnaise samt tomatsallad. (Ä)(L)(G)<span class="pris">165 kr</span></li><li><span class="tagg">buffé</span>Fiskgryta med krutonger och aioli. (Ä)(G)<span class="pris">165 kr</span></li><li><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)<span class="pris">165 kr</span></li><li><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.<span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h2>
+<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
+<ul><li><span class="tagg">veg</span>Vegetarisk burgare, briochebröd, pommes, picklad lök, sallad, tomat, hamburgerdressing (Gluten, Laktos, Ägg)<span class="pris">135 kr</span></li><li>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)<span class="pris">135 kr</span></li><li>Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</li><li>Högrevsburgare, briochebröd, pommes, picklad lök, tomat, sallad, dressing (Gluten, Ägg, Sesam, Nötkött)<span class="pris">135 kr</span></li></ul>
+<p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h2>
+<p class="adress">Pyrolavägen 7</p>
+<ul><li>Flankstek med chimichurri, smashad gurka, kimchimajonnäs &amp; klyftpotatis G,Ä</li><li>Rödtunga med vitvinssås, sparris, räkor &amp; dillkrossad potatis L</li><li><span class="tagg">veg</span>Broccoli-&amp; ädelostpaj med sallad &amp; örtcrème G,L,Ä</li></ul>
+<p class="notis">Visar vecka 40</p>
+<p class="info">I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://bibliothek.nu/menyer">Bibliothek</a></h2>
+<p class="adress">Lejonstigen 5</p>
+<ul><li><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås<span class="pris">185 kr</span></li><li><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås<span class="pris">175 kr</span></li><li><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör<span class="pris">185 kr</span></li><li><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli<span class="pris">175 kr</span></li><li>Steak minute pommes frites och bearnaisesås<span class="pris">245 kr</span></li></ul>
+<p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
+</article>
+<article class="restaurang">
+<h2><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h2>
+<p class="adress">Stockholmsvägen 56</p>
+<ul><li><span class="tagg">kött</span>Schnitzel med rostad potatis och svampsås<span class="pris">149 kr</span></li><li><span class="tagg">fisk</span>Stekt röding med dillsås och kokt potatis<span class="pris">149 kr</span></li><li><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat<span class="pris">139 kr</span></li></ul>
+</article>
+</div></section>
+<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna sidor. Fel kan förekomma, kontrollera gärna med restaurangen.</footer>
+</main></body></html>
