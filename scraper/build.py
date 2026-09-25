@@ -300,7 +300,8 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
         for r, w, notice in restaurant_weeks:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
-    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p></footer>")
+    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
+                 f"<p>© {updated.year} Richard Stening</p></footer>")
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 

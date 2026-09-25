@@ -284,3 +284,8 @@ def test_page_asks_search_engines_not_to_index_it():
     assert '<meta name="robots" content="noindex, nofollow, noarchive">' in head
     # A robots.txt that blocks crawling would hide the noindex tag from Google.
     assert not (Path("docs") / "robots.txt").exists()
+
+
+def test_footer_has_copyright_under_update_time():
+    html = render(DATA, date(2026, 9, 25))
+    assert "<footer><p>Uppdaterad 25 september 09:02.</p><p>© 2026 Richard Stening</p></footer>" in html
