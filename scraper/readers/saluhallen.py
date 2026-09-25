@@ -28,18 +28,20 @@ def parse(html: str, today: date) -> List[WeekMenu]:
     veg = []
     notes = ""
     mode = None  # ("day", idx) | ("veg", None) | None
+    seen_day_heading = False
     for p in section.find_all("p"):
         text = clean(p.get_text(" "))
         if not text:
             continue
-        if p.find("em") and not notes and "ingår" in text.lower():
+        if not seen_day_heading and not notes and p.find("em"):
             notes = text
             continue
-        strong = p.find("strong")
-        if strong and clean(strong.get_text()) == text:
+        strongs = p.find_all("strong")
+        if strongs and clean(" ".join(s.get_text(" ") for s in strongs)) == text:
             idx = day_index(text)
             if idx:
                 mode = ("day", idx)
+                seen_day_heading = True
             elif text.upper().startswith("VECKANS VEGETARISKA"):
                 mode = ("veg", None)
             else:
