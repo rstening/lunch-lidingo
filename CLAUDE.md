@@ -19,6 +19,7 @@ Sidan är gjord för en pensionär som kollar kvällen före eller samma morgon,
 - Branchnamn bara med a–z, siffror och bindestreck, till exempel `fler-korningar`.
 - Arbetsflöde: ny branch, visa ändringen på devservern, PR till `main`, slå ihop när ägaren säger till. Repot raderar sammanslagna brancher automatiskt.
 - Bygg om `docs/index.html` med färsk data innan sammanslagning, så att ändringen syns direkt.
+- När en regel eller ett beteende ändras: uppdatera README, designdokumentet och den här filen i samma branch.
 
 ## Så funkar det
 
@@ -49,7 +50,10 @@ Devservern (`lunch-dev` i `.claude/launch.json`) bygger om sidan vid varje omlad
 - En smal spalt, högst 640 px, på alla skärmar.
 - Inga kort eller linjer. Restaurangerna grupperas med luft, och bitext har `--text-2`.
 - Taggarna är runda kapslar och står till höger, direkt före priset. Rättens text börjar alltid vid vänsterkanten.
-- Dagväljaren visar bara veckodagar. Sidhuvudet visar den valda dagens datum. Dagens veckodag har en grön prick.
+- Dagväljaren visar bara veckodagar. Sidhuvudet visar den valda dagens datum, och veckan på en egen rad under som inte flyttar när man byter dag. Dagens veckodag har en grön prick.
+- Lunchtider skrivs alltid som `HH:MM-HH:MM` i `restaurants.yaml`, till exempel `10:00-14:00`. Ett test kontrollerar det.
+- Alla notiser och andra meningar på sidan slutar med punkt. Lunchtiden är en etikett och har ingen punkt. Ett test kontrollerar notiserna.
+- Visa aldrig en annan veckas rätter som den här veckans. Saknas veckans meny står det "Veckans meny är inte upplagd än.", och har restaurangen redan bytt till nästa vecka står det "Veckans meny saknas."
 - Inga långa streck (– eller —) i sidans egen text. Ett test kontrollerar det.
 - Mobile first: kontrollera varje designändring i 320 och 375 px bredd, utan sidledsscroll.
 - Sidan ska fungera utan JavaScript. Det enda skriptet lägger till dragning i dagväljaren.
