@@ -350,3 +350,11 @@ def test_render_applies_both_filters():
     html = render(data, date(2026, 9, 25))
     assert '<span class="ratt">Pannbiff med lök</span>' in html
     assert "öppettider" not in html and 'class="info"' not in html
+
+
+def test_unselected_days_are_secondary_and_the_selected_day_is_primary():
+    css = CSS + "\n" + _tab_css()
+    label = re.search(r"\.flikar label \{([^}]*)\}", css).group(1)
+    assert "color: var(--text-2)" in label
+    for n in range(1, 6):
+        assert f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] {{ font-weight: 600; color: var(--text); }}' in css
