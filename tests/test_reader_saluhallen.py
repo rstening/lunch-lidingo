@@ -26,3 +26,36 @@ def test_parse_saluhallen_empty_raises():
     from scraper.model import ParseError
     with pytest.raises(ParseError):
         saluhallen.parse('<html><body><section id="lunchmeny-section"></section></body></html>', TODAY)
+
+
+def test_parse_saluhallen_heading_split_across_strong_tags_not_absorbed_as_dish():
+    html = """
+    <html><body><section id="lunchmeny-section">
+      <h1>Lunchmeny vecka 40</h1>
+      <p><em>Valkommen till oss denna vecka.</em></p>
+      <p><strong>MÅNDAG</strong></p>
+      <p>Fläsknoisette med senapssås</p>
+      <p><strong>VECKANS</strong> <strong>KÖTT</strong></p>
+      <p>Detta ska inte bli en rätt under måndag</p>
+    </section></body></html>
+    """
+    w = saluhallen.parse(html, TODAY)[0]
+    mon = w.days["1"]
+    assert len(mon) == 1
+    assert mon[0].name == "Fläsknoisette med senapssås"
+    names = [d.name for d in mon]
+    assert "VECKANS KÖTT" not in names
+    assert "Detta ska inte bli en rätt under måndag" not in names
+
+
+def test_parse_saluhallen_intro_em_without_ingar_becomes_notes():
+    html = """
+    <html><body><section id="lunchmeny-section">
+      <h1>Lunchmeny vecka 40</h1>
+      <p><em>Varmt valkomna till oss denna vecka!</em></p>
+      <p><strong>MÅNDAG</strong></p>
+      <p>Fläsknoisette med senapssås</p>
+    </section></body></html>
+    """
+    w = saluhallen.parse(html, TODAY)[0]
+    assert w.notes == "Varmt valkomna till oss denna vecka!"
