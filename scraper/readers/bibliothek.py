@@ -88,6 +88,9 @@ def parse_pdf(pdf: bytes) -> Tuple[List[Dish], str]:
             dishes.append(Dish(name=name, price=price, tags=[tag] if tag else []))
     if not dishes:
         raise ParseError("Bibliothek: hittade inga rätter i PDF")
+    tagged = sum(1 for d in dishes if d.tags)
+    if tagged < 3:
+        raise ParseError("Bibliothek: PDF-layouten känns inte igen")
     return dishes, notes
 
 
@@ -108,11 +111,19 @@ def read(get: Callable, url: str, today: date) -> List[WeekMenu]:
         raise ParseError("Bibliothek: hittade inga lunch-PDF:er")
     weeks = []
     for year, week, pdf_url in links:
-        pdf = get(pdf_url)
-        dishes, notes = parse_pdf(pdf)
-        days = {str(d): [Dish(x.name, x.price, list(x.tags)) for x in dishes] for d in range(1, 6)}
-        special = _friday_special(pdf)
-        if special:
-            days["5"].append(special)
-        weeks.append(WeekMenu(year=year, week=week, week_known=True, days=days, notes=notes))
+        try:
+            pdf = get(pdf_url)
+            dishes, notes = parse_pdf(pdf)
+            days = {str(d): [Dish(x.name, x.price, list(x.tags)) for x in dishes]
+                    for d in range(1, 6)}
+            special = _friday_special(pdf)
+            if special:
+                days["5"].append(special)
+            weeks.append(WeekMenu(year=year, week=week, week_known=True, days=days, notes=notes))
+        except Exception:
+            # One bad week's PDF (fetch failure or a layout that can't be
+            # read) must not take down the other weeks.
+            continue
+    if not weeks:
+        raise ParseError("Bibliothek: ingen vecka kunde läsas")
     return weeks
