@@ -249,11 +249,13 @@ def test_header_date_and_week_format():
     html = render(DATA, date(2026, 9, 25))
     assert "<h1>Dagens lunch. Lidingö.</h1>" in html
     assert "<title>Dagens lunch. Lidingö.</title>" in html
-    assert '<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>' in html
-    assert '<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>' in html
+    assert '<p class="datumrad" id="h-5">Fredag 25 september.</p>' in html
+    assert '<p class="datumrad" id="h-2">Tisdag 22 september.</p>' in html
+    assert html.count('<p class="vecka">Vecka 39.</p>') == 1  # one static line, not per day
     assert "#dag-2:checked ~ header #h-2 { display: block; }" in html
     weekend = render(DATA, date(2026, 9, 26))
-    assert '<p class="datumrad" id="h-1">Måndag 28 september. Vecka 40.</p>' in weekend
+    assert '<p class="datumrad" id="h-1">Måndag 28 september.</p>' in weekend
+    assert '<p class="vecka">Vecka 40.</p>' in weekend
     assert 'id="dag-1" checked' in weekend
 
 

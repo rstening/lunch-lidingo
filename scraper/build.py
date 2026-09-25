@@ -285,7 +285,9 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     # One date line per weekday; CSS shows the one for the selected day.
     for n in range(1, 6):
         parts.append(f'<p class="datumrad" id="h-{n}">{DAY_NAMES[n - 1].capitalize()} '
-                     f'{format_date(dates[n - 1])}. Vecka {week}.</p>')
+                     f'{format_date(dates[n - 1])}.</p>')
+    # The week is the same for every day, so it gets its own line and never moves.
+    parts.append(f'<p class="vecka">Vecka {week}.</p>')
     parts.append("</header>")
     parts.append('<nav class="flikar" aria-label="Välj dag">')
     parts.append('<span class="indikator" aria-hidden="true"></span>')
