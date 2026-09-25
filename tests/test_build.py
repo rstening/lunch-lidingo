@@ -288,4 +288,7 @@ def test_page_asks_search_engines_not_to_index_it():
 
 def test_footer_has_copyright_under_update_time():
     html = render(DATA, date(2026, 9, 25))
-    assert "<footer><p>Uppdaterad 25 september 09:02.</p><p>© 2026 Richard Stening</p></footer>" in html
+    assert ('<footer><p>Uppdaterad 25 september 09:02.</p>'
+            '<p class="upphov">© 2026 Richard Stening</p></footer>') in html
+    assert "--disabled: rgba(18, 18, 18, 0.185)" in html
+    assert ".upphov { color: var(--disabled); }" in html

@@ -11,7 +11,7 @@
 @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
              font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { color-scheme: light; --bg: #fafafa; --text: #121212; --text-2: rgba(18, 18, 18, 0.595);
-        --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
+        --disabled: rgba(18, 18, 18, 0.185); --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
 * { box-sizing: border-box; }
 html { font-size: 16px; }
 body { margin: 0; padding: 48px 16px 32px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -70,6 +70,7 @@ header p { margin: 0; color: var(--text-2); }
 .notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
 footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
 footer p { margin: 0 0 4px; }
+.upphov { color: var(--disabled); }
 
 #dag-1:checked ~ #d-1 { display: block; }
 #dag-1:checked ~ header #h-1 { display: block; }
@@ -396,7 +397,7 @@ footer p { margin: 0 0 4px; }
 <ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Schnitzel med rostad potatis och svampsås</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Stekt röding med dillsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
-<footer><p>Uppdaterad 25 september 22:37.</p><p>© 2026 Richard Stening</p></footer>
+<footer><p>Uppdaterad 25 september 22:37.</p><p class="upphov">© 2026 Richard Stening</p></footer>
 </main><script>
 (function () {
   var nav = document.querySelector(".flikar");

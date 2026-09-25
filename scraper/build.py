@@ -19,7 +19,7 @@ CSS = """
 @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
              font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { color-scheme: light; --bg: #fafafa; --text: #121212; --text-2: rgba(18, 18, 18, 0.595);
-        --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
+        --disabled: rgba(18, 18, 18, 0.185); --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
 * { box-sizing: border-box; }
 html { font-size: 16px; }
 body { margin: 0; padding: 48px 16px 32px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -78,6 +78,7 @@ header p { margin: 0; color: var(--text-2); }
 .notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
 footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
 footer p { margin: 0 0 4px; }
+.upphov { color: var(--disabled); }
 """
 
 
@@ -301,7 +302,7 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
     parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
-                 f"<p>© {updated.year} Richard Stening</p></footer>")
+                 f'<p class="upphov">© {updated.year} Richard Stening</p></footer>')
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 

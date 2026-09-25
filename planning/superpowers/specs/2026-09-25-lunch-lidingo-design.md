@@ -132,7 +132,7 @@ En sida, `docs/index.html`, i HTML och CSS utan externa resurser. Ett litet inb�
 - Dagväljaren visar bara veckodagarna (Mån–Fre) på en rad. Sidhuvudet visar datum och vecka för den valda dagen, till exempel "Tisdag 22 september. Vecka 39.", och byts med CSS när man väljer en annan dag. Dagens veckodag har en liten grön prick (#24cc5c, sidans enda accentfärg). På helger, när sidan visar nästa vecka, finns ingen prick.
 - Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Varje restaurang är en grupp utan ram: namn (länk till källan) och lunchtid på samma rad, sedan rätterna. Rättens text börjar alltid vid vänsterkanten; taggen står till höger, direkt före priset. Grupperna skiljs åt med luft (48 px i mobil, 64 px på dator), inte med kort eller linjer. Bitext (lunchtid, tagg, pris, notiser) har den sekundära textfärgen.
 - Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen".
-- All text i 16 px utom sidfoten och taggarna (14 px). Sidfoten har sekundär textfärg (#121212 med 59,5 % synlighet); taggarna är runda kapslar med linjefärgen som fyllning och sekundär textfärg, hierarki med vikt och luft, hög kontrast, en smal spalt (max 640 px) på alla skärmar. Allt på svenska. Ingen vidare design i första versionen.
+- All text i 16 px utom sidfoten och taggarna (14 px). Sidfoten har sekundär textfärg (#121212 med 59,5 % synlighet), utom copyright-raden som har färgen disabled (#121212 med 18,5 % synlighet); taggarna är runda kapslar med linjefärgen som fyllning och sekundär textfärg, hierarki med vikt och luft, hög kontrast, en smal spalt (max 640 px) på alla skärmar. Allt på svenska. Ingen vidare design i första versionen.
 
 ## Testning
 
