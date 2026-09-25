@@ -1,23 +1,5 @@
 # Ordningen här är ordningen på sidan. Lägg till en rad för en ny restaurang
 # och en läsare i scraper/readers/<reader>.py.
-- id: firren
-  name: Firren
-  address: Friggavägen 18
-  lunch_hours: "11-14"
-  url: https://firren.org/bistro/
-  reader: firren
-- id: ronneberga
-  name: Rönneberga
-  address: Rönnebergavägen 1
-  lunch_hours: "11:30-13"
-  url: https://ronneberga.se/restaurang/lunchmeny/
-  reader: ronneberga
-- id: golf
-  name: Lidingö Golfrestaurang
-  address: Trolldalsvägen 2
-  lunch_hours: "11-14"
-  url: https://www.lidingogolfrestaurang.com/
-  reader: golf
 - id: pocket
   name: Pocket
   address: Lidingö stadshus, Stockholmsvägen 50
@@ -36,6 +18,24 @@
   lunch_hours: "11:30-14:30"
   url: https://bibliothek.nu/menyer
   reader: bibliothek
+- id: firren
+  name: Firren
+  address: Friggavägen 18
+  lunch_hours: "11-14"
+  url: https://firren.org/bistro/
+  reader: firren
+- id: ronneberga
+  name: Rönneberga
+  address: Rönnebergavägen 1
+  lunch_hours: "11:30-13"
+  url: https://ronneberga.se/restaurang/lunchmeny/
+  reader: ronneberga
+- id: golf
+  name: Lidingö Golfrestaurang
+  address: Trolldalsvägen 2
+  lunch_hours: "11-14"
+  url: https://www.lidingogolfrestaurang.com/
+  reader: golf
 - id: jernet
   name: Brasserie Jernet
   address: Stockholmsvägen 56

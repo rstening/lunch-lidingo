@@ -57,7 +57,7 @@ def test_pick_week_none_when_latest_is_more_than_one_week_older():
 def test_render_friday():
     html = render(DATA, date(2026, 9, 25))
     assert "<!doctype html>" in html.lower()
-    assert "<script" not in html.lower()
+    assert html.count("<script>") == 1  # only the drag enhancement, inline
     assert 'id="dag-5" checked' in html.replace("  ", " ")
     assert "Fredag 25 september" in html
     assert "Alfa Kök" in html and "Beta Bar" in html and "Gamma Grill" in html
@@ -88,27 +88,181 @@ def test_render_escapes_html():
     assert "&lt;b&gt;X&lt;/b&gt;" in html and "Fisk &amp; &lt;chips&gt;" in html
 
 
-def test_all_font_sizes_are_at_least_18px():
+def test_all_text_is_16px_except_footer_and_badges():
     css = CSS + "\n" + _tab_css()
-    root_px = 20  # from `html { font-size: 20px; }` in CSS
+    root_px = 16  # from `html { font-size: 16px; }` in CSS
+    assert "html { font-size: 16px; }" in css
+    assert "font: 16px/1.5" in css
     sizes = re.findall(r"font-size:\s*([0-9.]+)(px|rem)", css)
     assert sizes, "expected at least one font-size declaration"
-    for value, unit in sizes:
+    footer = re.search(r"footer \{([^}]*)\}", css).group(1)
+    badge = re.search(r"\.tagg \{([^}]*)\}", css).group(1)
+    assert "font-size: 14px" in footer  # deliberate exceptions: footer and badges
+    assert "font-size: 14px" in badge
+    body_css = css.replace(footer, "").replace(badge, "")
+    for value, unit in re.findall(r"font-size:\s*([0-9.]+)(px|rem)", body_css):
         px = float(value) if unit == "px" else float(value) * root_px
-        assert px >= 18, f"font-size {value}{unit} computes to {px}px, below 18px minimum"
+        assert px == 16, f"font-size {value}{unit} computes to {px}px, expected 16px"
 
 
 def test_dish_li_has_ratt_and_pris_spans():
     html = render(DATA, date(2026, 9, 25))
-    assert '<li><span class="ratt">' in html
+    assert '<li><span class="ratt">Pasta</span>' in html
     assert '<span class="pris">130 kr</span>' in html
 
 
 def test_render_shows_lunch_hours():
     html = render(DATA, date(2026, 9, 25))
-    assert '<p class="tider">Lunch 11-14</p>' in html
+    assert '<span class="tider">Lunch 11-14</span>' in html
 
 
 def test_page_copy_has_no_long_dashes():
     html = render(DATA, date(2026, 9, 25))
     assert "–" not in html and "—" not in html
+
+
+def test_page_uses_self_hosted_geist():
+    html = render(DATA, date(2026, 9, 25))
+    assert 'url("fonts/Geist-Variable.woff2")' in html
+    assert '"Geist", -apple-system' in html
+    assert "fonts.googleapis" not in html and "https://" not in html.split("<main>")[0]
+
+
+def test_page_uses_only_the_two_brand_colours():
+    html = render(DATA, date(2026, 9, 25))
+    css = html.split("<style>")[1].split("</style>")[0]
+    hexes = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{3,6}\b", css)}
+    assert hexes == {"#fafafa", "#121212", "#24cc5c"}, hexes  # two colours plus the today accent
+    rgbas = set(re.findall(r"rgba\(([^)]*)\)", css))
+    for value in rgbas:  # translucent versions of the two colours only
+        r, g, b, _alpha = [x.strip() for x in value.split(",")]
+        assert (r, g, b) in {("18", "18", "18"), ("250", "250", "250")}, value
+    assert "color: #" not in css.split(":root")[1]  # everything else goes through variables
+
+
+def test_restaurants_are_grouped_by_space_not_boxes():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    assert not re.search(r"\.restaurang \{", css)  # no card box at all
+    assert "border-top" not in css                  # no separator lines between dishes
+    assert ".lista { display: grid; grid-template-columns: 1fr; gap: 48px; }" in css
+    for cls in ("tider", "pris", "tagg"):
+        rule = re.search(r"\." + cls + r" \{([^}]*)\}", css).group(1)
+        assert "color: var(--text-2)" in rule, cls
+
+
+def test_weekday_tabs_share_one_row():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    tabs = re.search(r"\.flikar \{([^}]*)\}", css).group(1)
+    assert "grid-template-columns: repeat(5, minmax(0, 1fr))" in tabs
+
+
+def test_single_narrow_column_at_every_width():
+    css = CSS + "\n" + _tab_css()
+    assert "1fr 1fr" not in css
+    assert "main { max-width: 640px;" in css
+
+
+def test_day_picker_has_sliding_glass_indicator():
+    html = render(DATA, date(2026, 9, 25))
+    assert '<span class="indikator" aria-hidden="true"></span>' in html
+    css = html.split("<style>")[1].split("</style>")[0]
+    for n in range(1, 6):
+        assert f"#dag-{n}:checked ~ .flikar .indikator {{ transform: translateX({(n - 1) * 100}%); }}" in css
+    assert "backdrop-filter: blur(12px)" in css
+    assert "prefers-reduced-motion: reduce" in css
+
+
+def test_day_picker_works_without_script_and_adds_drag_with_it():
+    html = render(DATA, date(2026, 9, 25))
+    before_script = html.split("<script>")[0]
+    # Without JavaScript: radios, labels and sections are all in the HTML.
+    for n in range(1, 6):
+        assert f'id="dag-{n}"' in before_script and f'for="dag-{n}"' in before_script
+        assert f'id="d-{n}"' in before_script
+    script = html.split("<script>")[1].split("</script>")[0]
+    for needle in ("pointerdown", "pointermove", "pointerup", "pointercancel",
+                   "setPointerCapture", "drar"):
+        assert needle in script
+    css = html.split("<style>")[1].split("</style>")[0]
+    assert ".flikar { touch-action: pan-y; }" in css
+
+
+def test_day_picker_spans_the_full_column():
+    css = CSS + "\n" + _tab_css()
+    tabs = re.search(r"\.flikar \{ position: relative;([^}]*)\}", css).group(1)
+    assert "max-width" not in tabs
+
+
+def test_footer_shows_only_the_update_time():
+    html = render(DATA, date(2026, 9, 25))
+    assert "--text-2: rgba(18, 18, 18, 0.595)" in html
+    assert "footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }" in html
+    assert "<footer><p>Uppdaterad 25 september 09:02.</p>" in html
+    assert "Menyerna hämtas" not in html and "Dubbelkolla" not in html
+
+
+def test_cards_show_hours_but_not_address():
+    html = render(DATA, date(2026, 9, 25))
+    assert 'class="adress"' not in html and "Gatan 1" not in html
+    assert '<span class="tider">Lunch 11-14</span>' in html
+    css = html.split("<style>")[1].split("</style>")[0]
+    tider = re.search(r"\.tider \{([^}]*)\}", css).group(1)
+    assert "font-weight" not in tider
+
+
+def test_tags_are_round_calm_badges():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    badge = re.search(r"\.tagg \{([^}]*)\}", css).group(1)
+    for rule in ("border-radius: 999px", "background: var(--line)", "color: var(--text-2)"):
+        assert rule in badge
+    assert "border:" not in badge and "box-shadow" not in badge
+
+
+def test_tag_badge_sits_in_its_own_element_before_the_dish():
+    html = render(DATA, date(2026, 9, 21))
+    assert '<li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Soppa</span>' in html
+
+
+def test_badge_sits_between_dish_and_price():
+    html = render(DATA, date(2026, 9, 25))
+    css = html.split("<style>")[1].split("</style>")[0]
+    row = re.search(r"\.restaurang li \{([^}]*)\}", css).group(1)
+    assert 'grid-template-areas: "ratt taggar pris"' in row
+    assert "tl-" not in html and "devval" not in html
+
+
+def test_render_follows_the_given_restaurant_order():
+    html = render(DATA, date(2026, 9, 25), order=["d", "c", "a", "b"])
+    section = html.split('id="d-5"')[1]
+    names = [section.index(n) for n in ("Delta Deli", "Gamma Grill", "Alfa Kök", "Beta Bar")]
+    assert names == sorted(names)
+    # Unknown or missing ids never drop a restaurant.
+    assert render(DATA, date(2026, 9, 25), order=["x"]).count("Alfa Kök") == 5
+
+
+def test_load_order_reads_restaurants_yaml():
+    from scraper.build import load_order
+    assert load_order()[:3] == ["pocket", "saluhallen", "bibliothek"]
+
+
+def test_header_date_and_week_format():
+    html = render(DATA, date(2026, 9, 25))
+    assert "<h1>Dagens lunch. Lidingö.</h1>" in html
+    assert '<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>' in html
+    assert '<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>' in html
+    assert "#dag-2:checked ~ header #h-2 { display: block; }" in html
+    weekend = render(DATA, date(2026, 9, 26))
+    assert '<p class="datumrad" id="h-1">Måndag 28 september. Vecka 40.</p>' in weekend
+    assert 'id="dag-1" checked' in weekend
+
+
+def test_day_picker_shows_weekdays_only_and_marks_today():
+    html = render(DATA, date(2026, 9, 23))
+    nav = html.split('<nav class="flikar"')[1].split("</nav>")[0]
+    assert "<small>" not in nav and "/9" not in nav
+    assert '<label for="dag-3" class="idag" aria-label="Ons, idag">Ons</label>' in nav
+    assert nav.count('class="idag"') == 1
+    css = html.split("<style>")[1].split("</style>")[0]
+    assert "--accent: #24cc5c" in css and "background: var(--accent)" in css
+    # On a weekend the page shows next week, so no day in it is today.
+    assert 'class="idag"' not in render(DATA, date(2026, 9, 26))

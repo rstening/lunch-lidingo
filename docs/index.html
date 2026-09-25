@@ -3,319 +3,458 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dagens lunch på Lidingö</title>
 <style>
-:root { color-scheme: light; }
+@font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
+             font-weight: 100 900; font-style: normal; font-display: swap; }
+:root { color-scheme: light; --bg: #fafafa; --text: #121212; --text-2: rgba(18, 18, 18, 0.595);
+        --line: rgba(18, 18, 18, 0.068); --accent: #24cc5c; }
 * { box-sizing: border-box; }
-html { font-size: 20px; }
-body { margin: 0; padding: 16px; font: 20px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-       color: #1a1a1a; background: #f6f4ef; }
-main { max-width: 1100px; margin: 0 auto; }
-header h1 { font-size: 1.9rem; margin: 0 0 4px; }
-header p { margin: 0 0 12px; color: #444; }
+html { font-size: 16px; }
+body { margin: 0; padding: 48px 16px 32px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+       color: var(--text); background: var(--bg); }
+main { max-width: 640px; margin: 0 auto; }
+@media (min-width: 640px) { body { padding: 96px 24px 48px; } }
+header h1 { font-size: 1rem; font-weight: 500; margin: 0; }
+header p { margin: 0; color: var(--text-2); }
+.datumrad { display: none; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
-.flikar { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-.flikar label { display: block; padding: 10px 14px; border: 2px solid #1a1a1a; border-radius: 8px;
-                background: #fff; cursor: pointer; font-weight: 600; }
-.flikar label small { display: block; font-weight: 400; font-size: 0.9rem; color: #444; }
+.flikar { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+          margin: 32px 0 48px; padding: 4px; border-radius: 999px;
+          background: var(--line); box-shadow: inset 0 1px 2px rgba(18, 18, 18, 0.06);
+          -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+                justify-content: center; min-height: 48px; padding: 0 2px; border-radius: 999px;
+                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center; }
+.flikar label.idag::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px;
+                            margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
+.indikator { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 5);
+             border-radius: 999px; transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1); }
+.indikator::before { content: ""; position: absolute; inset: 0; border-radius: inherit;
+                     background: rgba(250, 250, 250, 0.72);
+                     -webkit-backdrop-filter: blur(12px) saturate(180%); backdrop-filter: blur(12px) saturate(180%);
+                     border: 1px solid rgba(250, 250, 250, 0.9);
+                     box-shadow: 0 1px 1px rgba(18, 18, 18, 0.04), 0 4px 14px rgba(18, 18, 18, 0.1),
+                                 inset 0 1px 0 rgba(250, 250, 250, 1), inset 0 -1px 1px rgba(18, 18, 18, 0.05);
+                     transition: transform 160ms ease-out; }
+.flikar:has(label:active) .indikator::before { transform: scale(0.96); }
+.flikar { touch-action: pan-y; }
+.flikar.drar { cursor: grabbing; }
+.flikar.drar .indikator { transition: transform 60ms ease-out; }
+.flikar.drar .indikator::before { transform: scale(1.06); }
+@media (prefers-reduced-motion: reduce) { .indikator, .indikator::before { transition: none; } }
 .dag { display: none; }
-.dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
-.lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
-@media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
-.restaurang { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; }
-.restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
-.restaurang h3 a { color: #0b4f9c; text-decoration: none; }
-.restaurang h3 a:hover { text-decoration: underline; }
-.adress { margin: 0; color: #555; font-size: 0.9rem; }
-.tider { margin: 0 0 8px; color: #1a1a1a; font-size: 0.9rem; font-weight: 600; }
-.restaurang ul { list-style: none; margin: 0; padding: 0; }
-.restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
-                 padding: 6px 0; border-top: 1px solid #eee; }
-.ratt { flex: 1 1 auto; min-width: 0; }
-.tagg { display: inline-block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .03em;
-        background: #e9efe4; color: #2f4f2f; border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
-.pris { color: #444; white-space: nowrap; flex-shrink: 0; }
-.notis { margin: 8px 0 0; color: #8a4b00; font-size: 0.9rem; }
-.info { margin: 8px 0 0; color: #555; font-size: 0.9rem; }
-.tom { margin: 4px 0 0; color: #666; font-style: italic; }
-footer { margin: 28px 0 8px; color: #666; font-size: 0.9rem; }
+.dagrubrik { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+             white-space: nowrap; margin: 0; font-size: 1rem; }
+.lista { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 640px) { .lista { gap: 64px; } }
+.rubrik { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+          column-gap: 16px; }
+.restaurang h3 { font-size: 1rem; font-weight: 500; margin: 0; }
+.restaurang h3 a { color: var(--text); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .restaurang h3 a:hover { text-decoration: underline; } }
+.tider { color: var(--text-2); font-size: 1rem; }
+.restaurang ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
+/* Dish row: the dish always starts at the left edge; badge and price sit together on the right. */
+.restaurang li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
+                 grid-template-areas: "ratt taggar pris"; column-gap: 12px; align-items: baseline; }
+.taggar { grid-area: taggar; display: flex; gap: 6px; }
+.ratt { grid-area: ratt; min-width: 0; }
+.tagg { display: inline-flex; align-items: center; justify-content: center; height: 22px; padding: 0 9px;
+        border-radius: 999px; background: var(--line); color: var(--text-2);
+        font-size: 14px; font-weight: 500; line-height: 1; text-transform: capitalize; white-space: nowrap; }
+.pris { grid-area: pris; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
+footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
+footer p { margin: 0 0 4px; }
 
 #dag-1:checked ~ #d-1 { display: block; }
-#dag-1:checked ~ .flikar label[for="dag-1"] { background: #1a1a1a; color: #fff; }
-#dag-1:checked ~ .flikar label[for="dag-1"] small { color: #ddd; }
-#dag-1:focus-visible ~ .flikar label[for="dag-1"] { outline: 3px solid #0b4f9c; outline-offset: 2px; }
+#dag-1:checked ~ header #h-1 { display: block; }
+#dag-1:checked ~ .flikar .indikator { transform: translateX(0%); }
+#dag-1:checked ~ .flikar label[for="dag-1"] { font-weight: 600; }
+#dag-1:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-2:checked ~ #d-2 { display: block; }
-#dag-2:checked ~ .flikar label[for="dag-2"] { background: #1a1a1a; color: #fff; }
-#dag-2:checked ~ .flikar label[for="dag-2"] small { color: #ddd; }
-#dag-2:focus-visible ~ .flikar label[for="dag-2"] { outline: 3px solid #0b4f9c; outline-offset: 2px; }
+#dag-2:checked ~ header #h-2 { display: block; }
+#dag-2:checked ~ .flikar .indikator { transform: translateX(100%); }
+#dag-2:checked ~ .flikar label[for="dag-2"] { font-weight: 600; }
+#dag-2:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-3:checked ~ #d-3 { display: block; }
-#dag-3:checked ~ .flikar label[for="dag-3"] { background: #1a1a1a; color: #fff; }
-#dag-3:checked ~ .flikar label[for="dag-3"] small { color: #ddd; }
-#dag-3:focus-visible ~ .flikar label[for="dag-3"] { outline: 3px solid #0b4f9c; outline-offset: 2px; }
+#dag-3:checked ~ header #h-3 { display: block; }
+#dag-3:checked ~ .flikar .indikator { transform: translateX(200%); }
+#dag-3:checked ~ .flikar label[for="dag-3"] { font-weight: 600; }
+#dag-3:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-4:checked ~ #d-4 { display: block; }
-#dag-4:checked ~ .flikar label[for="dag-4"] { background: #1a1a1a; color: #fff; }
-#dag-4:checked ~ .flikar label[for="dag-4"] small { color: #ddd; }
-#dag-4:focus-visible ~ .flikar label[for="dag-4"] { outline: 3px solid #0b4f9c; outline-offset: 2px; }
+#dag-4:checked ~ header #h-4 { display: block; }
+#dag-4:checked ~ .flikar .indikator { transform: translateX(300%); }
+#dag-4:checked ~ .flikar label[for="dag-4"] { font-weight: 600; }
+#dag-4:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }
 #dag-5:checked ~ #d-5 { display: block; }
-#dag-5:checked ~ .flikar label[for="dag-5"] { background: #1a1a1a; color: #fff; }
-#dag-5:checked ~ .flikar label[for="dag-5"] small { color: #ddd; }
-#dag-5:focus-visible ~ .flikar label[for="dag-5"] { outline: 3px solid #0b4f9c; outline-offset: 2px; }</style></head><body><main>
+#dag-5:checked ~ header #h-5 { display: block; }
+#dag-5:checked ~ .flikar .indikator { transform: translateX(400%); }
+#dag-5:checked ~ .flikar label[for="dag-5"] { font-weight: 600; }
+#dag-5:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }</style></head><body><main>
 <input type="radio" name="dag" class="dagval" id="dag-1">
 <input type="radio" name="dag" class="dagval" id="dag-2">
 <input type="radio" name="dag" class="dagval" id="dag-3">
 <input type="radio" name="dag" class="dagval" id="dag-4">
 <input type="radio" name="dag" class="dagval" id="dag-5" checked>
-<header><h1>Dagens lunch på Lidingö</h1>
-<p>Fredag 25 september, vecka 39. Uppdaterad 25 september 21:30.</p></header>
-<nav class="flikar">
-<label for="dag-1">Mån<small>21/9</small></label>
-<label for="dag-2">Tis<small>22/9</small></label>
-<label for="dag-3">Ons<small>23/9</small></label>
-<label for="dag-4">Tor<small>24/9</small></label>
-<label for="dag-5">Fre<small>25/9</small></label>
+<header><h1>Dagens lunch. Lidingö.</h1>
+<p class="datumrad" id="h-1">Måndag 21 september. Vecka 39.</p>
+<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>
+<p class="datumrad" id="h-3">Onsdag 23 september. Vecka 39.</p>
+<p class="datumrad" id="h-4">Torsdag 24 september. Vecka 39.</p>
+<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>
+</header>
+<nav class="flikar" aria-label="Välj dag">
+<span class="indikator" aria-hidden="true"></span>
+<label for="dag-1">Mån</label>
+<label for="dag-2">Tis</label>
+<label for="dag-3">Ons</label>
+<label for="dag-4">Tor</label>
+<label for="dag-5" class="idag" aria-label="Fre, idag">Fre</label>
 </nav>
 <section class="dag" id="d-1">
 <h2 class="dagrubrik">Måndag 21 september</h2>
 <div class="lista">
 <article class="restaurang">
-<h3><a href="https://firren.org/bistro/">Firren</a></h3>
-<p class="adress">Friggavägen 18</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Scampi Indiana med grönsaksris</span></li></ul>
-</article>
-<article class="restaurang">
-<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
-<p class="adress">Rönnebergavägen 1</p>
-<p class="tider">Lunch 11:30-13</p>
-<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
-</article>
-<article class="restaurang">
-<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
-<p class="adress">Trolldalsvägen 2</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Pocherad flundrafilé med skaldjurssås, potatismos och tomatsallad. (L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">buffé</span>Gulaschgryta serveras med jasminris och gräddfil. (L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
-<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
-</article>
-<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h3>
-<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
-<p class="tider">Lunch 10:30-14</p>
-<ul><li><span class="ratt"><span class="tagg">veg</span>Vegetarisk lasagne, sojafärs, grönsaker, parmesankräk, ruccola (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Krämig kycklingkorma, ris, rostad broccoli, koriander (Laktos, Fågel)</span><span class="pris">135 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Vegetarisk lasagne, sojafärs, grönsaker, parmesankräk, ruccola (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Krämig kycklingkorma, ris, rostad broccoli, koriander (Laktos, Fågel)</span><span class="pris">135 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li></ul>
 <p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h3>
-<p class="adress">Pyrolavägen 7</p>
-<p class="tider">Lunch 10-14</p>
+<span class="tider">Lunch 10-14</span>
+</div>
 <p class="tom">Nästa veckas meny finns på restaurangens sida</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://bibliothek.nu/menyer">Bibliothek</a></h3>
-<p class="adress">Lejonstigen 5</p>
-<p class="tider">Lunch 11:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
+<span class="tider">Lunch 11:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
 <p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://firren.org/bistro/">Firren</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Scampi Indiana med grönsaksris</span></li></ul>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
+<span class="tider">Lunch 11:30-13</span>
+</div>
+<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Pocherad flundrafilé med skaldjurssås, potatismos och tomatsallad. (L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">buffé</span></span><span class="ratt">Gulaschgryta serveras med jasminris och gräddfil. (L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">lätt</span></span><span class="ratt">Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
-<p class="adress">Stockholmsvägen 56</p>
-<p class="tider">Lunch 10:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Kalvfärsbiffar serveras med ugnsrostad potatis och gräddsås</span><span class="pris">139 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Ugnsbakad röding serveras med krämig tartarsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Kalvfärsbiffar serveras med ugnsrostad potatis och gräddsås</span><span class="pris">139 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Ugnsbakad röding serveras med krämig tartarsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
 <section class="dag" id="d-2">
 <h2 class="dagrubrik">Tisdag 22 september</h2>
 <div class="lista">
 <article class="restaurang">
-<h3><a href="https://firren.org/bistro/">Firren</a></h3>
-<p class="adress">Friggavägen 18</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis</span></li></ul>
-</article>
-<article class="restaurang">
-<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
-<p class="adress">Rönnebergavägen 1</p>
-<p class="tider">Lunch 11:30-13</p>
-<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
-</article>
-<article class="restaurang">
-<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
-<p class="adress">Trolldalsvägen 2</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Pocherad sejfilé med ägg, räkor och kokt potatis samt brynt smör och pepparrot. (L)(Ä)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">buffé</span>Nudelwok med kyckling och grönsaker serveras med chilicrème. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
-<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
-</article>
-<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h3>
-<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
-<p class="tider">Lunch 10:30-14</p>
-<ul><li><span class="ratt"><span class="tagg">veg</span>Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök &amp; citron (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Fläskkotlett, kantarellsås, persiljeslungad potatis, vitlöksrostade morötter (Laktos, Fläsk)</span><span class="pris">135 kr</span></li><li><span class="ratt">Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</span></li></ul>
+<span class="tider">Lunch 10:30-14</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök &amp; citron (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Fläskkotlett, kantarellsås, persiljeslungad potatis, vitlöksrostade morötter (Laktos, Fläsk)</span><span class="pris">135 kr</span></li><li><span class="ratt">Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</span></li></ul>
 <p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h3>
-<p class="adress">Pyrolavägen 7</p>
-<p class="tider">Lunch 10-14</p>
+<span class="tider">Lunch 10-14</span>
+</div>
 <p class="tom">Nästa veckas meny finns på restaurangens sida</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://bibliothek.nu/menyer">Bibliothek</a></h3>
-<p class="adress">Lejonstigen 5</p>
-<p class="tider">Lunch 11:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
+<span class="tider">Lunch 11:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
 <p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://firren.org/bistro/">Firren</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis</span></li></ul>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
+<span class="tider">Lunch 11:30-13</span>
+</div>
+<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Pocherad sejfilé med ägg, räkor och kokt potatis samt brynt smör och pepparrot. (L)(Ä)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">buffé</span></span><span class="ratt">Nudelwok med kyckling och grönsaker serveras med chilicrème. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">lätt</span></span><span class="ratt">Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
-<p class="adress">Stockholmsvägen 56</p>
-<p class="tider">Lunch 10:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Lövbiff med gorgonzolasås och mos</span><span class="pris">139 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Pocherad torsk med Bitte blanchsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Lövbiff med gorgonzolasås och mos</span><span class="pris">139 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Pocherad torsk med Bitte blanchsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
 <section class="dag" id="d-3">
 <h2 class="dagrubrik">Onsdag 23 september</h2>
 <div class="lista">
 <article class="restaurang">
-<h3><a href="https://firren.org/bistro/">Firren</a></h3>
-<p class="adress">Friggavägen 18</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Fläskschnitzel med kapris, sardeller, citron och stekt potatis</span></li></ul>
-</article>
-<article class="restaurang">
-<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
-<p class="adress">Rönnebergavägen 1</p>
-<p class="tider">Lunch 11:30-13</p>
-<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
-</article>
-<article class="restaurang">
-<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
-<p class="adress">Trolldalsvägen 2</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Pannbiff med stekt lök, skysås och rårörda lingon samt kokt potatis. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">buffé</span>Pocherad Alaskafilé med sauce florentin, potatismos och marinerade bönor. (L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
-<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
-</article>
-<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h3>
-<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
-<p class="tider">Lunch 10:30-14</p>
-<ul><li><span class="ratt"><span class="tagg">veg</span>Falafel, vitlöksdressing, feferoni, tomat, lök, bulgur (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Coq au vin med krossad potatis, dijonaise och örter (Ägg, Senap, Fågel)</span><span class="pris">135 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Falafel, vitlöksdressing, feferoni, tomat, lök, bulgur (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Coq au vin med krossad potatis, dijonaise och örter (Ägg, Senap, Fågel)</span><span class="pris">135 kr</span></li></ul>
 <p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h3>
-<p class="adress">Pyrolavägen 7</p>
-<p class="tider">Lunch 10-14</p>
+<span class="tider">Lunch 10-14</span>
+</div>
 <p class="tom">Nästa veckas meny finns på restaurangens sida</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://bibliothek.nu/menyer">Bibliothek</a></h3>
-<p class="adress">Lejonstigen 5</p>
-<p class="tider">Lunch 11:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
+<span class="tider">Lunch 11:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
 <p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://firren.org/bistro/">Firren</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Fläskschnitzel med kapris, sardeller, citron och stekt potatis</span></li></ul>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
+<span class="tider">Lunch 11:30-13</span>
+</div>
+<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Pannbiff med stekt lök, skysås och rårörda lingon samt kokt potatis. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">buffé</span></span><span class="ratt">Pocherad Alaskafilé med sauce florentin, potatismos och marinerade bönor. (L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">lätt</span></span><span class="ratt">Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
-<p class="adress">Stockholmsvägen 56</p>
-<p class="tider">Lunch 10:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Noisetter med rosemarinsås och ris. Grillad kyckling med ris</span><span class="pris">139 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Stekt röding med citronsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Noisetter med rosemarinsås och ris. Grillad kyckling med ris</span><span class="pris">139 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Stekt röding med citronsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
 <section class="dag" id="d-4">
 <h2 class="dagrubrik">Torsdag 24 september</h2>
 <div class="lista">
 <article class="restaurang">
-<h3><a href="https://firren.org/bistro/">Firren</a></h3>
-<p class="adress">Friggavägen 18</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Skaldjurslasagne med stark cheddar och ruccolasallad</span></li></ul>
-</article>
-<article class="restaurang">
-<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
-<p class="adress">Rönnebergavägen 1</p>
-<p class="tider">Lunch 11:30-13</p>
-<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
-</article>
-<article class="restaurang">
-<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
-<p class="adress">Trolldalsvägen 2</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Stekt flundrafilé med remouladsås, kokt potatis och citron samt picklad fänkål. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">buffé</span>Ärtsoppa med fläsk samt pannkakor med sylt och grädde. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
-<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
-</article>
-<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h3>
-<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
-<p class="tider">Lunch 10:30-14</p>
+<span class="tider">Lunch 10:30-14</span>
+</div>
 <ul><li><span class="ratt">Krämig tryffelpasta, stekt svamp, körvel, ruccola (Gluten, Laktos)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Pannbiff, löksky, stekt potatis, saltgurka (Ägg, Fläsk)</span><span class="pris">135 kr</span></li></ul>
 <p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h3>
-<p class="adress">Pyrolavägen 7</p>
-<p class="tider">Lunch 10-14</p>
+<span class="tider">Lunch 10-14</span>
+</div>
 <p class="tom">Nästa veckas meny finns på restaurangens sida</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://bibliothek.nu/menyer">Bibliothek</a></h3>
-<p class="adress">Lejonstigen 5</p>
-<p class="tider">Lunch 11:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
+<span class="tider">Lunch 11:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li></ul>
 <p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://firren.org/bistro/">Firren</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Skaldjurslasagne med stark cheddar och ruccolasallad</span></li></ul>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
+<span class="tider">Lunch 11:30-13</span>
+</div>
+<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Stekt flundrafilé med remouladsås, kokt potatis och citron samt picklad fänkål. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">buffé</span></span><span class="ratt">Ärtsoppa med fläsk samt pannkakor med sylt och grädde. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">lätt</span></span><span class="ratt">Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
-<p class="adress">Stockholmsvägen 56</p>
-<p class="tider">Lunch 10:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Skomakarlåda biff med baconsky och mos</span><span class="pris">139 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Stekt röding serveras med rotsellericreme och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Chèvresallad eller Halloumisallad</span><span class="pris">139 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Skomakarlåda biff med baconsky och mos</span><span class="pris">139 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Stekt röding serveras med rotsellericreme och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Chèvresallad eller Halloumisallad</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
 <section class="dag" id="d-5">
 <h2 class="dagrubrik">Fredag 25 september</h2>
 <div class="lista">
 <article class="restaurang">
-<h3><a href="https://firren.org/bistro/">Firren</a></h3>
-<p class="adress">Friggavägen 18</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré</span></li></ul>
-</article>
-<article class="restaurang">
-<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
-<p class="adress">Rönnebergavägen 1</p>
-<p class="tider">Lunch 11:30-13</p>
-<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
-</article>
-<article class="restaurang">
-<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
-<p class="adress">Trolldalsvägen 2</p>
-<p class="tider">Lunch 11-14</p>
-<ul><li><span class="ratt">Panerad fläskschnitzel med pommes, rödvinssås och bearnaise samt tomatsallad. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">buffé</span>Fiskgryta med krutonger och aioli. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="ratt"><span class="tagg">lätt</span>Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
-<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
-</article>
-<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.nordrest.se/restaurang/pocket-lidingo/">Pocket</a></h3>
-<p class="adress">Lidingö stadshus, Stockholmsvägen 50</p>
-<p class="tider">Lunch 10:30-14</p>
-<ul><li><span class="ratt"><span class="tagg">veg</span>Vegetarisk burgare, briochebröd, pommes, picklad lök, sallad, tomat, hamburgerdressing (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</span></li><li><span class="ratt">Högrevsburgare, briochebröd, pommes, picklad lök, tomat, sallad, dressing (Gluten, Ägg, Sesam, Nötkött)</span><span class="pris">135 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Vegetarisk burgare, briochebröd, pommes, picklad lök, sallad, tomat, hamburgerdressing (Gluten, Laktos, Ägg)</span><span class="pris">135 kr</span></li><li><span class="ratt">Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)</span><span class="pris">135 kr</span></li><li><span class="ratt">Idag bjuder vi på Pockets äppelpaj &amp; vaniljsås (G/L) (Gluten, Laktos)</span></li><li><span class="ratt">Högrevsburgare, briochebröd, pommes, picklad lök, tomat, sallad, dressing (Gluten, Ägg, Sesam, Nötkött)</span><span class="pris">135 kr</span></li></ul>
 <p class="info">I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://www.lidingosaluhall.com/">Lidingö Saluhall</a></h3>
-<p class="adress">Pyrolavägen 7</p>
-<p class="tider">Lunch 10-14</p>
+<span class="tider">Lunch 10-14</span>
+</div>
 <p class="tom">Nästa veckas meny finns på restaurangens sida</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://bibliothek.nu/menyer">Bibliothek</a></h3>
-<p class="adress">Lejonstigen 5</p>
-<p class="tider">Lunch 11:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="ratt"><span class="tagg">soppa</span>Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li><li><span class="ratt">Steak minute pommes frites och bearnaisesås</span><span class="pris">245 kr</span></li></ul>
+<span class="tider">Lunch 11:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås</span><span class="pris">175 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör</span><span class="pris">185 kr</span></li><li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Krämig svampsoppa stekta kantareller, rostade frön och aioli</span><span class="pris">175 kr</span></li><li><span class="ratt">Steak minute pommes frites och bearnaisesås</span><span class="pris">245 kr</span></li></ul>
 <p class="info">Ink sallad, hembakat bröd, kaffe och hembakad kaka</p>
 </article>
 <article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://firren.org/bistro/">Firren</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré</span></li></ul>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://ronneberga.se/restaurang/lunchmeny/">Rönneberga</a></h3>
+<span class="tider">Lunch 11:30-13</span>
+</div>
+<p class="tom">Nästa veckas meny finns på restaurangens sida</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
+<h3><a href="https://www.lidingogolfrestaurang.com/">Lidingö Golfrestaurang</a></h3>
+<span class="tider">Lunch 11-14</span>
+</div>
+<ul><li><span class="ratt">Panerad fläskschnitzel med pommes, rödvinssås och bearnaise samt tomatsallad. (Ä)(L)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">buffé</span></span><span class="ratt">Fiskgryta med krutonger och aioli. (Ä)(G)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Friterade risbollar med sötpotatispuré och örtcrème. (Ä)(G)(L)</span><span class="pris">165 kr</span></li><li><span class="taggar"><span class="tagg">lätt</span></span><span class="ratt">Sallad med varmrökt lax, grönkål och svartris samt grönsaker och citronett.</span><span class="pris">165 kr</span></li></ul>
+<p class="info">Dagens lunch, veckans lätta och veckans vegetariska kostar 165: alla rätter inklusive salladsbuffé, måltidsdryck samt kaffe och liten kaka</p>
+</article>
+<article class="restaurang">
+<div class="rubrik">
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
-<p class="adress">Stockholmsvägen 56</p>
-<p class="tider">Lunch 10:30-14:30</p>
-<ul><li><span class="ratt"><span class="tagg">kött</span>Schnitzel med rostad potatis och svampsås</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">fisk</span>Stekt röding med dillsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="ratt"><span class="tagg">veg</span>Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
+<span class="tider">Lunch 10:30-14:30</span>
+</div>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Schnitzel med rostad potatis och svampsås</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Stekt röding med dillsås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
-<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna sidor, så det kan bli fel ibland. Dubbelkolla gärna med restaurangen.</footer>
-</main></body></html>
+<footer><p>Uppdaterad 25 september 22:37.</p></footer>
+</main><script>
+(function () {
+  var nav = document.querySelector(".flikar");
+  var pill = nav && nav.querySelector(".indikator");
+  if (!nav || !pill || !window.PointerEvent) return;
+  var radios = [1, 2, 3, 4, 5].map(function (n) { return document.getElementById("dag-" + n); });
+  var start = null, moved = false, samples = [], pos = 0;
+
+  function seg() { return (nav.clientWidth - 8) / 5; }
+  function current() { for (var i = 0; i < 5; i++) { if (radios[i].checked) return i; } return 0; }
+  function damp(d) { return d * 0.25; }
+
+  nav.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    start = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    moved = false;
+    samples = [];
+  });
+
+  nav.addEventListener("pointermove", function (e) {
+    if (!start || e.pointerId !== start.id) return;
+    var dx = e.clientX - start.x, dy = e.clientY - start.y;
+    if (!moved) {
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) return;
+      moved = true;
+      try { nav.setPointerCapture(e.pointerId); } catch (err) { /* pointer already gone */ }
+      nav.classList.add("drar");
+    }
+    var w = seg(), max = 4 * w;
+    var x = e.clientX - nav.getBoundingClientRect().left - 4 - w / 2;
+    if (x < 0) x = -damp(-x);
+    if (x > max) x = max + damp(x - max);
+    pos = x;
+    pill.style.transform = "translateX(" + x + "px)";
+    var now = performance.now();
+    samples.push([now, e.clientX]);
+    while (samples.length > 2 && now - samples[0][0] > 100) samples.shift();
+  });
+
+  function finish(e) {
+    if (!start || e.pointerId !== start.id) return;
+    var wasDrag = moved;
+    start = null;
+    if (!wasDrag) return;
+    var w = seg(), target = Math.round(pos / w);
+    var fresh = samples.length > 1 && performance.now() - samples[samples.length - 1][0] < 80;
+    if (fresh) {  // only a movement that is still going on at release counts as a flick
+      var a = samples[0], b = samples[samples.length - 1];
+      var v = (b[1] - a[1]) / Math.max(1, b[0] - a[0]);
+      if (Math.abs(v) > 0.4) target = v > 0 ? Math.floor(pos / w) + 1 : Math.ceil(pos / w) - 1;
+    }
+    target = Math.max(0, Math.min(4, target));
+    nav.classList.remove("drar");
+    pill.style.transform = "";
+    radios[target].checked = true;
+    radios[target].dispatchEvent(new Event("change", { bubbles: true }));
+  }
+  nav.addEventListener("pointerup", finish);
+  nav.addEventListener("pointercancel", finish);
+
+  // A drag must not also count as a tap on the label under the finger.
+  nav.addEventListener("click", function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+})();
+</script></body></html>
