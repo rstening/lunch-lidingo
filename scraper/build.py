@@ -37,7 +37,8 @@ header p { margin: 0 0 12px; color: #444; }
 .restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
 .restaurang h3 a { color: #0b4f9c; text-decoration: none; }
 .restaurang h3 a:hover { text-decoration: underline; }
-.adress { margin: 0 0 8px; color: #555; font-size: 0.9rem; }
+.adress { margin: 0; color: #555; font-size: 0.9rem; }
+.tider { margin: 0 0 8px; color: #1a1a1a; font-size: 0.9rem; font-weight: 600; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
 .restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
                  padding: 6px 0; border-top: 1px solid #eee; }
@@ -121,6 +122,8 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     out.append(f'<h3><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h3>')
     if r.get("address"):
         out.append(f'<p class="adress">{escape(r["address"])}</p>')
+    if r.get("lunch_hours"):
+        out.append(f'<p class="tider">Lunch {escape(r["lunch_hours"])}</p>')
     if _is_stale(r, now):
         out.append('<p class="tom">Kunde inte hämta menyn, se restaurangens sida.</p>')
         out.append("</article>")
