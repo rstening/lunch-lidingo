@@ -13,6 +13,10 @@ och på vardagar även kl 10:30 och 12:00, hämtar GitHub Actions menyerna, och 
    dess senaste meny kvar.
 2. `python -m scraper.build` gör om JSON-filen till `docs/index.html`.
 3. Actions committar och pushar filerna om de ändrats.
+4. `tools/halsokoll.py` öppnar ett ärende i repot om en restaurang har
+   misslyckats i ungefär två dagar, och stänger det när den fungerar igen.
+   GitHub mejlar ägaren när ett ärende öppnas. Misslyckas alla restauranger
+   samtidigt stoppas jobbet, och då mejlar GitHub om den misslyckade körningen.
 
 Notiserna på sidan betyder:
 

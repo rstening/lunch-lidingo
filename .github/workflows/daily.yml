@@ -12,6 +12,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  issues: write
 concurrency:
   group: daily
   cancel-in-progress: false
@@ -42,3 +43,10 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+      - name: Hälsokoll
+        # Öppnar ett ärende om en restaurang har misslyckats i ungefär två dagar,
+        # och stänger det när den fungerar igen. GitHub mejlar ägaren om nya ärenden.
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/halsokoll.py

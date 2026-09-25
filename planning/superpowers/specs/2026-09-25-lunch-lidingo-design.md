@@ -124,6 +124,7 @@ Särskilt per läsare:
 - Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notisen "Senast hämtad 24 september."
 - Veckokontroll: den exakta innevarande veckan visas utan notis. Finns bara äldre veckor visas ingen meny utan notisen "Veckans meny är inte upplagd än." Finns bara senare veckor visas ingen meny utan notisen "Veckans meny saknas." En gammal eller framtida veckas rätter visas alltså aldrig som den här veckans. Alla notiser är hela meningar med punkt. Lunchtiden och sidfotens rader är etiketter utan punkt.
 - Actions-jobbet failar (och GitHub mejlar) bara när alla läsare misslyckas eller bygget kraschar.
+- Hälsokoll: sist i jobbet öppnar `tools/halsokoll.py` ett GitHub-ärende för en restaurang som har misslyckats i minst 40 timmar, och stänger det när restaurangen fungerar igen. GitHub mejlar ägaren om nya ärenden. Steget får misslyckas utan att stoppa publiceringen.
 
 ## Sidan
 
