@@ -243,3 +243,8 @@ def test_render_follows_the_given_restaurant_order():
 def test_load_order_reads_restaurants_yaml():
     from scraper.build import load_order
     assert load_order()[:3] == ["pocket", "saluhallen", "bibliothek"]
+
+
+def test_header_date_and_week_format():
+    assert "<p>Fredag 25 september. Vecka 39.</p></header>" in render(DATA, date(2026, 9, 25))
+    assert "<p>Måndag 28 september. Vecka 40.</p></header>" in render(DATA, date(2026, 9, 26))
