@@ -1,6 +1,6 @@
 # Lunch Lidingö
 
-En sida med dagens lunch på restaurangerna på Lidingö. Varje morgon kl 09
+En sida med dagens lunch på restaurangerna på Lidingö: https://lunch.richardstening.com Varje morgon kl 09
 hämtar GitHub Actions menyerna, och GitHub Pages visar sidan från mappen
 `docs/`.
 
@@ -50,3 +50,12 @@ med funktionen `read(get, url, today)`. Spara en kopia av källan i
 
 Repot måste vara publikt för att GitHub Pages ska fungera på ett gratiskonto.
 Privata repon kräver GitHub Pro, Team eller Enterprise för Pages.
+
+## Egen adress
+
+Sidan ligger på https://lunch.richardstening.com. Hos GoDaddy (DNS för
+richardstening.com) finns en CNAME-post `lunch` som pekar på
+`rstening.github.io`, och filen `docs/CNAME` talar om adressen för GitHub
+Pages. Domänen är verifierad i GitHub-kontots Pages-inställningar med en
+TXT-post `_github-pages-challenge-rstening`. Sidan ber sökmotorer att inte
+indexera den.
