@@ -18,40 +18,40 @@ STALE_AFTER = timedelta(days=7)
 CSS = """
 @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
              font-weight: 100 900; font-style: normal; font-display: swap; }
-:root { color-scheme: light; }
+:root { color-scheme: light; --bg: #fafafa; --text: #121212; --line: rgba(18, 18, 18, 0.068); }
 * { box-sizing: border-box; }
 html { font-size: 20px; }
 body { margin: 0; padding: 16px; font: 20px/1.45 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-       color: #1a1a1a; background: #f6f4ef; }
+       color: var(--text); background: var(--bg); }
 main { max-width: 1100px; margin: 0 auto; }
 header h1 { font-size: 1.9rem; margin: 0 0 4px; }
-header p { margin: 0 0 12px; color: #444; }
+header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
 .flikar { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-.flikar label { display: block; padding: 10px 14px; border: 2px solid #1a1a1a; border-radius: 8px;
-                background: #fff; cursor: pointer; font-weight: 600; }
-.flikar label small { display: block; font-weight: 400; font-size: 0.9rem; color: #444; }
+.flikar label { display: block; padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px;
+                cursor: pointer; font-weight: 600; }
+.flikar label small { display: block; font-weight: 400; font-size: 0.9rem; }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
-.restaurang { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; }
+.restaurang { background: var(--line); border-radius: 10px; padding: 14px 16px; }
 .restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
-.restaurang h3 a { color: #0b4f9c; text-decoration: none; }
+.restaurang h3 a { color: var(--text); text-decoration: none; }
 .restaurang h3 a:hover { text-decoration: underline; }
-.adress { margin: 0; color: #555; font-size: 0.9rem; }
-.tider { margin: 0 0 8px; color: #1a1a1a; font-size: 0.9rem; font-weight: 600; }
+.adress { margin: 0; font-size: 0.9rem; }
+.tider { margin: 0 0 8px; font-size: 0.9rem; font-weight: 600; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
 .restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
-                 padding: 6px 0; border-top: 1px solid #eee; }
+                 padding: 6px 0; border-top: 1px solid var(--line); }
 .ratt { flex: 1 1 auto; min-width: 0; }
 .tagg { display: inline-block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .03em;
-        background: #e9efe4; color: #2f4f2f; border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
-.pris { color: #444; white-space: nowrap; flex-shrink: 0; }
-.notis { margin: 8px 0 0; color: #8a4b00; font-size: 0.9rem; }
-.info { margin: 8px 0 0; color: #555; font-size: 0.9rem; }
-.tom { margin: 4px 0 0; color: #666; font-style: italic; }
-footer { margin: 28px 0 8px; color: #666; font-size: 0.9rem; }
+        background: var(--line); border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
+.pris { white-space: nowrap; flex-shrink: 0; }
+.notis { margin: 8px 0 0; font-size: 0.9rem; }
+.info { margin: 8px 0 0; font-size: 0.9rem; }
+.tom { margin: 4px 0 0; font-style: italic; }
+footer { margin: 28px 0 8px; font-size: 0.9rem; }
 """
 
 
@@ -60,10 +60,9 @@ def _tab_css() -> str:
     for n in range(1, 6):
         rules.append(f"#dag-{n}:checked ~ #d-{n} {{ display: block; }}")
         rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] '
-                     "{ background: #1a1a1a; color: #fff; }")
-        rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] small {{ color: #ddd; }}')
+                     "{ background: var(--text); color: var(--bg); border-color: var(--text); }")
         rules.append(f'#dag-{n}:focus-visible ~ .flikar label[for="dag-{n}"] '
-                     "{ outline: 3px solid #0b4f9c; outline-offset: 2px; }")
+                     "{ outline: 3px solid var(--text); outline-offset: 2px; }")
     return "\n".join(rules)
 
 

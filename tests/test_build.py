@@ -119,3 +119,13 @@ def test_page_uses_self_hosted_geist():
     assert 'url("fonts/Geist-Variable.woff2")' in html
     assert '"Geist", -apple-system' in html
     assert "fonts.googleapis" not in html and "https://" not in html.split("<main>")[0]
+
+
+def test_page_uses_only_the_two_brand_colours():
+    html = render(DATA, date(2026, 9, 25))
+    css = html.split("<style>")[1].split("</style>")[0]
+    hexes = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{3,6}\b", css)}
+    assert hexes == {"#fafafa", "#121212"}, hexes
+    rgbas = set(re.findall(r"rgba\([^)]*\)", css))
+    assert rgbas == {"rgba(18, 18, 18, 0.068)"}, rgbas
+    assert "color: #" not in css.split(":root")[1]  # everything else goes through variables
