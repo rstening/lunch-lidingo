@@ -242,13 +242,23 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     return "\n".join(out)
 
 
-def render(data: dict, today: date) -> str:
+def load_order(path: str = "restaurants.yaml") -> List[str]:
+    """Restaurant ids in the order they should appear on the page."""
+    import yaml
+    with open(path, encoding="utf-8") as f:
+        return [entry["id"] for entry in yaml.safe_load(f)]
+
+
+def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     shown = display_date(today)
     year, week = iso_week(shown)
     dates = week_dates(year, week)
     now = datetime.strptime(data["generated_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     updated = now.astimezone(TZ)
     restaurants = data.get("restaurants", [])
+    if order:
+        rank = {rid: i for i, rid in enumerate(order)}
+        restaurants = sorted(restaurants, key=lambda r: rank.get(r.get("id"), len(rank)))
     restaurant_weeks = [(r,) + pick_week(r, year, week) for r in restaurants]
 
     parts: List[str] = []
@@ -289,7 +299,7 @@ def main(argv=None) -> int:
     if argv and len(argv) > 0:
         today = date.fromisoformat(argv[0])
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(render(data, today), encoding="utf-8")
+    OUT_PATH.write_text(render(data, today, order=load_order()), encoding="utf-8")
     print(f"Skrev {OUT_PATH}")
     return 0
 

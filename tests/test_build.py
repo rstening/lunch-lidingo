@@ -229,3 +229,17 @@ def test_badge_sits_between_dish_and_price():
     row = re.search(r"\.restaurang li \{([^}]*)\}", css).group(1)
     assert 'grid-template-areas: "ratt taggar pris"' in row
     assert "tl-" not in html and "devval" not in html
+
+
+def test_render_follows_the_given_restaurant_order():
+    html = render(DATA, date(2026, 9, 25), order=["d", "c", "a", "b"])
+    section = html.split('id="d-5"')[1]
+    names = [section.index(n) for n in ("Delta Deli", "Gamma Grill", "Alfa Kök", "Beta Bar")]
+    assert names == sorted(names)
+    # Unknown or missing ids never drop a restaurant.
+    assert render(DATA, date(2026, 9, 25), order=["x"]).count("Alfa Kök") == 5
+
+
+def test_load_order_reads_restaurants_yaml():
+    from scraper.build import load_order
+    assert load_order()[:3] == ["pocket", "saluhallen", "bibliothek"]
