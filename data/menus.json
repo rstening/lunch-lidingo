@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T23:10:55Z",
+  "generated_at": "2026-09-25T23:14:05Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -278,7 +278,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-09-25T23:10:55Z",
+      "last_success": "2026-09-25T23:14:05Z",
       "error": null,
       "weeks": [
         {
@@ -289,117 +289,117 @@
             "1": [
               {
                 "name": "Fläsknoisette med senapssås, glaserade morötter & persiljestompad potatis G,L",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Långafilé med bechamelsås, ärtor, bacon & kokt potatis G,L",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Broccoli-& ädelostpaj med sallad & örtcrème G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [
                   "veg"
                 ],
-                "price_to": 160
+                "price_to": null
               }
             ],
             "2": [
               {
                 "name": "Pad kra pao med stekt ägg, basilika & ris G,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Gösfilé meunière med kapris, rödbetor, brynt smör, citron & kokt potatis G,L",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Broccoli-& ädelostpaj med sallad & örtcrème G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [
                   "veg"
                 ],
-                "price_to": 160
+                "price_to": null
               }
             ],
             "3": [
               {
                 "name": "Parmesankyckling med smörslungad broccoli & potatisstomp L",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Fisk-& skaldjursqueneller med havskräftssås, haricot verts & krossad potatis G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Broccoli-& ädelostpaj med sallad & örtcrème G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [
                   "veg"
                 ],
-                "price_to": 160
+                "price_to": null
               }
             ],
             "4": [
               {
                 "name": "Örtrostad porchetta med chilibakad spetskål, rödvinssås & rostade rotfrukter",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Stekt sejfilé med kräftröra, citron & färskpotatis G,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Ärtsoppa med pannkakor, sylt & grädde G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Broccoli-& ädelostpaj med sallad & örtcrème G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [
                   "veg"
                 ],
-                "price_to": 160
+                "price_to": null
               }
             ],
             "5": [
               {
                 "name": "Flankstek med chimichurri, smashad gurka, kimchimajonnäs & klyftpotatis G,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Rödtunga med vitvinssås, sparris, räkor & dillkrossad potatis L",
-                "price": 145,
+                "price": 160,
                 "tags": [],
-                "price_to": 160
+                "price_to": null
               },
               {
                 "name": "Broccoli-& ädelostpaj med sallad & örtcrème G,L,Ä",
-                "price": 145,
+                "price": 160,
                 "tags": [
                   "veg"
                 ],
-                "price_to": 160
+                "price_to": null
               }
             ]
           },

@@ -19,6 +19,13 @@ def time_prices(notes: str) -> List[Tuple[int, str]]:
             for p, h1, m1, h2, m2 in _TIME_PRICE.findall(notes)]
 
 
+def _minutes(span: str) -> int:
+    """Length of a "10:00-11:00" span in minutes."""
+    start, end = span.split("-")
+    (h1, m1), (h2, m2) = (map(int, start.split(":")), map(int, end.split(":")))
+    return (h2 * 60 + m2) - (h1 * 60 + m1)
+
+
 def parse(html: str, today: date) -> List[WeekMenu]:
     soup = BeautifulSoup(html, "html.parser")
     section = soup.select_one("#lunchmeny-section")
@@ -70,11 +77,11 @@ def parse(html: str, today: date) -> List[WeekMenu]:
     prices = time_prices(notes)
     extras = []
     if prices:
-        low, high = min(p for p, _ in prices), max(p for p, _ in prices)
+        # Show the price that applies for most of the day; the times go in the info text.
+        main_price = max(prices, key=lambda item: _minutes(item[1]))[0]
         for dishes in days.values():
             for d in dishes:
-                d.price = low
-                d.price_to = high if high != low else None
+                d.price = main_price
         extras.append(", ".join(f"{p} kr {span}" for p, span in prices) + ".")
     return [WeekMenu(year=year, week=week, week_known=known, days=days, notes=notes, extras=extras)]
 
