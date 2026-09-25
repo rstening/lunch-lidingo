@@ -20,39 +20,39 @@ CSS = """
              font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { color-scheme: light; --bg: #fafafa; --text: #121212; --line: rgba(18, 18, 18, 0.068); }
 * { box-sizing: border-box; }
-html { font-size: 20px; }
-body { margin: 0; padding: 16px; font: 20px/1.45 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+html { font-size: 16px; }
+body { margin: 0; padding: 16px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
        color: var(--text); background: var(--bg); }
 main { max-width: 1100px; margin: 0 auto; }
-header h1 { font-size: 1.9rem; margin: 0 0 4px; }
+header h1 { font-size: 1rem; margin: 0 0 4px; }
 header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
 .flikar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
           max-width: 520px; margin: 12px 0 20px; }
 .flikar label { display: block; min-height: 44px; padding: 10px 4px; border: 2px solid var(--line);
                 border-radius: 8px; cursor: pointer; font-weight: 600; text-align: center; }
-.flikar label small { display: block; font-weight: 400; font-size: 0.9rem; }
+.flikar label small { display: block; font-weight: 400; font-size: 1rem; }
 .dag { display: none; }
-.dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
+.dag h2.dagrubrik { font-size: 1rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
 .restaurang { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
-.restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
+.restaurang h3 { font-size: 1rem; margin: 0 0 2px; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
 .restaurang h3 a:hover { text-decoration: underline; }
-.adress { margin: 0; font-size: 0.9rem; }
-.tider { margin: 0 0 8px; font-size: 0.9rem; font-weight: 600; }
+.adress { margin: 0; font-size: 1rem; }
+.tider { margin: 0 0 8px; font-size: 1rem; font-weight: 600; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
 .restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
                  padding: 6px 0; border-top: 1px solid var(--line); }
 .ratt { flex: 1 1 auto; min-width: 0; }
-.tagg { display: inline-block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .03em;
+.tagg { display: inline-block; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em;
         background: var(--line); border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
 .pris { white-space: nowrap; flex-shrink: 0; }
-.notis { margin: 8px 0 0; font-size: 0.9rem; }
-.info { margin: 8px 0 0; font-size: 0.9rem; }
+.notis { margin: 8px 0 0; font-size: 1rem; }
+.info { margin: 8px 0 0; font-size: 1rem; }
 .tom { margin: 4px 0 0; font-style: italic; }
-footer { margin: 28px 0 8px; font-size: 0.9rem; }
+footer { margin: 28px 0 8px; font-size: 1rem; }
 """
 
 
