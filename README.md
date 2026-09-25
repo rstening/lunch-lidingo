@@ -1,7 +1,9 @@
 # Lunch Lidingö
 
-En sida med dagens lunch på restaurangerna på Lidingö: https://lunch.richardstening.com Varje morgon kl 09
-hämtar GitHub Actions menyerna, och GitHub Pages visar sidan från mappen
+En sida med dagens lunch på restaurangerna på Lidingö: https://lunch.richardstening.com
+
+Varje morgon kl 09,
+och på vardagar även kl 10:30 och 12:00, hämtar GitHub Actions menyerna, och GitHub Pages visar sidan från mappen
 `docs/`.
 
 ## Så funkar det

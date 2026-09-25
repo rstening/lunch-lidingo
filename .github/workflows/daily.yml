@@ -1,8 +1,14 @@
 name: Hämta menyer
 on:
   schedule:
-    - cron: "0 7 * * *"   # 09:00 svensk sommartid
-    - cron: "0 8 * * *"   # 09:00 svensk vintertid
+    # GitHub räknar i UTC, så varje svensk tid behöver en rad för sommartid och en för vintertid.
+    - cron: "0 7 * * *"      # 09:00 svensk sommartid, alla dagar
+    - cron: "0 8 * * *"      # 09:00 svensk vintertid, alla dagar
+    # Extra körningar på vardagar: Brasserie Jernet lägger in dagens rätt mellan ca 09:20 och 12:10.
+    - cron: "30 8 * * 1-5"   # 10:30 svensk sommartid
+    - cron: "30 9 * * 1-5"   # 10:30 svensk vintertid
+    - cron: "0 10 * * 1-5"   # 12:00 svensk sommartid
+    - cron: "0 11 * * 1-5"   # 12:00 svensk vintertid
   workflow_dispatch:
 permissions:
   contents: write

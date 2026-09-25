@@ -23,7 +23,7 @@ Ankarlänkar i de ursprungliga adresserna (`#lunch`, `#meny`) ignoreras; hela si
 
 ## Arkitektur
 
-Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron körs i UTC, så jobbet schemaläggs både 07:00 och 08:00 UTC; det ger 09 och 10 svensk tid på sommaren och 08 och 09 på vintern. Två körningar per dag är ofarligt: sidan innehåller alltid en "Uppdaterad …"-tidsstämpel, så filerna skiljer sig mellan körningarna även när ingen meny ändrats, och jobbet committar därför normalt två gånger per dag. Det är avsiktligt accepterat, inte ett fel).
+Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron körs i UTC, så jobbet schemaläggs både 07:00 och 08:00 UTC; det ger 09 och 10 svensk tid på sommaren och 08 och 09 på vintern. Två körningar per dag är ofarligt: sidan innehåller alltid en "Uppdaterad …"-tidsstämpel, så filerna skiljer sig mellan körningarna även när ingen meny ändrats, och jobbet committar därför normalt två gånger per dag. Det är avsiktligt accepterat, inte ett fel). På vardagar körs jobbet dessutom kl 10:30 och 12:00 svensk tid (08:30/09:30 och 10:00/11:00 UTC), eftersom Brasserie Jernet lägger in dagens rätt samma förmiddag, mellan ungefär 09:20 och 12:10.
 
 Flöde per körning:
 
