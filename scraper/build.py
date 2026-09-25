@@ -268,6 +268,9 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     parts.append("<!DOCTYPE html>")
     parts.append('<html lang="sv"><head><meta charset="utf-8">')
     parts.append('<meta name="viewport" content="width=device-width, initial-scale=1">')
+    # Keep the page out of search engines. Do not add a robots.txt that blocks crawling:
+    # crawlers must be able to fetch the page to see this tag.
+    parts.append('<meta name="robots" content="noindex, nofollow, noarchive">')
     parts.append("<title>Dagens lunch. Lidingö.</title>")
     parts.append('<link rel="icon" href="favicon.svg" type="image/svg+xml">')
     parts.append('<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">')
