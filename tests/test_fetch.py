@@ -39,3 +39,10 @@ def test_restaurants_yaml_lists_seven_readers():
             assert key in e, f"{e.get('id')} saknar {key}"
         module = importlib.import_module(f"scraper.readers.{e['reader']}")
         assert hasattr(module, "read"), f"{e['reader']} saknar read()"
+
+
+def test_lunch_hours_use_one_format():
+    import re
+    import yaml
+    for e in yaml.safe_load(open("restaurants.yaml", encoding="utf-8")):
+        assert re.fullmatch(r"\d{2}:\d{2}-\d{2}:\d{2}", e["lunch_hours"]), (e["id"], e["lunch_hours"])

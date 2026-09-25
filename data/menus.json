@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-25T22:05:20Z",
+  "generated_at": "2026-09-25T22:31:40Z",
   "restaurants": [
     {
       "id": "pocket",
       "name": "Pocket",
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
-      "lunch_hours": "10:30-14",
-      "last_success": "2026-09-25T22:05:20Z",
+      "lunch_hours": "10:30-14:00",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {
@@ -237,8 +237,8 @@
       "name": "Lidingö Saluhall",
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
-      "lunch_hours": "10-14",
-      "last_success": "2026-09-25T22:05:20Z",
+      "lunch_hours": "10:00-14:00",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {
@@ -357,7 +357,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-09-25T22:05:20Z",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {
@@ -856,8 +856,8 @@
       "name": "Firren",
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
-      "lunch_hours": "11-14",
-      "last_success": "2026-09-25T22:05:20Z",
+      "lunch_hours": "11:00-14:00",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {
@@ -910,8 +910,8 @@
       "name": "Rönneberga",
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
-      "lunch_hours": "11:30-13",
-      "last_success": "2026-09-25T22:05:20Z",
+      "lunch_hours": "11:30-13:00",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {
@@ -1020,7 +1020,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-09-25T22:05:20Z",
+      "last_success": "2026-09-25T22:31:40Z",
       "error": null,
       "weeks": [
         {

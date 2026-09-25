@@ -121,8 +121,8 @@ Särskilt per läsare:
 ## Felhantering och veckokontroll
 
 - Fel i en läsare loggas som varning med restaurang-id och orsak; övriga fortsätter.
-- Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notis "Senast hämtad 24 sep".
-- Veckokontroll: visas den exakta innevarande veckan, ingen notis om vecka. Har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, inte uppdaterad än". Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
+- Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notisen "Senast hämtad 24 september."
+- Veckokontroll: den exakta innevarande veckan visas utan notis. Finns bara äldre veckor visas ingen meny utan notisen "Veckans meny är inte upplagd än." Finns bara senare veckor visas ingen meny utan notisen "Veckans meny saknas." En gammal eller framtida veckas rätter visas alltså aldrig som den här veckans. Alla notiser är hela meningar med punkt.
 - Actions-jobbet failar (och GitHub mejlar) bara när alla läsare misslyckas eller bygget kraschar.
 
 ## Sidan
@@ -132,8 +132,8 @@ En sida, `docs/index.html`, i HTML och CSS utan externa resurser. Ett litet inb�
 - Rubrik "Dagens lunch på Lidingö", datum och veckodag, rad "Uppdaterad 25 sep 09:02".
 - Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Med skriptet kan man dessutom dra glasbrickan med finger eller mus; den snäpper till närmaste dag vid släpp, och en snabb svepning byter en dag i svepets riktning. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
 - Dagväljaren visar bara veckodagarna (Mån–Fre) på en rad. Sidhuvudet visar datum och vecka för den valda dagen, till exempel "Tisdag 22 september.", och byts med CSS när man väljer en annan dag. Veckan står på en egen rad under, "Vecka 39.", och ändras inte när man byter dag. Dagens veckodag har en liten grön prick (#24cc5c, sidans enda accentfärg). På helger, när sidan visar nästa vecka, finns ingen prick.
-- Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Varje restaurang är en grupp utan ram: namn (länk till källan) och lunchtid på samma rad, sedan rätterna. Rättens text börjar alltid vid vänsterkanten; taggen står till höger, direkt före priset. Grupperna skiljs åt med luft (48 px i mobil, 64 px på dator), inte med kort eller linjer. Bitext (lunchtid, tagg, pris, notiser) har den sekundära textfärgen.
-- Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen".
+- Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Lunchtider skrivs alltid som `HH:MM-HH:MM` i `restaurants.yaml`, till exempel `10:00-14:00`. Varje restaurang är en grupp utan ram: namn (länk till källan) och lunchtid på samma rad, sedan rätterna. Rättens text börjar alltid vid vänsterkanten; taggen står till höger, direkt före priset. Grupperna skiljs åt med luft (48 px i mobil, 64 px på dator), inte med kort eller linjer. Bitext (lunchtid, tagg, pris, notiser) har den sekundära textfärgen.
+- Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen."
 - All text i 16 px utom sidfoten och taggarna (14 px). Sidfoten har sekundär textfärg (#121212 med 59,5 % synlighet), utom copyright-raden som har färgen disabled (#121212 med 18,5 % synlighet); taggarna är runda kapslar med linjefärgen som fyllning och sekundär textfärg, hierarki med vikt och luft, hög kontrast, en smal spalt (max 640 px) på alla skärmar. Allt på svenska. Ingen vidare design i första versionen.
 
 ## Testning

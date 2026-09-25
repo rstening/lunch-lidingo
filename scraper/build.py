@@ -176,12 +176,10 @@ def pick_week(restaurant: dict, year: int, week: int) -> Tuple[Optional[dict], O
     if latest_key > this_key:
         # Only weeks newer than today's exist: never show a future week as
         # today's lunch.
-        return None, "Nästa veckas meny finns på restaurangens sida"
-    monday = date.fromisocalendar(year, week, 1)
-    one_week_older = (monday - timedelta(weeks=1)).isocalendar()[:2]
-    if latest_key == one_week_older:
-        return latest, f"Visar vecka {latest['week']}, inte uppdaterad än"
-    return None, "Ingen aktuell meny, se restaurangens sida"
+        return None, "Veckans meny saknas."
+    # Only older weeks exist: the restaurant has not put this week's menu up yet.
+    # Never show an old week's dishes as this week's.
+    return None, "Veckans meny är inte upplagd än."
 
 
 def _is_stale(restaurant: dict, now: datetime) -> bool:
@@ -199,7 +197,7 @@ def _last_success_text(restaurant: dict) -> Optional[str]:
     if not restaurant.get("error") or not last:
         return None
     dt = datetime.strptime(last, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(TZ)
-    return f"Senast hämtad {format_date(dt.date())}"
+    return f"Senast hämtad {format_date(dt.date())}."
 
 
 def _dish_html(d: dict) -> str:
@@ -239,7 +237,7 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
         out.append('<p class="tom">Ingen meny för den här dagen.</p>')
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
-        out.append(f'<p class="notis">{escape(". ".join(notices))}</p>')
+        out.append(f'<p class="notis">{escape(" ".join(notices))}</p>')
     if week.get("notes"):
         out.append(f'<p class="info">{escape(week["notes"])}</p>')
     out.append("</article>")

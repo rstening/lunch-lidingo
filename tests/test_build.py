@@ -6,7 +6,7 @@ from scraper.build import CSS, _tab_css, pick_week, render
 DATA = {
     "generated_at": "2026-09-25T07:02:11Z",
     "restaurants": [
-        {"id": "a", "name": "Alfa Kök", "url": "https://a.example", "address": "Gatan 1", "lunch_hours": "11-14",
+        {"id": "a", "name": "Alfa Kök", "url": "https://a.example", "address": "Gatan 1", "lunch_hours": "11:00-14:00",
          "last_success": "2026-09-25T07:02:11Z", "error": None,
          "weeks": [{"year": 2026, "week": 39, "week_known": True, "notes": "Ingår kaffe",
                     "days": {"1": [{"name": "Soppa", "price": 120, "tags": ["soppa"]}],
@@ -31,10 +31,10 @@ def test_pick_week_exact_match():
     assert week["week"] == 39 and notice is None
 
 
-def test_pick_week_falls_back_to_latest_with_notice():
+def test_pick_week_never_shows_last_weeks_dishes():
     week, notice = pick_week(DATA["restaurants"][1], 2026, 39)
-    assert week["week"] == 38
-    assert notice == "Visar vecka 38, inte uppdaterad än"
+    assert week is None
+    assert notice == "Veckans meny är inte upplagd än."
 
 
 def test_pick_week_none_when_no_weeks():
@@ -44,14 +44,14 @@ def test_pick_week_none_when_no_weeks():
 def test_pick_week_none_when_only_future_weeks_exist():
     week, notice = pick_week(DATA["restaurants"][3], 2026, 39)
     assert week is None
-    assert notice == "Nästa veckas meny finns på restaurangens sida"
+    assert notice == "Veckans meny saknas."
 
 
 def test_pick_week_none_when_latest_is_more_than_one_week_older():
     old = {"weeks": [{"year": 2026, "week": 30, "week_known": True, "days": {}, "notes": ""}]}
     week, notice = pick_week(old, 2026, 39)
     assert week is None
-    assert notice == "Ingen aktuell meny, se restaurangens sida"
+    assert notice == "Veckans meny är inte upplagd än."
 
 
 def test_render_friday():
@@ -65,7 +65,7 @@ def test_render_friday():
     assert "Pasta" in html and "130 kr" in html
     assert "Ingår kaffe" in html
     assert "Kunde inte hämta menyn" in html          # Beta (stale > 7 days) and Gamma
-    assert "Nästa veckas meny finns på restaurangens sida" in html  # Delta (week 40 only)
+    assert "Veckans meny saknas." in html            # Delta (week 40 only)
     assert "Ingen meny för den här dagen" in html             # Alfa has no dishes Tue-Thu
     assert "Uppdaterad 25 september 09:02" in html
     assert html.count('class="restaurang"') == 20    # 4 restaurants x 5 days
@@ -75,7 +75,8 @@ def test_render_weekend_defaults_to_monday_next_week():
     html = render(DATA, date(2026, 9, 26))
     assert 'id="dag-1" checked' in html.replace("  ", " ")
     assert "Måndag 28 september" in html
-    assert "Visar vecka 39, inte uppdaterad än" in html
+    assert "Veckans meny är inte upplagd än." in html
+    assert "Soppa" not in html.split('id="d-1"')[1].split("</section>")[0]  # last week's dish is hidden
 
 
 def test_render_escapes_html():
@@ -113,7 +114,7 @@ def test_dish_li_has_ratt_and_pris_spans():
 
 def test_render_shows_lunch_hours():
     html = render(DATA, date(2026, 9, 25))
-    assert '<span class="tider">Lunch 11-14</span>' in html
+    assert '<span class="tider">Lunch 11:00-14:00</span>' in html
 
 
 def test_page_copy_has_no_long_dashes():
@@ -204,7 +205,7 @@ def test_footer_shows_only_the_update_time():
 def test_cards_show_hours_but_not_address():
     html = render(DATA, date(2026, 9, 25))
     assert 'class="adress"' not in html and "Gatan 1" not in html
-    assert '<span class="tider">Lunch 11-14</span>' in html
+    assert '<span class="tider">Lunch 11:00-14:00</span>' in html
     css = html.split("<style>")[1].split("</style>")[0]
     tider = re.search(r"\.tider \{([^}]*)\}", css).group(1)
     assert "font-weight" not in tider
@@ -294,3 +295,20 @@ def test_footer_has_copyright_under_update_time():
             '<p class="upphov">© 2026 Richard Stening</p></footer>') in html
     assert "--disabled: rgba(18, 18, 18, 0.185)" in html
     assert ".upphov { color: var(--disabled); }" in html
+
+
+def test_every_notice_ends_with_a_period():
+    html = render(DATA, date(2026, 9, 25)) + render(DATA, date(2026, 9, 26))
+    notices = re.findall(r'<p class="(?:notis|tom)">([^<]+)</p>', html)
+    assert notices
+    for text in notices:
+        assert text.endswith("."), text
+
+
+def test_notice_for_a_recent_fetch_error_is_a_full_sentence():
+    data = {"generated_at": "2026-09-25T07:02:11Z", "restaurants": [
+        {"id": "e", "name": "Epsilon", "url": "https://e", "address": "",
+         "last_success": "2026-09-23T07:00:00Z", "error": "HTTPError: 500",
+         "weeks": [{"year": 2026, "week": 39, "week_known": True, "notes": "",
+                    "days": {"5": [{"name": "Rätt", "price": None, "tags": []}]}}]}]}
+    assert '<p class="notis">Senast hämtad 23 september.</p>' in render(data, date(2026, 9, 25))
