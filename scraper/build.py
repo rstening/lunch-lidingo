@@ -27,11 +27,25 @@ main { max-width: 640px; margin: 0 auto; }
 header h1 { font-size: 1rem; margin: 0 0 4px; }
 header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
-.flikar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
-          max-width: 520px; margin: 12px 0 20px; }
-.flikar label { display: block; min-height: 44px; padding: 10px 4px; border: 2px solid var(--line);
-                border-radius: 8px; cursor: pointer; font-weight: 600; text-align: center; }
+.flikar { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
+          max-width: 520px; margin: 16px 0 24px; padding: 4px; border-radius: 999px;
+          background: var(--line); box-shadow: inset 0 1px 2px rgba(18, 18, 18, 0.06);
+          -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+                justify-content: center; min-height: 52px; padding: 6px 2px; border-radius: 999px;
+                cursor: pointer; font-weight: 500; line-height: 1.2; text-align: center; }
 .flikar label small { display: block; font-weight: 400; font-size: 1rem; }
+.indikator { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 5);
+             border-radius: 999px; transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1); }
+.indikator::before { content: ""; position: absolute; inset: 0; border-radius: inherit;
+                     background: rgba(250, 250, 250, 0.72);
+                     -webkit-backdrop-filter: blur(12px) saturate(180%); backdrop-filter: blur(12px) saturate(180%);
+                     border: 1px solid rgba(250, 250, 250, 0.9);
+                     box-shadow: 0 1px 1px rgba(18, 18, 18, 0.04), 0 4px 14px rgba(18, 18, 18, 0.1),
+                                 inset 0 1px 0 rgba(250, 250, 250, 1), inset 0 -1px 1px rgba(18, 18, 18, 0.05);
+                     transition: transform 160ms ease-out; }
+.flikar:has(label:active) .indikator::before { transform: scale(0.96); }
+@media (prefers-reduced-motion: reduce) { .indikator, .indikator::before { transition: none; } }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -59,10 +73,11 @@ def _tab_css() -> str:
     rules = []
     for n in range(1, 6):
         rules.append(f"#dag-{n}:checked ~ #d-{n} {{ display: block; }}")
-        rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] '
-                     "{ background: var(--text); color: var(--bg); border-color: var(--text); }")
-        rules.append(f'#dag-{n}:focus-visible ~ .flikar label[for="dag-{n}"] '
-                     "{ outline: 3px solid var(--text); outline-offset: 2px; }")
+        rules.append(f"#dag-{n}:checked ~ .flikar .indikator "
+                     f"{{ transform: translateX({(n - 1) * 100}%); }}")
+        rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] {{ font-weight: 600; }}')
+        rules.append(f"#dag-{n}:focus-visible ~ .flikar .indikator::before "
+                     "{ outline: 2px solid var(--text); outline-offset: 2px; }")
     return "\n".join(rules)
 
 
@@ -169,7 +184,8 @@ def render(data: dict, today: date) -> str:
     parts.append("<header><h1>Dagens lunch på Lidingö</h1>")
     parts.append(f"<p>{DAY_NAMES[shown.isoweekday() - 1].capitalize()} {format_date(shown)}, "
                  f"vecka {week}. Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p></header>")
-    parts.append('<nav class="flikar">')
+    parts.append('<nav class="flikar" aria-label="Välj dag">')
+    parts.append('<span class="indikator" aria-hidden="true"></span>')
     for n in range(1, 6):
         d = dates[n - 1]
         parts.append(f'<label for="dag-{n}">{DAY_SHORT[n - 1]}<small>{d.day}/{d.month}</small></label>')

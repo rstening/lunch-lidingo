@@ -128,8 +128,10 @@ def test_page_uses_only_the_two_brand_colours():
     css = html.split("<style>")[1].split("</style>")[0]
     hexes = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{3,6}\b", css)}
     assert hexes == {"#fafafa", "#121212"}, hexes
-    rgbas = set(re.findall(r"rgba\([^)]*\)", css))
-    assert rgbas == {"rgba(18, 18, 18, 0.068)"}, rgbas
+    rgbas = set(re.findall(r"rgba\(([^)]*)\)", css))
+    for value in rgbas:  # translucent versions of the two colours only
+        r, g, b, _alpha = [x.strip() for x in value.split(",")]
+        assert (r, g, b) in {("18", "18", "18"), ("250", "250", "250")}, value
     assert "color: #" not in css.split(":root")[1]  # everything else goes through variables
 
 
@@ -150,3 +152,13 @@ def test_single_narrow_column_at_every_width():
     css = CSS + "\n" + _tab_css()
     assert "1fr 1fr" not in css
     assert "main { max-width: 640px;" in css
+
+
+def test_day_picker_has_sliding_glass_indicator():
+    html = render(DATA, date(2026, 9, 25))
+    assert '<span class="indikator" aria-hidden="true"></span>' in html
+    css = html.split("<style>")[1].split("</style>")[0]
+    for n in range(1, 6):
+        assert f"#dag-{n}:checked ~ .flikar .indikator {{ transform: translateX({(n - 1) * 100}%); }}" in css
+    assert "backdrop-filter: blur(12px)" in css
+    assert "prefers-reduced-motion: reduce" in css
