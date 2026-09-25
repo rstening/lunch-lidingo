@@ -82,7 +82,7 @@ def pick_week(restaurant: dict, year: int, week: int) -> Tuple[Optional[dict], O
     monday = date.fromisocalendar(year, week, 1)
     one_week_older = (monday - timedelta(weeks=1)).isocalendar()[:2]
     if latest_key == one_week_older:
-        return latest, f"Visar vecka {latest['week']}, ej uppdaterad än"
+        return latest, f"Visar vecka {latest['week']}, inte uppdaterad än"
     return None, "Ingen aktuell meny, se restaurangens sida"
 
 
@@ -137,7 +137,7 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     if dishes:
         out.append("<ul>" + "".join(_dish_html(d) for d in dishes) + "</ul>")
     else:
-        out.append('<p class="tom">Ingen lunch angiven.</p>')
+        out.append('<p class="tom">Ingen meny för den här dagen.</p>')
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
         out.append(f'<p class="notis">{escape(". ".join(notices))}</p>')
@@ -181,7 +181,7 @@ def render(data: dict, today: date) -> str:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
     parts.append("<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
-                 "sidor. Fel kan förekomma, kontrollera gärna med restaurangen.</footer>")
+                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna med restaurangen.</footer>")
     parts.append("</main></body></html>")
     return "\n".join(parts) + "\n"
 

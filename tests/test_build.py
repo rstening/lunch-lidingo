@@ -34,7 +34,7 @@ def test_pick_week_exact_match():
 def test_pick_week_falls_back_to_latest_with_notice():
     week, notice = pick_week(DATA["restaurants"][1], 2026, 39)
     assert week["week"] == 38
-    assert notice == "Visar vecka 38, ej uppdaterad än"
+    assert notice == "Visar vecka 38, inte uppdaterad än"
 
 
 def test_pick_week_none_when_no_weeks():
@@ -66,7 +66,7 @@ def test_render_friday():
     assert "Ingår kaffe" in html
     assert "Kunde inte hämta menyn" in html          # Beta (stale > 7 days) and Gamma
     assert "Nästa veckas meny finns på restaurangens sida" in html  # Delta (week 40 only)
-    assert "Ingen lunch angiven" in html             # Alfa has no dishes Tue-Thu
+    assert "Ingen meny för den här dagen" in html             # Alfa has no dishes Tue-Thu
     assert "Uppdaterad 25 september 09:02" in html
     assert html.count('class="restaurang"') == 20    # 4 restaurants x 5 days
 
@@ -75,7 +75,7 @@ def test_render_weekend_defaults_to_monday_next_week():
     html = render(DATA, date(2026, 9, 26))
     assert 'id="dag-1" checked' in html.replace("  ", " ")
     assert "Måndag 28 september" in html
-    assert "Visar vecka 39, ej uppdaterad än" in html
+    assert "Visar vecka 39, inte uppdaterad än" in html
 
 
 def test_render_escapes_html():
