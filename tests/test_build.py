@@ -88,14 +88,16 @@ def test_render_escapes_html():
     assert "&lt;b&gt;X&lt;/b&gt;" in html and "Fisk &amp; &lt;chips&gt;" in html
 
 
-def test_all_font_sizes_are_at_least_18px():
+def test_all_text_is_16px():
     css = CSS + "\n" + _tab_css()
-    root_px = 20  # from `html { font-size: 20px; }` in CSS
+    root_px = 16  # from `html { font-size: 16px; }` in CSS
+    assert "html { font-size: 16px; }" in css
+    assert "font: 16px/1.5" in css
     sizes = re.findall(r"font-size:\s*([0-9.]+)(px|rem)", css)
     assert sizes, "expected at least one font-size declaration"
     for value, unit in sizes:
         px = float(value) if unit == "px" else float(value) * root_px
-        assert px >= 18, f"font-size {value}{unit} computes to {px}px, below 18px minimum"
+        assert px == 16, f"font-size {value}{unit} computes to {px}px, expected 16px"
 
 
 def test_dish_li_has_ratt_and_pris_spans():

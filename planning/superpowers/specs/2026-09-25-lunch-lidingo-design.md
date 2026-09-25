@@ -131,7 +131,7 @@ En sida, `docs/index.html`, ren HTML och CSS utan JavaScript och utan externa re
 - Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
 - Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Rutan innehåller namn (länk till källan), rätter som lista med pris och tagg där det finns, samt eventuell notis.
 - Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen".
-- Stor text (minst 18px), hög kontrast, en kolumn på mobil och två på skärmar bredare än 800px. Allt på svenska. Ingen vidare design i första versionen.
+- All text i 16 px, hierarki med vikt och luft, hög kontrast, en kolumn på mobil och två på skärmar bredare än 800px. Allt på svenska. Ingen vidare design i första versionen.
 
 ## Testning
 
