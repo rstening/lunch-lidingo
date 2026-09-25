@@ -193,12 +193,12 @@ def test_day_picker_spans_the_full_column():
     assert "max-width" not in tabs
 
 
-def test_footer_uses_secondary_colour_and_new_copy():
+def test_footer_shows_only_the_update_time():
     html = render(DATA, date(2026, 9, 25))
     assert "--text-2: rgba(18, 18, 18, 0.595)" in html
     assert "footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }" in html
     assert "<footer><p>Uppdaterad 25 september 09:02.</p>" in html
-    assert "Dubbelkolla gärna på restaurangens hemsida." in html
+    assert "Menyerna hämtas" not in html and "Dubbelkolla" not in html
 
 
 def test_cards_show_hours_but_not_address():
