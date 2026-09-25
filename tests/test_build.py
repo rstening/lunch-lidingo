@@ -144,3 +144,9 @@ def test_weekday_tabs_share_one_row():
     css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
     tabs = re.search(r"\.flikar \{([^}]*)\}", css).group(1)
     assert "grid-template-columns: repeat(5, minmax(0, 1fr))" in tabs
+
+
+def test_single_narrow_column_at_every_width():
+    css = CSS + "\n" + _tab_css()
+    assert "1fr 1fr" not in css
+    assert "main { max-width: 640px;" in css
