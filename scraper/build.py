@@ -27,9 +27,10 @@ main { max-width: 1100px; margin: 0 auto; }
 header h1 { font-size: 1.9rem; margin: 0 0 4px; }
 header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
-.flikar { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-.flikar label { display: block; padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px;
-                cursor: pointer; font-weight: 600; }
+.flikar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
+          max-width: 520px; margin: 12px 0 20px; }
+.flikar label { display: block; min-height: 44px; padding: 10px 4px; border: 2px solid var(--line);
+                border-radius: 8px; cursor: pointer; font-weight: 600; text-align: center; }
 .flikar label small { display: block; font-weight: 400; font-size: 0.9rem; }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
