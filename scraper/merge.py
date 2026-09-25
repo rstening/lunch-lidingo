@@ -1,6 +1,6 @@
 """Combine this run's reader results with the previous data file."""
 from dataclasses import asdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Union
 
 from scraper.model import WeekMenu
@@ -10,6 +10,23 @@ Result = Union[List[WeekMenu], BaseException]
 
 def _iso(dt: datetime) -> str:
     return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _combine_weeks(old_weeks: List[dict], new_weeks: List[WeekMenu], now: datetime) -> List[dict]:
+    """Merge previous weeks with newly read ones, keyed by (year, week).
+
+    New data overrides old data for the same week. Weeks older than
+    (this week - 1) are dropped so a stale week never lingers forever, but a
+    reader that has already moved on to next week does not erase this week's
+    menu (the bug this exists to fix).
+    """
+    cutoff = (now.date() - timedelta(weeks=1)).isocalendar()[:2]
+    by_key = {(w.get("year"), w.get("week")): w for w in old_weeks}
+    for w in new_weeks:
+        by_key[(w.year, w.week)] = asdict(w)
+    kept = [w for key, w in by_key.items() if key >= cutoff]
+    kept.sort(key=lambda w: (w["year"], w["week"]))
+    return kept
 
 
 def merge(previous: dict, restaurants: List[dict],
@@ -26,8 +43,9 @@ def merge(previous: dict, restaurants: List[dict],
             continue
         result = results.get(rid)
         if isinstance(result, list) and result:
+            weeks = _combine_weeks((old or {}).get("weeks", []), result, now)
             out.append({**base, "last_success": _iso(now), "error": None,
-                        "weeks": [asdict(w) for w in result]})
+                        "weeks": weeks})
             continue
         if result is None:
             error = "Inget resultat"

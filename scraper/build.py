@@ -72,9 +72,17 @@ def pick_week(restaurant: dict, year: int, week: int) -> Tuple[Optional[dict], O
         if (w.get("year"), w.get("week")) == (year, week):
             return w, None
     latest = max(weeks, key=lambda w: (w.get("year", 0), w.get("week", 0)))
-    if (latest["year"], latest["week"]) < (year, week):
+    latest_key = (latest["year"], latest["week"])
+    this_key = (year, week)
+    if latest_key > this_key:
+        # Only weeks newer than today's exist: never show a future week as
+        # today's lunch.
+        return None, "Nästa veckas meny finns på restaurangens sida"
+    monday = date.fromisocalendar(year, week, 1)
+    one_week_older = (monday - timedelta(weeks=1)).isocalendar()[:2]
+    if latest_key == one_week_older:
         return latest, f"Visar vecka {latest['week']}, ej uppdaterad än"
-    return latest, f"Visar vecka {latest['week']}"
+    return None, "Ingen aktuell meny, se restaurangens sida"
 
 
 def _is_stale(restaurant: dict, now: datetime) -> bool:
@@ -113,8 +121,13 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     out.append(f'<h2><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h2>')
     if r.get("address"):
         out.append(f'<p class="adress">{escape(r["address"])}</p>')
-    if week is None or _is_stale(r, now):
+    if _is_stale(r, now):
         out.append('<p class="tom">Kunde inte hämta menyn, se restaurangens sida.</p>')
+        out.append("</article>")
+        return "\n".join(out)
+    if week is None:
+        text = notice or "Kunde inte hämta menyn, se restaurangens sida."
+        out.append(f'<p class="tom">{escape(text)}</p>')
         out.append("</article>")
         return "\n".join(out)
     dishes = (week.get("days") or {}).get(str(day)) or []

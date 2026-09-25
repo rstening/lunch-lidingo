@@ -14,10 +14,14 @@ DATA = {
                                    {"name": "Pasta", "price": 130, "tags": []}]}}]},
         {"id": "b", "name": "Beta Bar", "url": "https://b.example", "address": "Gatan 2",
          "last_success": "2026-09-10T07:00:00Z", "error": "HTTPError: 500",
-         "weeks": [{"year": 2026, "week": 37, "week_known": True, "notes": "",
+         "weeks": [{"year": 2026, "week": 38, "week_known": True, "notes": "",
                     "days": {"1": [{"name": "Gammal rätt", "price": None, "tags": []}]}}]},
         {"id": "c", "name": "Gamma Grill", "url": "https://c.example", "address": "",
          "last_success": None, "error": "ParseError: x", "weeks": []},
+        {"id": "d", "name": "Delta Deli", "url": "https://d.example", "address": "Gatan 4",
+         "last_success": "2026-09-25T07:02:11Z", "error": None,
+         "weeks": [{"year": 2026, "week": 40, "week_known": True, "notes": "",
+                    "days": {"1": [{"name": "Framtidsrätt", "price": None, "tags": []}]}}]},
     ],
 }
 
@@ -29,12 +33,25 @@ def test_pick_week_exact_match():
 
 def test_pick_week_falls_back_to_latest_with_notice():
     week, notice = pick_week(DATA["restaurants"][1], 2026, 39)
-    assert week["week"] == 37
-    assert notice == "Visar vecka 37, ej uppdaterad än"
+    assert week["week"] == 38
+    assert notice == "Visar vecka 38, ej uppdaterad än"
 
 
 def test_pick_week_none_when_no_weeks():
     assert pick_week(DATA["restaurants"][2], 2026, 39) == (None, None)
+
+
+def test_pick_week_none_when_only_future_weeks_exist():
+    week, notice = pick_week(DATA["restaurants"][3], 2026, 39)
+    assert week is None
+    assert notice == "Nästa veckas meny finns på restaurangens sida"
+
+
+def test_pick_week_none_when_latest_is_more_than_one_week_older():
+    old = {"weeks": [{"year": 2026, "week": 30, "week_known": True, "days": {}, "notes": ""}]}
+    week, notice = pick_week(old, 2026, 39)
+    assert week is None
+    assert notice == "Ingen aktuell meny, se restaurangens sida"
 
 
 def test_render_friday():
@@ -44,12 +61,14 @@ def test_render_friday():
     assert 'id="dag-5" checked' in html.replace("  ", " ")
     assert "Fredag 25 september" in html
     assert "Alfa Kök" in html and "Beta Bar" in html and "Gamma Grill" in html
+    assert "Delta Deli" in html
     assert "Pasta" in html and "130 kr" in html
     assert "Ingår kaffe" in html
     assert "Kunde inte hämta menyn" in html          # Beta (stale > 7 days) and Gamma
+    assert "Nästa veckas meny finns på restaurangens sida" in html  # Delta (week 40 only)
     assert "Ingen lunch angiven" in html             # Alfa has no dishes Tue-Thu
     assert "Uppdaterad 25 september 09:02" in html
-    assert html.count('class="restaurang"') == 15    # 3 restaurants x 5 days
+    assert html.count('class="restaurang"') == 20    # 4 restaurants x 5 days
 
 
 def test_render_weekend_defaults_to_monday_next_week():
