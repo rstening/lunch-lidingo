@@ -19,6 +19,8 @@ En enda webbsida som visar dagens lunch hos alla kända lunchrestauranger på Li
 | Bibliothek | https://bibliothek.nu/menyer | Länkar till PDF `Lunch-vNN-YYYY.pdf`, textbaserad PDF, samma meny hela veckan (kött, fisk, veg, soppa), flera veckor kan finnas |
 | Brasserie Jernet | https://brasseriejernet.se/ | JavaScript-app; menyn hämtas från deras öppna Supabase-API, tabell `lunch_menu`, fem rader (day_of_week 1–5) med kött/fisk/veg och pris. API-adress och publik nyckel läses ur sidans JS-bundle vid körning, inte hårdkodas, eftersom bundle-namnet ändras vid deras deploy |
 
+Lidingö Golfrestaurang är borttagen från sidan sedan 2026-09-26: deras sida ligger bakom Cloudflare och blockerar GitHubs servrar (403). Läsaren och testerna finns kvar, och en utkommenterad post i `restaurants.yaml` visar hur den läggs tillbaka.
+
 Ankarlänkar i de ursprungliga adresserna (`#lunch`, `#meny`) ignoreras; hela sidan hämtas.
 
 ## Arkitektur
@@ -105,7 +107,7 @@ Gemensamma regler:
 - Timeout 20 sekunder per hämtning, tydlig user-agent med länk till repot.
 - En läsare som hittar noll rätter totalt kastar fel. Tom meny räknas som fel, aldrig som lyckat resultat.
 - Läsare får bara `bytes`/`str` in (HTML, PDF, JSON) och ett datum; nätverk sköts av `fetch.py`. Det gör dem testbara mot fixtures.
-- Veckonummer parsas där det finns: Ronneberga (`v. 40`), Golfrestaurangen (`Vecka 39`), Saluhallen (`vecka 40`), Bibliothek (filnamn `Lunch-v40-2026.pdf`). Firren har datum per dag (`2026-09-21`), veckan räknas från dem. Pocket och Jernet saknar veckoangivelse och antas vara innevarande vecka.
+- Veckonummer parsas där det finns: Ronneberga (`v. 40`), Golfrestaurangen (`Vecka 39`), Saluhallen (`vecka 40`), Bibliothek (filnamn `Lunch-v40-2026.pdf`). Firren har datum per dag (`2026-09-21`), veckan räknas från dem. Pocket saknar veckoangivelse och antas vara innevarande vecka. Jernet: varje rad hör till den vecka då raden senast ändrades (fältet `updated_at`, svensk tid), eftersom Jernet fyller i varje dags rad samma dag.
 
 Särskilt per läsare:
 

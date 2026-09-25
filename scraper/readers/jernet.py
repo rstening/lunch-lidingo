@@ -1,8 +1,9 @@
 """Brasserie Jernet: React app; the weekly lunch lives in a public Supabase table."""
 import json
 import re
-from datetime import date
-from typing import Callable, List, Optional, Tuple
+from datetime import date, datetime
+from typing import Callable, Dict, List, Optional, Tuple
+from zoneinfo import ZoneInfo
 from urllib.parse import urljoin
 
 from scraper.model import Dish, ParseError, WeekMenu, clean
@@ -11,6 +12,7 @@ from scraper.weeks import iso_week
 BUNDLE_RE = re.compile(r'<script[^>]+src="([^"]*/assets/index-[^"]+\.js)"', re.I)
 SUPABASE_URL_RE = re.compile(r"https://[a-z0-9]+\.supabase\.co")
 JWT_RE = re.compile(r"eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}")
+TZ = ZoneInfo("Europe/Stockholm")
 FIELDS = [("meat_name", "meat_price", "kött"),
           ("fish_name", "fish_price", "fisk"),
           ("vegetarian_name", "vegetarian_price", "veg")]
@@ -38,8 +40,28 @@ def _price(value) -> Optional[int]:
         return None
 
 
+def _row_week(row: dict, fallback: Tuple[int, int]) -> Tuple[int, int]:
+    """The ISO week a row belongs to: the week it was last edited, in Swedish time.
+
+    Jernet fills in each weekday's row on that same day, so a row last edited
+    before this week's Monday still holds last week's dish.
+    """
+    stamp = row.get("updated_at")
+    if not stamp:
+        return fallback
+    try:
+        edited = datetime.fromisoformat(str(stamp).replace("Z", "+00:00"))
+    except ValueError:
+        return fallback
+    if edited.tzinfo is None:
+        return fallback
+    year, week, _ = edited.astimezone(TZ).isocalendar()
+    return min((year, week), fallback)  # a clock ahead of ours never means next week
+
+
 def parse_rows(rows: list, today: date) -> List[WeekMenu]:
-    days = {}
+    this_week = iso_week(today)
+    by_week: Dict[Tuple[int, int], Dict[str, List[Dish]]] = {}
     for row in rows:
         try:
             idx = int(row.get("day_of_week"))
@@ -53,11 +75,11 @@ def parse_rows(rows: list, today: date) -> List[WeekMenu]:
             if name:
                 dishes.append(Dish(name=name, price=_price(row.get(price_key)), tags=[tag]))
         if dishes:
-            days[str(idx)] = dishes
-    if not days:
+            by_week.setdefault(_row_week(row, this_week), {})[str(idx)] = dishes
+    if not by_week:
         raise ParseError("Jernet: inga rätter i API-svaret")
-    year, week = iso_week(today)
-    return [WeekMenu(year=year, week=week, week_known=False, days=days)]
+    return [WeekMenu(year=y, week=w, week_known=True, days=days)
+            for (y, w), days in sorted(by_week.items())]
 
 
 def read(get: Callable, url: str, today: date) -> List[WeekMenu]:
