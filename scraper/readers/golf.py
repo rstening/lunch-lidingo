@@ -6,7 +6,7 @@ from typing import Callable, List, Optional
 from bs4 import BeautifulSoup
 
 from scraper.model import Dish, ParseError, WeekMenu, clean
-from scraper.weeks import day_index, iso_week, year_for_week
+from scraper.weeks import day_index, year_for_week
 
 LABEL_TAGS = {"buffé": "buffé", "buffe": "buffé", "vegetarisk": "veg",
               "veckans lätta": "lätt", "veckans vegetariska": "veg"}

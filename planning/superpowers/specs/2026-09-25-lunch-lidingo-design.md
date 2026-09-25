@@ -23,7 +23,7 @@ Ankarlänkar i de ursprungliga adresserna (`#lunch`, `#meny`) ignoreras; hela si
 
 ## Arkitektur
 
-Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron körs i UTC, så jobbet schemaläggs både 07:00 och 08:00 UTC; det ger 09 och 10 svensk tid på sommaren och 08 och 09 på vintern. Två körningar per dag är ofarligt eftersom resultatet blir detsamma om inget ändrats, och jobbet committar bara om filerna faktiskt ändrats).
+Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett schemalagt GitHub Actions-jobb kör varje morgon kl 09:00 svensk tid (cron körs i UTC, så jobbet schemaläggs både 07:00 och 08:00 UTC; det ger 09 och 10 svensk tid på sommaren och 08 och 09 på vintern. Två körningar per dag är ofarligt: sidan innehåller alltid en "Uppdaterad …"-tidsstämpel, så filerna skiljer sig mellan körningarna även när ingen meny ändrats, och jobbet committar därför normalt två gånger per dag. Det är avsiktligt accepterat, inte ett fel).
 
 Flöde per körning:
 
@@ -121,6 +121,7 @@ Särskilt per läsare:
 - Fel i en läsare loggas som varning med restaurang-id och orsak; övriga fortsätter.
 - Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notis "Senast hämtad 24 sep".
 - Om `week` < innevarande vecka visas menyn med notis "Visar vecka 39, ej uppdaterad än".
+- En vecka visas aldrig som dagens om den ligger i framtiden: har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, ej uppdaterad än" (regeln ovan). Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
 - Actions-jobbet failar (och GitHub mejlar) bara när alla läsare misslyckas eller bygget kraschar.
 
 ## Sidan
@@ -128,7 +129,7 @@ Särskilt per läsare:
 En sida, `docs/index.html`, ren HTML och CSS utan JavaScript och utan externa resurser.
 
 - Rubrik "Dagens lunch på Lidingö", datum och veckodag, rad "Uppdaterad 25 sep 09:02".
-- Flikar Mån–Fre som ankarlänkar; vald dag styrs av CSS `:target` med dagens dag som standard. På lördag och söndag är måndag standard.
+- Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
 - Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Rutan innehåller namn (länk till källan), rätter som lista med pris och tagg där det finns, samt eventuell notis.
 - Restaurang utan rätter för dagen visas ändå, med "Ingen lunch angiven".
 - Stor text (minst 18px), hög kontrast, en kolumn på mobil och två på skärmar bredare än 800px. Allt på svenska. Ingen vidare design i första versionen.
