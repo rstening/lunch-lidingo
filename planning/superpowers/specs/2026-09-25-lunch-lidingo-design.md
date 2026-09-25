@@ -28,7 +28,7 @@ Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/
 Flöde per körning:
 
 1. **Scrape.** `python -m scraper` läser `restaurants.yaml` och kör varje restaurangs läsare. Varje läsare returnerar samma datastruktur (se nedan).
-2. **Spara.** Resultatet slås ihop med föregående `data/menus.json`. Lyckade läsare ersätter sin post; misslyckade behåller föregående post och får `last_success` oförändrad samt `error` satt.
+2. **Spara.** Resultatet slås ihop med föregående `data/menus.json`. Veckor slås ihop per läsare nycklat på (år, vecka): ny data skriver över gammal för samma vecka, veckor äldre än förra veckan tas bort. Misslyckade läsare behåller föregående post och får `last_success` oförändrad samt `error` satt.
 3. **Bygg.** `python -m scraper.build` läser `data/menus.json` och skriver `docs/index.html`.
 4. **Publicera.** Actions committar `data/menus.json` och `docs/index.html` och pushar. GitHub Pages serverar `docs/`.
 
@@ -120,8 +120,7 @@ Särskilt per läsare:
 
 - Fel i en läsare loggas som varning med restaurang-id och orsak; övriga fortsätter.
 - Post med `error` och `last_success` äldre än 7 dagar visas som "Kunde inte hämta menyn, se restaurangens sida" med länk. Nyare visas med notis "Senast hämtad 24 sep".
-- Om `week` < innevarande vecka visas menyn med notis "Visar vecka 39, ej uppdaterad än".
-- En vecka visas aldrig som dagens om den ligger i framtiden: har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, ej uppdaterad än" (regeln ovan). Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
+- Veckokontroll: visas den exakta innevarande veckan, ingen notis om vecka. Har restaurangen bara veckor senare än innevarande visas ingen meny utan notisen "Nästa veckas meny finns på restaurangens sida". Är den senast kända veckan exakt en vecka äldre än innevarande visas den med notisen "Visar vecka N, ej uppdaterad än". Är den mer än en vecka äldre visas ingen meny utan notisen "Ingen aktuell meny, se restaurangens sida". Detta förhindrar att en restaurang som redan publicerat nästa veckas meny (innan innevarande vecka är slut) visar nästa veckas rätter som dagens.
 - Actions-jobbet failar (och GitHub mejlar) bara när alla läsare misslyckas eller bygget kraschar.
 
 ## Sidan
@@ -138,7 +137,7 @@ En sida, `docs/index.html`, ren HTML och CSS utan JavaScript och utan externa re
 
 - `tests/fixtures/` innehåller en sparad kopia per källa från 2026-09-25 (HTML, PDF, JSON).
 - Ett test per läsare: kör läsaren på fixturen, kontrollerar antal dagar, veckonummer där det finns, och minst en känd rätt per läsare (t.ex. Firren måndag "Scampi Indiana med grönsaksris").
-- Test av sammanslagning: misslyckad läsare behåller föregående post; tom meny ger fel.
+- Test av sammanslagning: veckor slås ihop per (år, vecka) där ny data skriver över gammal och veckor äldre än förra veckan tas bort; misslyckad läsare behåller föregående post; tom meny ger fel.
 - Test av bygg: given JSON ger HTML som innehåller alla restaurangnamn och rätt dag markerad.
 - `test.yml` kör `pytest` vid varje push. `daily.yml` kör hela kedjan mot riktiga källor.
 - Lokalt kommando `python -m scraper && python -m scraper.build` för att se resultatet innan push.

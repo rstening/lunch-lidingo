@@ -16,7 +16,9 @@ Notiser på sidan: "Kunde inte hämta menyn, se restaurangens sida" betyder att
 läsaren har misslyckats i mer än 7 dagar (eller aldrig lyckats). "Nästa
 veckas meny finns på restaurangens sida" betyder att restaurangen redan
 publicerat nästa veckas meny men innevarande vecka saknas, så ingen meny
-visas som dagens för att undvika att visa fel veckas rätter.
+visas som dagens för att undvika att visa fel veckas rätter. "Ingen aktuell
+meny, se restaurangens sida" betyder att den senaste menyn vi har är mer än
+en vecka gammal.
 
 ## Köra lokalt
 

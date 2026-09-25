@@ -1,6 +1,7 @@
 """Bibliothek: one PDF per week, same four dishes every weekday."""
 import html as htmlmod
 import io
+import logging
 import re
 from datetime import date
 from typing import Callable, List, Optional, Tuple
@@ -110,6 +111,7 @@ def read(get: Callable, url: str, today: date) -> List[WeekMenu]:
     if not links:
         raise ParseError("Bibliothek: hittade inga lunch-PDF:er")
     weeks = []
+    last_error = None
     for year, week, pdf_url in links:
         try:
             pdf = get(pdf_url)
@@ -120,10 +122,15 @@ def read(get: Callable, url: str, today: date) -> List[WeekMenu]:
             if special:
                 days["5"].append(special)
             weeks.append(WeekMenu(year=year, week=week, week_known=True, days=days, notes=notes))
-        except Exception:
+        except Exception as exc:
             # One bad week's PDF (fetch failure or a layout that can't be
             # read) must not take down the other weeks.
+            logging.getLogger("scraper").warning(
+                "Bibliothek: hoppar över %s: %s: %s", pdf_url, type(exc).__name__, exc)
+            last_error = f"{type(exc).__name__}: {exc}"
             continue
     if not weeks:
+        if last_error:
+            raise ParseError(f"Bibliothek: ingen vecka kunde läsas: {last_error}")
         raise ParseError("Bibliothek: ingen vecka kunde läsas")
     return weeks

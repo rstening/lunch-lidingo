@@ -8,7 +8,7 @@ import importlib
 import json
 import logging
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, time
 from pathlib import Path
 from typing import Callable, Dict, List
 from zoneinfo import ZoneInfo
@@ -55,8 +55,12 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-    now = datetime.now(TZ)
-    today = date.fromisoformat(args.date) if args.date else now.date()
+    if args.date:
+        today = date.fromisoformat(args.date)
+        now = datetime.combine(today, time(9, 0), tzinfo=TZ)
+    else:
+        now = datetime.now(TZ)
+        today = now.date()
     restaurants = load_restaurants(args.restaurants)
     if args.only:
         wanted = set(args.only.split(","))

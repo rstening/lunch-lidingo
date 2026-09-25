@@ -76,6 +76,31 @@ def test_one_failing_one_succeeding_returns_0_and_writes_both(tmp_path, monkeypa
     assert by_id["b"]["weeks"] == []
 
 
+def test_merge_clock_derived_from_date_not_wall_clock(tmp_path, monkeypatch):
+    """main() must derive the merge clock (and week-pruning cutoff) from
+    --date, not from the real wall clock. A fake reader that returns week 39
+    for --date 2026-09-25 must still have week 39 kept, and generated_at must
+    be based on 2026-09-25 09:00 Europe/Stockholm, regardless of what day it
+    actually is when the test runs."""
+    monkeypatch.setitem(sys.modules, "scraper.readers.fake_ok",
+                        _fake_module("scraper.readers.fake_ok", _ok_read))
+    data_path = tmp_path / "menus.json"
+    monkeypatch.setattr(main_mod, "DATA_PATH", data_path)
+    restaurants = [
+        {"id": "a", "name": "A", "url": "https://a", "address": "", "reader": "fake_ok"},
+    ]
+    yaml_path = _write_restaurants(tmp_path, restaurants)
+
+    rc = main_mod.main(["--restaurants", str(yaml_path), "--date", "2026-09-25"])
+
+    assert rc == 0
+    data = json.loads(data_path.read_text(encoding="utf-8"))
+    assert data["generated_at"] == "2026-09-25T07:00:00Z"
+    by_id = {r["id"]: r for r in data["restaurants"]}
+    weeks = by_id["a"]["weeks"]
+    assert any(w["week"] == 39 for w in weeks)
+
+
 def test_reader_returning_empty_list_is_recorded_as_error(tmp_path, monkeypatch):
     monkeypatch.setitem(sys.modules, "scraper.readers.fake_empty",
                         _fake_module("scraper.readers.fake_empty", _empty_read))
