@@ -26,6 +26,7 @@ Sidan är gjord för en pensionär som kollar kvällen före eller samma morgon,
 1. `python -m scraper` läser `restaurants.yaml`, kör en läsare per restaurang (`scraper/readers/`) och skriver `data/menus.json`. En restaurang som inte går att läsa behåller sin senaste meny. Om alla misslyckas skrivs ingen fil.
 2. `python -m scraper.build` gör om datan till `docs/index.html`.
 3. GitHub Actions (`.github/workflows/daily.yml`) kör båda varje morgon kl 09, och på vardagar även kl 10:30 och 12:00 svensk tid, och committar om något ändrats. GitHub Pages visar `docs/`.
+4. Sist körs `tools/halsokoll.py`, som öppnar ett ärende i repot när en restaurang har misslyckats i ungefär två dagar (40 timmar sedan senaste lyckade hämtning) och stänger det när den fungerar igen. Ärendet känns igen på en dold markering `<!-- lunch-bot:<id> -->`.
 
 Designdokumentet `planning/superpowers/specs/2026-09-25-lunch-lidingo-design.md` beskriver allt i detalj och hålls uppdaterat.
 
