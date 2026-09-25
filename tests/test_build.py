@@ -111,7 +111,7 @@ def test_dish_li_has_ratt_and_pris_spans():
 
 def test_render_shows_lunch_hours():
     html = render(DATA, date(2026, 9, 25))
-    assert '<p class="tider">Lunch 11-14</p>' in html
+    assert '<span class="tider">Lunch 11-14</span>' in html
 
 
 def test_page_copy_has_no_long_dashes():
@@ -138,11 +138,14 @@ def test_page_uses_only_the_two_brand_colours():
     assert "color: #" not in css.split(":root")[1]  # everything else goes through variables
 
 
-def test_cards_are_outlined_not_filled():
+def test_restaurants_are_grouped_by_space_not_boxes():
     css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
-    card = re.search(r"\.restaurang \{([^}]*)\}", css).group(1)
-    assert "background: var(--bg)" in card
-    assert "border: 1px solid var(--line)" in card
+    assert not re.search(r"\.restaurang \{", css)  # no card box at all
+    assert "border-top" not in css                  # no separator lines between dishes
+    assert ".lista { display: grid; grid-template-columns: 1fr; gap: 48px; }" in css
+    for cls in ("tider", "pris", "tagg"):
+        rule = re.search(r"\." + cls + r" \{([^}]*)\}", css).group(1)
+        assert "color: var(--text-2)" in rule, cls
 
 
 def test_weekday_tabs_share_one_row():
@@ -191,14 +194,15 @@ def test_day_picker_spans_the_full_column():
 def test_footer_uses_secondary_colour_and_new_copy():
     html = render(DATA, date(2026, 9, 25))
     assert "--text-2: rgba(18, 18, 18, 0.595)" in html
-    assert "footer { margin: 28px 0 8px; font-size: 14px; color: var(--text-2); }" in html
+    assert "footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }" in html
+    assert "<footer><p>Uppdaterad 25 september 09:02.</p>" in html
     assert "Dubbelkolla gärna på restaurangens hemsida." in html
 
 
 def test_cards_show_hours_but_not_address():
     html = render(DATA, date(2026, 9, 25))
     assert 'class="adress"' not in html and "Gatan 1" not in html
-    assert '<p class="tider">Lunch 11-14</p>' in html
+    assert '<span class="tider">Lunch 11-14</span>' in html
     css = html.split("<style>")[1].split("</style>")[0]
     tider = re.search(r"\.tider \{([^}]*)\}", css).group(1)
     assert "font-weight" not in tider

@@ -22,14 +22,15 @@ CSS = """
         --line: rgba(18, 18, 18, 0.068); }
 * { box-sizing: border-box; }
 html { font-size: 16px; }
-body { margin: 0; padding: 16px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+body { margin: 0; padding: 48px 16px 32px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
        color: var(--text); background: var(--bg); }
 main { max-width: 640px; margin: 0 auto; }
-header h1 { font-size: 1rem; margin: 0 0 4px; }
-header p { margin: 0 0 12px; }
+@media (min-width: 640px) { body { padding: 96px 24px 48px; } }
+header h1 { font-size: 1rem; font-weight: 500; margin: 0; }
+header p { margin: 0; color: var(--text-2); }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
 .flikar { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
-          margin: 16px 0 24px; padding: 4px; border-radius: 999px;
+          margin: 32px 0 48px; padding: 4px; border-radius: 999px;
           background: var(--line); box-shadow: inset 0 1px 2px rgba(18, 18, 18, 0.06);
           -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
@@ -52,24 +53,24 @@ header p { margin: 0 0 12px; }
 .flikar.drar .indikator::before { transform: scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .indikator, .indikator::before { transition: none; } }
 .dag { display: none; }
-.dag h2.dagrubrik { font-size: 1rem; margin: 0 0 14px; }
-.lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.restaurang { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
-.restaurang h3 { font-size: 1rem; margin: 0 0 2px; }
+.dagrubrik { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+             white-space: nowrap; margin: 0; font-size: 1rem; }
+.lista { display: grid; grid-template-columns: 1fr; gap: 48px; }
+@media (min-width: 640px) { .lista { gap: 64px; } }
+.rubrik { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+          column-gap: 16px; }
+.restaurang h3 { font-size: 1rem; font-weight: 500; margin: 0; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
-.restaurang h3 a:hover { text-decoration: underline; }
-.tider { margin: 0 0 8px; font-size: 1rem; }
-.restaurang ul { list-style: none; margin: 0; padding: 0; }
-.restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
-                 padding: 6px 0; border-top: 1px solid var(--line); }
+@media (hover: hover) and (pointer: fine) { .restaurang h3 a:hover { text-decoration: underline; } }
+.tider { color: var(--text-2); font-size: 1rem; }
+.restaurang ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
+.restaurang li { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
 .ratt { flex: 1 1 auto; min-width: 0; }
-.tagg { display: inline-block; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em;
-        background: var(--line); border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
-.pris { white-space: nowrap; flex-shrink: 0; }
-.notis { margin: 8px 0 0; font-size: 1rem; }
-.info { margin: 8px 0 0; font-size: 1rem; }
-.tom { margin: 4px 0 0; font-style: italic; }
-footer { margin: 28px 0 8px; font-size: 14px; color: var(--text-2); }
+.tagg { color: var(--text-2); font-size: 1rem; text-transform: capitalize; margin-right: 8px; }
+.pris { color: var(--text-2); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
+footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
+footer p { margin: 0 0 4px; }
 """
 
 
@@ -207,9 +208,11 @@ def _dish_html(d: dict) -> str:
 def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
                day: int, now: datetime) -> str:
     out = ['<article class="restaurang">']
+    out.append('<div class="rubrik">')
     out.append(f'<h3><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h3>')
     if r.get("lunch_hours"):
-        out.append(f'<p class="tider">Lunch {escape(r["lunch_hours"])}</p>')
+        out.append(f'<span class="tider">Lunch {escape(r["lunch_hours"])}</span>')
+    out.append("</div>")
     if _is_stale(r, now):
         out.append('<p class="tom">Kunde inte hämta menyn, se restaurangens sida.</p>')
         out.append("</article>")
@@ -253,7 +256,7 @@ def render(data: dict, today: date) -> str:
         parts.append(f'<input type="radio" name="dag" class="dagval" id="dag-{n}"{checked}>')
     parts.append("<header><h1>Dagens lunch på Lidingö</h1>")
     parts.append(f"<p>{DAY_NAMES[shown.isoweekday() - 1].capitalize()} {format_date(shown)}, "
-                 f"vecka {week}. Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p></header>")
+                 f"vecka {week}</p></header>")
     parts.append('<nav class="flikar" aria-label="Välj dag">')
     parts.append('<span class="indikator" aria-hidden="true"></span>')
     for n in range(1, 6):
@@ -267,8 +270,9 @@ def render(data: dict, today: date) -> str:
         for r, w, notice in restaurant_weeks:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
-    parts.append("<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
-                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna på restaurangens hemsida.</footer>")
+    parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
+                 "<p>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
+                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna på restaurangens hemsida.</p></footer>")
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 
