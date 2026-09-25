@@ -33,7 +33,7 @@ def test_restaurants_yaml_lists_seven_readers():
     import yaml
     entries = yaml.safe_load(open("restaurants.yaml", encoding="utf-8"))
     assert [e["id"] for e in entries] == [
-        "firren", "ronneberga", "golf", "pocket", "saluhallen", "bibliothek", "jernet"]
+        "pocket", "saluhallen", "bibliothek", "firren", "ronneberga", "golf", "jernet"]
     for e in entries:
         for key in ("id", "name", "address", "lunch_hours", "url", "reader"):
             assert key in e, f"{e.get('id')} saknar {key}"
