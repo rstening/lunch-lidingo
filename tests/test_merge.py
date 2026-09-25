@@ -5,7 +5,7 @@ from scraper.model import Dish, WeekMenu
 
 NOW = datetime(2026, 9, 25, 7, 2, 11, tzinfo=timezone.utc)
 RESTAURANTS = [
-    {"id": "a", "name": "A", "address": "Gatan 1", "url": "https://a", "reader": "a"},
+    {"id": "a", "name": "A", "address": "Gatan 1", "lunch_hours": "11–14", "url": "https://a", "reader": "a"},
     {"id": "b", "name": "B", "address": "Gatan 2", "url": "https://b", "reader": "b"},
 ]
 MENU = [WeekMenu(2026, 39, True, {"1": [Dish("Soppa", 120, ["soppa"])]}, "obs")]
@@ -16,6 +16,7 @@ def test_merge_success_serialises_weeks():
     assert out["generated_at"] == "2026-09-25T07:02:11Z"
     a = out["restaurants"][0]
     assert a["id"] == "a" and a["name"] == "A" and a["address"] == "Gatan 1"
+    assert a["lunch_hours"] == "11–14"
     assert a["last_success"] == "2026-09-25T07:02:11Z"
     assert a["error"] is None
     assert a["weeks"][0]["days"]["1"][0] == {"name": "Soppa", "price": 120, "tags": ["soppa"]}

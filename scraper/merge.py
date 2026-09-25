@@ -36,7 +36,8 @@ def merge(previous: dict, restaurants: List[dict],
     for entry in restaurants:
         rid = entry["id"]
         base = {"id": rid, "name": entry["name"], "url": entry["url"],
-                "address": entry.get("address", "")}
+                "address": entry.get("address", ""),
+                "lunch_hours": entry.get("lunch_hours", "")}
         old = prev_by_id.get(rid)
         if rid not in results and old is not None:
             out.append({**old, **base})  # not run this time (--only): keep as is

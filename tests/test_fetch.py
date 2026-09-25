@@ -35,7 +35,7 @@ def test_restaurants_yaml_lists_seven_readers():
     assert [e["id"] for e in entries] == [
         "firren", "ronneberga", "golf", "pocket", "saluhallen", "bibliothek", "jernet"]
     for e in entries:
-        for key in ("id", "name", "address", "url", "reader"):
+        for key in ("id", "name", "address", "lunch_hours", "url", "reader"):
             assert key in e, f"{e.get('id')} saknar {key}"
         module = importlib.import_module(f"scraper.readers.{e['reader']}")
         assert hasattr(module, "read"), f"{e['reader']} saknar read()"

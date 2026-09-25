@@ -6,7 +6,7 @@ from scraper.build import CSS, _tab_css, pick_week, render
 DATA = {
     "generated_at": "2026-09-25T07:02:11Z",
     "restaurants": [
-        {"id": "a", "name": "Alfa Kök", "url": "https://a.example", "address": "Gatan 1",
+        {"id": "a", "name": "Alfa Kök", "url": "https://a.example", "address": "Gatan 1", "lunch_hours": "11–14",
          "last_success": "2026-09-25T07:02:11Z", "error": None,
          "weeks": [{"year": 2026, "week": 39, "week_known": True, "notes": "Ingår kaffe",
                     "days": {"1": [{"name": "Soppa", "price": 120, "tags": ["soppa"]}],
@@ -102,3 +102,8 @@ def test_dish_li_has_ratt_and_pris_spans():
     html = render(DATA, date(2026, 9, 25))
     assert '<li><span class="ratt">' in html
     assert '<span class="pris">130 kr</span>' in html
+
+
+def test_render_shows_lunch_hours():
+    html = render(DATA, date(2026, 9, 25))
+    assert '<p class="tider">Lunch 11–14</p>' in html
