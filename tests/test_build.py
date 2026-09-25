@@ -57,7 +57,7 @@ def test_pick_week_none_when_latest_is_more_than_one_week_older():
 def test_render_friday():
     html = render(DATA, date(2026, 9, 25))
     assert "<!doctype html>" in html.lower()
-    assert "<script" not in html.lower()
+    assert html.count("<script>") == 1  # only the drag enhancement, inline
     assert 'id="dag-5" checked' in html.replace("  ", " ")
     assert "Fredag 25 september" in html
     assert "Alfa Kök" in html and "Beta Bar" in html and "Gamma Grill" in html
@@ -162,3 +162,18 @@ def test_day_picker_has_sliding_glass_indicator():
         assert f"#dag-{n}:checked ~ .flikar .indikator {{ transform: translateX({(n - 1) * 100}%); }}" in css
     assert "backdrop-filter: blur(12px)" in css
     assert "prefers-reduced-motion: reduce" in css
+
+
+def test_day_picker_works_without_script_and_adds_drag_with_it():
+    html = render(DATA, date(2026, 9, 25))
+    before_script = html.split("<script>")[0]
+    # Without JavaScript: radios, labels and sections are all in the HTML.
+    for n in range(1, 6):
+        assert f'id="dag-{n}"' in before_script and f'for="dag-{n}"' in before_script
+        assert f'id="d-{n}"' in before_script
+    script = html.split("<script>")[1].split("</script>")[0]
+    for needle in ("pointerdown", "pointermove", "pointerup", "pointercancel",
+                   "setPointerCapture", "drar"):
+        assert needle in script
+    css = html.split("<style>")[1].split("</style>")[0]
+    assert ".flikar { touch-action: pan-y; }" in css

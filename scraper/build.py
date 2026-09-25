@@ -45,6 +45,10 @@ header p { margin: 0 0 12px; }
                                  inset 0 1px 0 rgba(250, 250, 250, 1), inset 0 -1px 1px rgba(18, 18, 18, 0.05);
                      transition: transform 160ms ease-out; }
 .flikar:has(label:active) .indikator::before { transform: scale(0.96); }
+.flikar { touch-action: pan-y; }
+.flikar.drar { cursor: grabbing; }
+.flikar.drar .indikator { transition: transform 60ms ease-out; }
+.flikar.drar .indikator::before { transform: scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .indikator, .indikator::before { transition: none; } }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1rem; margin: 0 0 14px; }
@@ -66,6 +70,74 @@ header p { margin: 0 0 12px; }
 .info { margin: 8px 0 0; font-size: 1rem; }
 .tom { margin: 4px 0 0; font-style: italic; }
 footer { margin: 28px 0 8px; font-size: 1rem; }
+"""
+
+
+DRAG_JS = """
+(function () {
+  var nav = document.querySelector(".flikar");
+  var pill = nav && nav.querySelector(".indikator");
+  if (!nav || !pill || !window.PointerEvent) return;
+  var radios = [1, 2, 3, 4, 5].map(function (n) { return document.getElementById("dag-" + n); });
+  var start = null, moved = false, samples = [], pos = 0;
+
+  function seg() { return (nav.clientWidth - 8) / 5; }
+  function current() { for (var i = 0; i < 5; i++) { if (radios[i].checked) return i; } return 0; }
+  function damp(d) { return d * 0.25; }
+
+  nav.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    start = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    moved = false;
+    samples = [];
+  });
+
+  nav.addEventListener("pointermove", function (e) {
+    if (!start || e.pointerId !== start.id) return;
+    var dx = e.clientX - start.x, dy = e.clientY - start.y;
+    if (!moved) {
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) return;
+      moved = true;
+      try { nav.setPointerCapture(e.pointerId); } catch (err) { /* pointer already gone */ }
+      nav.classList.add("drar");
+    }
+    var w = seg(), max = 4 * w;
+    var x = e.clientX - nav.getBoundingClientRect().left - 4 - w / 2;
+    if (x < 0) x = -damp(-x);
+    if (x > max) x = max + damp(x - max);
+    pos = x;
+    pill.style.transform = "translateX(" + x + "px)";
+    var now = performance.now();
+    samples.push([now, e.clientX]);
+    while (samples.length > 2 && now - samples[0][0] > 100) samples.shift();
+  });
+
+  function finish(e) {
+    if (!start || e.pointerId !== start.id) return;
+    var wasDrag = moved;
+    start = null;
+    if (!wasDrag) return;
+    var w = seg(), target = Math.round(pos / w);
+    var fresh = samples.length > 1 && performance.now() - samples[samples.length - 1][0] < 80;
+    if (fresh) {  // only a movement that is still going on at release counts as a flick
+      var a = samples[0], b = samples[samples.length - 1];
+      var v = (b[1] - a[1]) / Math.max(1, b[0] - a[0]);
+      if (Math.abs(v) > 0.4) target = v > 0 ? Math.floor(pos / w) + 1 : Math.ceil(pos / w) - 1;
+    }
+    target = Math.max(0, Math.min(4, target));
+    nav.classList.remove("drar");
+    pill.style.transform = "";
+    radios[target].checked = true;
+    radios[target].dispatchEvent(new Event("change", { bubbles: true }));
+  }
+  nav.addEventListener("pointerup", finish);
+  nav.addEventListener("pointercancel", finish);
+
+  // A drag must not also count as a tap on the label under the finger.
+  nav.addEventListener("click", function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+})();
 """
 
 
@@ -199,7 +271,7 @@ def render(data: dict, today: date) -> str:
         parts.append("</div></section>")
     parts.append("<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
                  "sidor, så det kan bli fel ibland. Dubbelkolla gärna med restaurangen.</footer>")
-    parts.append("</main></body></html>")
+    parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 
 

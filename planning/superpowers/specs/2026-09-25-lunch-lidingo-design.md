@@ -125,10 +125,10 @@ Särskilt per läsare:
 
 ## Sidan
 
-En sida, `docs/index.html`, ren HTML och CSS utan JavaScript och utan externa resurser.
+En sida, `docs/index.html`, i HTML och CSS utan externa resurser. Ett litet inbäddat skript lägger till dragning i dagväljaren; utan skriptet fungerar sidan fullt ut med tryck.
 
 - Rubrik "Dagens lunch på Lidingö", datum och veckodag, rad "Uppdaterad 25 sep 09:02".
-- Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
+- Flikar Mån–Fre byggs av dolda radioknappar (en `<input type="radio">` per dag) och `<label>`-element; CSS `:checked ~` visar sektionen för vald dag, utan JavaScript. Med skriptet kan man dessutom dra glasbrickan med finger eller mus; den snäpper till närmaste dag vid släpp, och en snabb svepning byter en dag i svepets riktning. Radioknappen för dagens dag är förvald (`checked`) vid sidbygget. På lördag och söndag är måndag förvald.
 - Per dag: en ruta per restaurang i fast ordning enligt `restaurants.yaml`. Rutan innehåller namn (länk till källan), rätter som lista med pris och tagg där det finns, samt eventuell notis.
 - Restaurang utan rätter för dagen visas ändå, med "Ingen meny för den här dagen".
 - All text i 16 px, hierarki med vikt och luft, hög kontrast, en smal spalt (max 640 px) på alla skärmar. Allt på svenska. Ingen vidare design i första versionen.
