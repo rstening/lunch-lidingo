@@ -223,10 +223,9 @@ def test_tag_badge_sits_in_its_own_element_before_the_dish():
     assert '<li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Soppa</span>' in html
 
 
-def test_tag_layout_toggle_only_in_dev():
-    live = render(DATA, date(2026, 9, 25))
-    assert 'class="devval"' not in live and 'id="tl-' not in live
-    dev = render(DATA, date(2026, 9, 25), dev=True, tag_layout="kolumn")
-    for key in ("ovan", "kolumn", "hoger"):
-        assert f'id="tl-{key}"' in dev and f'for="tl-{key}"' in dev
-    assert 'id="tl-kolumn" checked' in dev
+def test_badge_sits_between_dish_and_price():
+    html = render(DATA, date(2026, 9, 25))
+    css = html.split("<style>")[1].split("</style>")[0]
+    row = re.search(r"\.restaurang li \{([^}]*)\}", css).group(1)
+    assert 'grid-template-areas: "ratt taggar pris"' in row
+    assert "tl-" not in html and "devval" not in html
