@@ -246,5 +246,7 @@ def test_load_order_reads_restaurants_yaml():
 
 
 def test_header_date_and_week_format():
-    assert "<p>Fredag 25 september. Vecka 39.</p></header>" in render(DATA, date(2026, 9, 25))
+    html = render(DATA, date(2026, 9, 25))
+    assert "<h1>Dagens lunch. Lidingö.</h1>" in html
+    assert "<p>Fredag 25 september. Vecka 39.</p></header>" in html
     assert "<p>Måndag 28 september. Vecka 40.</p></header>" in render(DATA, date(2026, 9, 26))
