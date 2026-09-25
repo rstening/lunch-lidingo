@@ -1,0 +1,37 @@
+# Ordningen här är ordningen på sidan. Lägg till en rad för en ny restaurang
+# och en läsare i scraper/readers/<reader>.py.
+- id: firren
+  name: Firren
+  address: Friggavägen 18
+  url: https://firren.org/bistro/
+  reader: firren
+- id: ronneberga
+  name: Rönneberga
+  address: Rönnebergavägen 1
+  url: https://ronneberga.se/restaurang/lunchmeny/
+  reader: ronneberga
+- id: golf
+  name: Lidingö Golfrestaurang
+  address: Trolldalsvägen 2
+  url: https://www.lidingogolfrestaurang.com/
+  reader: golf
+- id: pocket
+  name: Pocket
+  address: Lidingö stadshus, Stockholmsvägen 50
+  url: https://www.nordrest.se/restaurang/pocket-lidingo/
+  reader: pocket
+- id: saluhallen
+  name: Lidingö Saluhall
+  address: Pyrolavägen 7
+  url: https://www.lidingosaluhall.com/
+  reader: saluhallen
+- id: bibliothek
+  name: Bibliothek
+  address: Lejonstigen 5
+  url: https://bibliothek.nu/menyer
+  reader: bibliothek
+- id: jernet
+  name: Brasserie Jernet
+  address: Stockholmsvägen 56
+  url: https://brasseriejernet.se/
+  reader: jernet
