@@ -270,7 +270,7 @@ def render(data: dict, today: date, order: Optional[List[str]] = None) -> str:
     for n in range(1, 6):
         checked = " checked" if n == shown.isoweekday() else ""
         parts.append(f'<input type="radio" name="dag" class="dagval" id="dag-{n}"{checked}>')
-    parts.append("<header><h1>Dagens lunch på Lidingö</h1>")
+    parts.append("<header><h1>Dagens lunch. Lidingö.</h1>")
     parts.append(f"<p>{DAY_NAMES[shown.isoweekday() - 1].capitalize()} {format_date(shown)}. "
                  f"Vecka {week}.</p></header>")
     parts.append('<nav class="flikar" aria-label="Välj dag">')
