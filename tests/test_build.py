@@ -112,3 +112,10 @@ def test_render_shows_lunch_hours():
 def test_page_copy_has_no_long_dashes():
     html = render(DATA, date(2026, 9, 25))
     assert "–" not in html and "—" not in html
+
+
+def test_page_uses_self_hosted_geist():
+    html = render(DATA, date(2026, 9, 25))
+    assert 'url("fonts/Geist-Variable.woff2")' in html
+    assert '"Geist", -apple-system' in html
+    assert "fonts.googleapis" not in html and "https://" not in html.split("<main>")[0]
