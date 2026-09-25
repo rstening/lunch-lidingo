@@ -1,5 +1,14 @@
 # Ordningen här är ordningen på sidan. Lägg till en rad för en ny restaurang
 # och en läsare i scraper/readers/<reader>.py.
+#
+# Lidingö Golfrestaurang är borttagen: deras sida blockerar GitHubs servrar.
+# Läsaren scraper/readers/golf.py finns kvar. Lägg tillbaka så här om det ändras:
+# - id: golf
+#   name: Lidingö Golfrestaurang
+#   address: Trolldalsvägen 2
+#   lunch_hours: "11-14"
+#   url: https://www.lidingogolfrestaurang.com/
+#   reader: golf
 - id: pocket
   name: Pocket
   address: Lidingö stadshus, Stockholmsvägen 50
@@ -30,12 +39,6 @@
   lunch_hours: "11:30-13"
   url: https://ronneberga.se/restaurang/lunchmeny/
   reader: ronneberga
-- id: golf
-  name: Lidingö Golfrestaurang
-  address: Trolldalsvägen 2
-  lunch_hours: "11-14"
-  url: https://www.lidingogolfrestaurang.com/
-  reader: golf
 - id: jernet
   name: Brasserie Jernet
   address: Stockholmsvägen 56
