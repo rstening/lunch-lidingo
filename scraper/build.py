@@ -18,7 +18,8 @@ STALE_AFTER = timedelta(days=7)
 CSS = """
 @font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
              font-weight: 100 900; font-style: normal; font-display: swap; }
-:root { color-scheme: light; --bg: #fafafa; --text: #121212; --line: rgba(18, 18, 18, 0.068); }
+:root { color-scheme: light; --bg: #fafafa; --text: #121212; --text-2: rgba(18, 18, 18, 0.595);
+        --line: rgba(18, 18, 18, 0.068); }
 * { box-sizing: border-box; }
 html { font-size: 16px; }
 body { margin: 0; padding: 16px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -69,7 +70,7 @@ header p { margin: 0 0 12px; }
 .notis { margin: 8px 0 0; font-size: 1rem; }
 .info { margin: 8px 0 0; font-size: 1rem; }
 .tom { margin: 4px 0 0; font-style: italic; }
-footer { margin: 28px 0 8px; font-size: 1rem; }
+footer { margin: 28px 0 8px; font-size: 14px; color: var(--text-2); }
 """
 
 
@@ -270,7 +271,7 @@ def render(data: dict, today: date) -> str:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
     parts.append("<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
-                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna med restaurangen.</footer>")
+                 "sidor, så det kan bli fel ibland. Dubbelkolla gärna på restaurangens hemsida.</footer>")
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 

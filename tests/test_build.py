@@ -88,14 +88,17 @@ def test_render_escapes_html():
     assert "&lt;b&gt;X&lt;/b&gt;" in html and "Fisk &amp; &lt;chips&gt;" in html
 
 
-def test_all_text_is_16px():
+def test_all_text_is_16px_except_footer():
     css = CSS + "\n" + _tab_css()
     root_px = 16  # from `html { font-size: 16px; }` in CSS
     assert "html { font-size: 16px; }" in css
     assert "font: 16px/1.5" in css
     sizes = re.findall(r"font-size:\s*([0-9.]+)(px|rem)", css)
     assert sizes, "expected at least one font-size declaration"
-    for value, unit in sizes:
+    footer = re.search(r"footer \{([^}]*)\}", css).group(1)
+    assert "font-size: 14px" in footer  # the footer is the one deliberate exception
+    body_css = css.replace(footer, "")
+    for value, unit in re.findall(r"font-size:\s*([0-9.]+)(px|rem)", body_css):
         px = float(value) if unit == "px" else float(value) * root_px
         assert px == 16, f"font-size {value}{unit} computes to {px}px, expected 16px"
 
@@ -183,3 +186,10 @@ def test_day_picker_spans_the_full_column():
     css = CSS + "\n" + _tab_css()
     tabs = re.search(r"\.flikar \{ position: relative;([^}]*)\}", css).group(1)
     assert "max-width" not in tabs
+
+
+def test_footer_uses_secondary_colour_and_new_copy():
+    html = render(DATA, date(2026, 9, 25))
+    assert "--text-2: rgba(18, 18, 18, 0.595)" in html
+    assert "footer { margin: 28px 0 8px; font-size: 14px; color: var(--text-2); }" in html
+    assert "Dubbelkolla gärna på restaurangens hemsida." in html
