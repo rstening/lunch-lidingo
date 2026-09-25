@@ -35,8 +35,7 @@ class Handler(BaseHTTPRequestHandler):
             query = parse_qs(url.query)
             chosen = query.get("datum", [None])[0]
             today = date.fromisoformat(chosen) if chosen else datetime.now(build.TZ).date()
-            layout = query.get("taggar", ["ovan"])[0]
-            body = build.render(data, today, dev=True, tag_layout=layout).encode("utf-8")
+            body = build.render(data, today).encode("utf-8")
             status = 200
         except Exception as exc:  # visa felet i webbläsaren i stället för att krascha
             body = f"<pre>Fel vid bygget:\n{type(exc).__name__}: {exc}</pre>".encode("utf-8")
