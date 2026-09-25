@@ -35,7 +35,7 @@ header p { margin: 0 0 12px; }
 .dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
-.restaurang { background: var(--line); border-radius: 10px; padding: 14px 16px; }
+.restaurang { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
 .restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
 .restaurang h3 a:hover { text-decoration: underline; }

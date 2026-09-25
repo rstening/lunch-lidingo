@@ -129,3 +129,10 @@ def test_page_uses_only_the_two_brand_colours():
     rgbas = set(re.findall(r"rgba\([^)]*\)", css))
     assert rgbas == {"rgba(18, 18, 18, 0.068)"}, rgbas
     assert "color: #" not in css.split(":root")[1]  # everything else goes through variables
+
+
+def test_cards_are_outlined_not_filled():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    card = re.search(r"\.restaurang \{([^}]*)\}", css).group(1)
+    assert "background: var(--bg)" in card
+    assert "border: 1px solid var(--line)" in card
