@@ -1,6 +1,7 @@
+import re
 from datetime import date
 
-from scraper.build import pick_week, render
+from scraper.build import CSS, _tab_css, pick_week, render
 
 DATA = {
     "generated_at": "2026-09-25T07:02:11Z",
@@ -66,3 +67,19 @@ def test_render_escapes_html():
                     "days": {"1": [{"name": "Fisk & <chips>", "price": None, "tags": []}]}}]}]}
     html = render(data, date(2026, 9, 21))
     assert "&lt;b&gt;X&lt;/b&gt;" in html and "Fisk &amp; &lt;chips&gt;" in html
+
+
+def test_all_font_sizes_are_at_least_18px():
+    css = CSS + "\n" + _tab_css()
+    root_px = 20  # from `html { font-size: 20px; }` in CSS
+    sizes = re.findall(r"font-size:\s*([0-9.]+)(px|rem)", css)
+    assert sizes, "expected at least one font-size declaration"
+    for value, unit in sizes:
+        px = float(value) if unit == "px" else float(value) * root_px
+        assert px >= 18, f"font-size {value}{unit} computes to {px}px, below 18px minimum"
+
+
+def test_dish_li_has_ratt_and_pris_spans():
+    html = render(DATA, date(2026, 9, 25))
+    assert '<li><span class="ratt">' in html
+    assert '<span class="pris">130 kr</span>' in html

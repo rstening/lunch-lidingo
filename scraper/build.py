@@ -18,7 +18,8 @@ STALE_AFTER = timedelta(days=7)
 CSS = """
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
-body { margin: 0; padding: 16px; font: 19px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+html { font-size: 20px; }
+body { margin: 0; padding: 16px; font: 20px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
        color: #1a1a1a; background: #f6f4ef; }
 main { max-width: 1100px; margin: 0 auto; }
 header h1 { font-size: 1.9rem; margin: 0 0 4px; }
@@ -27,7 +28,7 @@ header p { margin: 0 0 12px; color: #444; }
 .flikar { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
 .flikar label { display: block; padding: 10px 14px; border: 2px solid #1a1a1a; border-radius: 8px;
                 background: #fff; cursor: pointer; font-weight: 600; }
-.flikar label small { display: block; font-weight: 400; font-size: 0.8rem; color: #444; }
+.flikar label small { display: block; font-weight: 400; font-size: 0.9rem; color: #444; }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1.5rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -36,13 +37,15 @@ header p { margin: 0 0 12px; color: #444; }
 .restaurang h2 { font-size: 1.3rem; margin: 0 0 2px; }
 .restaurang h2 a { color: #0b4f9c; text-decoration: none; }
 .restaurang h2 a:hover { text-decoration: underline; }
-.adress { margin: 0 0 8px; color: #555; font-size: 0.95rem; }
+.adress { margin: 0 0 8px; color: #555; font-size: 0.9rem; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
-.restaurang li { padding: 6px 0; border-top: 1px solid #eee; }
-.tagg { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .03em;
+.restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+                 padding: 6px 0; border-top: 1px solid #eee; }
+.ratt { flex: 1 1 auto; min-width: 0; }
+.tagg { display: inline-block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .03em;
         background: #e9efe4; color: #2f4f2f; border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
-.pris { float: right; color: #444; white-space: nowrap; margin-left: 8px; }
-.notis { margin: 8px 0 0; color: #8a4b00; font-size: 0.95rem; }
+.pris { color: #444; white-space: nowrap; flex-shrink: 0; }
+.notis { margin: 8px 0 0; color: #8a4b00; font-size: 0.9rem; }
 .info { margin: 8px 0 0; color: #555; font-size: 0.9rem; }
 .tom { margin: 4px 0 0; color: #666; font-style: italic; }
 footer { margin: 28px 0 8px; color: #666; font-size: 0.9rem; }
@@ -56,6 +59,8 @@ def _tab_css() -> str:
         rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] '
                      "{ background: #1a1a1a; color: #fff; }")
         rules.append(f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] small {{ color: #ddd; }}')
+        rules.append(f'#dag-{n}:focus-visible ~ .flikar label[for="dag-{n}"] '
+                     "{ outline: 3px solid #0b4f9c; outline-offset: 2px; }")
     return "\n".join(rules)
 
 
@@ -91,10 +96,11 @@ def _last_success_text(restaurant: dict) -> Optional[str]:
 
 
 def _dish_html(d: dict) -> str:
-    parts = ["<li>"]
+    ratt = []
     for t in d.get("tags") or []:
-        parts.append(f'<span class="tagg">{escape(t)}</span>')
-    parts.append(escape(d.get("name", "")))
+        ratt.append(f'<span class="tagg">{escape(t)}</span>')
+    ratt.append(escape(d.get("name", "")))
+    parts = ["<li>", f'<span class="ratt">{"".join(ratt)}</span>']
     if d.get("price") is not None:
         parts.append(f'<span class="pris">{int(d["price"])} kr</span>')
     parts.append("</li>")
@@ -132,6 +138,7 @@ def render(data: dict, today: date) -> str:
     now = datetime.strptime(data["generated_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     updated = now.astimezone(TZ)
     restaurants = data.get("restaurants", [])
+    restaurant_weeks = [(r,) + pick_week(r, year, week) for r in restaurants]
 
     parts: List[str] = []
     parts.append("<!DOCTYPE html>")
@@ -154,8 +161,7 @@ def render(data: dict, today: date) -> str:
         parts.append(f'<section class="dag" id="d-{n}">')
         parts.append(f'<h2 class="dagrubrik">{DAY_NAMES[n - 1].capitalize()} {format_date(dates[n - 1])}</h2>')
         parts.append('<div class="lista">')
-        for r in restaurants:
-            w, notice = pick_week(r, year, week)
+        for r, w, notice in restaurant_weeks:
             parts.append(_card_html(r, w, notice, n, now))
         parts.append("</div></section>")
     parts.append("<footer>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
