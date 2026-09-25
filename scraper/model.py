@@ -18,6 +18,7 @@ class Dish:
     name: str
     price: Optional[int] = None
     tags: List[str] = field(default_factory=list)
+    price_to: Optional[int] = None  # set when the price is a range, e.g. 145-160 kr
 
 
 @dataclass
@@ -27,3 +28,6 @@ class WeekMenu:
     week_known: bool
     days: Dict[str, List[Dish]]
     notes: str = ""
+    # Short extra facts in our own words, shown after what the lunch includes,
+    # e.g. "Pensionärspris 120 kr." Each is a full sentence ending with a period.
+    extras: List[str] = field(default_factory=list)

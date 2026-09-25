@@ -17,11 +17,21 @@ def _price(soup: BeautifulSoup) -> Optional[int]:
     return int(m.group(1)) if m else None
 
 
+def _pensioner_price(soup: BeautifulSoup) -> Optional[int]:
+    meta = soup.select_one(".castit-lunch-meta")
+    if not meta:
+        return None
+    m = re.search(r"Pensionär\s*:\s*(\d+)", clean(meta.get_text(" ")))
+    return int(m.group(1)) if m else None
+
+
 def parse(html: str, today: date) -> List[WeekMenu]:
     soup = BeautifulSoup(html, "html.parser")
     price = _price(soup)
     intro = soup.select_one(".castit-menu-text--intro")
     notes = clean(intro.get_text(" ")) if intro else ""
+    pensioner = _pensioner_price(soup)
+    extras = [f"Pensionärspris {pensioner} kr."] if pensioner else []
     weeks = []
     for panel in soup.select(".castit-weekpanel[data-week]"):
         try:
@@ -60,7 +70,7 @@ def parse(html: str, today: date) -> List[WeekMenu]:
                 days[str(idx)] = dishes
         if days:
             weeks.append(WeekMenu(year=year_for_week(week, today), week=week,
-                                  week_known=True, days=days, notes=notes))
+                                  week_known=True, days=days, notes=notes, extras=list(extras)))
     if not weeks:
         raise ParseError("Pocket: hittade inga veckor med rätter")
     weeks.sort(key=lambda w: (w.year, w.week))

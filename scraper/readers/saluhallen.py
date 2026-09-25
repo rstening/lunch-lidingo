@@ -1,12 +1,22 @@
 """Lidingö Saluhall: lunch section on the Squarespace front page."""
 import re
 from datetime import date
-from typing import Callable, List
+from typing import Callable, List, Tuple
 
 from bs4 import BeautifulSoup
 
 from scraper.model import Dish, ParseError, WeekMenu, clean
 from scraper.weeks import day_index, iso_week, year_for_week
+
+
+# "145 :- mellan 10.00-11:00" -> price, start and end time
+_TIME_PRICE = re.compile(r"(\d{2,3})\s*:\s*-\s*mellan\s*(\d{1,2})[.:](\d{2})\s*-\s*(\d{1,2})[.:](\d{2})")
+
+
+def time_prices(notes: str) -> List[Tuple[int, str]]:
+    """Prices by time of day from the intro, e.g. [(145, "10:00-11:00"), (160, "11:00-14:00")]."""
+    return [(int(p), f"{int(h1):02d}:{m1}-{int(h2):02d}:{m2}")
+            for p, h1, m1, h2, m2 in _TIME_PRICE.findall(notes)]
 
 
 def parse(html: str, today: date) -> List[WeekMenu]:
@@ -57,7 +67,16 @@ def parse(html: str, today: date) -> List[WeekMenu]:
         raise ParseError("Saluhallen: hittade inga rätter")
     for key in days:
         days[key].extend(Dish(name=v.name, price=v.price, tags=list(v.tags)) for v in veg)
-    return [WeekMenu(year=year, week=week, week_known=known, days=days, notes=notes)]
+    prices = time_prices(notes)
+    extras = []
+    if prices:
+        low, high = min(p for p, _ in prices), max(p for p, _ in prices)
+        for dishes in days.values():
+            for d in dishes:
+                d.price = low
+                d.price_to = high if high != low else None
+        extras.append(", ".join(f"{p} kr {span}" for p, span in prices) + ".")
+    return [WeekMenu(year=year, week=week, week_known=known, days=days, notes=notes, extras=extras)]
 
 
 def read(get: Callable, url: str, today: date) -> List[WeekMenu]:

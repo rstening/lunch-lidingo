@@ -358,3 +358,27 @@ def test_unselected_days_are_secondary_and_the_selected_day_is_primary():
     assert "color: var(--text-2)" in label
     for n in range(1, 6):
         assert f'#dag-{n}:checked ~ .flikar label[for="dag-{n}"] {{ font-weight: 600; color: var(--text); }}' in css
+
+
+def test_price_range_and_extras_are_rendered_after_what_is_included():
+    data = {"generated_at": "2026-09-25T07:02:11Z", "restaurants": [
+        {"id": "s", "name": "Saluhall", "url": "https://s", "address": "",
+         "last_success": "2026-09-25T07:02:11Z", "error": None,
+         "weeks": [{"year": 2026, "week": 39, "week_known": True,
+                    "notes": "I lunchen ingår kaffe. Dagens lunch kostar 145 :-",
+                    "extras": ["145 kr 10:00-11:00, 160 kr 11:00-14:00."],
+                    "days": {"5": [{"name": "Pannbiff", "price": 145, "price_to": 160, "tags": []}]}}]}]}
+    html = render(data, date(2026, 9, 25))
+    assert '<span class="pris">145-160 kr</span>' in html
+    assert ('<p class="info">I lunchen ingår kaffe.<br>'
+            '145 kr 10:00-11:00, 160 kr 11:00-14:00.</p>') in html
+
+
+def test_extras_without_included_sentence_still_show():
+    data = {"generated_at": "2026-09-25T07:02:11Z", "restaurants": [
+        {"id": "p", "name": "P", "url": "https://p", "address": "",
+         "last_success": "2026-09-25T07:02:11Z", "error": None,
+         "weeks": [{"year": 2026, "week": 39, "week_known": True, "notes": "",
+                    "extras": ["Pensionärspris 120 kr."],
+                    "days": {"5": [{"name": "Rätt", "price": 135, "tags": []}]}}]}]}
+    assert '<p class="info">Pensionärspris 120 kr.</p>' in render(data, date(2026, 9, 25))

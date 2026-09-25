@@ -237,7 +237,10 @@ def _dish_html(d: dict) -> str:
         parts.append(f'<span class="taggar">{badges}</span>')
     parts.append(f'<span class="ratt">{escape(without_allergens(d.get("name", "")))}</span>')
     if d.get("price") is not None:
-        parts.append(f'<span class="pris">{int(d["price"])} kr</span>')
+        price = str(int(d["price"]))
+        if d.get("price_to"):
+            price += f"-{int(d['price_to'])}"
+        parts.append(f'<span class="pris">{price} kr</span>')
     parts.append("</li>")
     return "".join(parts)
 
@@ -267,9 +270,11 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
         out.append(f'<p class="notis">{escape(" ".join(notices))}</p>')
-    info = included_text(week.get("notes") or "")
-    if info:
-        out.append(f'<p class="info">{escape(info)}</p>')
+    # What the lunch includes comes first, then our own short extra facts.
+    lines = [included_text(week.get("notes") or "")] + list(week.get("extras") or [])
+    lines = [escape(x) for x in lines if x]
+    if lines:
+        out.append(f'<p class="info">{"<br>".join(lines)}</p>')
     out.append("</article>")
     return "\n".join(out)
 

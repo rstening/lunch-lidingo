@@ -29,3 +29,8 @@ def test_parse_pocket_empty_raises():
     from scraper.model import ParseError
     with pytest.raises(ParseError):
         pocket.parse("<html><body></body></html>", TODAY)
+
+
+def test_pocket_pensioner_price_is_an_extra():
+    weeks = pocket.parse((FIX / "pocket.html").read_text(encoding="utf-8"), TODAY)
+    assert all(w.extras == ["Pensionärspris 120 kr."] for w in weeks)
