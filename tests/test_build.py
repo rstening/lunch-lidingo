@@ -248,6 +248,7 @@ def test_load_order_reads_restaurants_yaml():
 def test_header_date_and_week_format():
     html = render(DATA, date(2026, 9, 25))
     assert "<h1>Dagens lunch. Lidingö.</h1>" in html
+    assert "<title>Dagens lunch. Lidingö.</title>" in html
     assert '<p class="datumrad" id="h-5">Fredag 25 september. Vecka 39.</p>' in html
     assert '<p class="datumrad" id="h-2">Tisdag 22 september. Vecka 39.</p>' in html
     assert "#dag-2:checked ~ header #h-2 { display: block; }" in html
@@ -266,3 +267,12 @@ def test_day_picker_shows_weekdays_only_and_marks_today():
     assert "--accent: #24cc5c" in css and "background: var(--accent)" in css
     # On a weekend the page shows next week, so no day in it is today.
     assert 'class="idag"' not in render(DATA, date(2026, 9, 26))
+
+
+def test_page_links_the_icons_and_they_exist():
+    from pathlib import Path
+    head = render(DATA, date(2026, 9, 25)).split("</head>")[0]
+    for href in ("favicon.svg", "favicon-32.png", "icon-192.png", "apple-touch-icon.png"):
+        assert f'href="{href}"' in head
+        assert (Path("docs") / href).is_file(), href
+    assert 'rel="apple-touch-icon"' in head
