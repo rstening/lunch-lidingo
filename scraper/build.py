@@ -28,7 +28,7 @@ header h1 { font-size: 1rem; margin: 0 0 4px; }
 header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
 .flikar { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
-          max-width: 520px; margin: 16px 0 24px; padding: 4px; border-radius: 999px;
+          margin: 16px 0 24px; padding: 4px; border-radius: 999px;
           background: var(--line); box-shadow: inset 0 1px 2px rgba(18, 18, 18, 0.06);
           -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .flikar label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;

@@ -177,3 +177,9 @@ def test_day_picker_works_without_script_and_adds_drag_with_it():
         assert needle in script
     css = html.split("<style>")[1].split("</style>")[0]
     assert ".flikar { touch-action: pan-y; }" in css
+
+
+def test_day_picker_spans_the_full_column():
+    css = CSS + "\n" + _tab_css()
+    tabs = re.search(r"\.flikar \{ position: relative;([^}]*)\}", css).group(1)
+    assert "max-width" not in tabs
