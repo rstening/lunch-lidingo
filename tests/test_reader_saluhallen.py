@@ -59,3 +59,27 @@ def test_parse_saluhallen_intro_em_without_ingar_becomes_notes():
     """
     w = saluhallen.parse(html, TODAY)[0]
     assert w.notes == "Varmt valkomna till oss denna vecka!"
+
+
+def test_saluhallen_price_range_and_time_prices():
+    w = saluhallen.parse((FIX / "saluhallen.html").read_text(encoding="utf-8"), TODAY)[0]
+    dishes = [d for v in w.days.values() for d in v]
+    assert all((d.price, d.price_to) == (160, None) for d in dishes)  # 11-14 is most of the day
+    assert w.extras == ["145 kr 10:00-11:00, 160 kr 11:00-14:00."]
+
+
+def test_saluhallen_without_price_sentence_has_no_price():
+    html = ('<section id="lunchmeny-section"><h1>Lunchmeny vecka 40</h1>'
+            '<p><em>I lunchen ingår kaffe.</em></p><p><strong>MÅNDAG</strong></p><p>Soppa</p></section>')
+    w = saluhallen.parse(html, TODAY)[0]
+    assert w.days["1"][0].price is None and w.days["1"][0].price_to is None
+    assert w.extras == []
+
+
+def test_saluhallen_uses_the_price_that_lasts_longest():
+    html = ('<section id="lunchmeny-section"><h1>Lunchmeny vecka 40</h1>'
+            '<p><em>I lunchen ingår kaffe. Dagens lunch kostar 150 :- mellan 10.00-13:00, '
+            '170: - mellan 13.00-14.00.</em></p><p><strong>MÅNDAG</strong></p><p>Soppa</p></section>')
+    w = saluhallen.parse(html, TODAY)[0]
+    assert w.days["1"][0].price == 150
+    assert w.extras == ["150 kr 10:00-13:00, 170 kr 13:00-14:00."]

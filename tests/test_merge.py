@@ -19,7 +19,8 @@ def test_merge_success_serialises_weeks():
     assert a["lunch_hours"] == "11-14"
     assert a["last_success"] == "2026-09-25T07:02:11Z"
     assert a["error"] is None
-    assert a["weeks"][0]["days"]["1"][0] == {"name": "Soppa", "price": 120, "tags": ["soppa"]}
+    assert a["weeks"][0]["days"]["1"][0] == {"name": "Soppa", "price": 120, "tags": ["soppa"], "price_to": None}
+    assert a["weeks"][0]["extras"] == []
     assert a["weeks"][0]["notes"] == "obs"
 
 

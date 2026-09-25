@@ -56,7 +56,8 @@ Devservern (`lunch-dev` i `.claude/launch.json`) bygger om sidan vid varje omlad
 - Alla notiser och andra meningar på sidan slutar med punkt. Undantag utan punkt, eftersom de är etiketter: lunchtiden och sidfotens två rader ("Uppdaterad …" och "© …"). Ett test kontrollerar notiserna.
 - Visa aldrig en annan veckas rätter som den här veckans. Saknas veckans meny står det "Veckans meny är inte upplagd än.", och har restaurangen redan bytt till nästa vecka står det "Veckans meny saknas."
 - Allergenmärkning, som "(Gluten, Laktos)", "(G/L)" eller "G,L,Ä" sist i en rätt, tas bort när sidan byggs (`without_allergens` i `scraper/build.py`). Datan i `data/menus.json` behåller allt.
-- Infotexten under en restaurang visar bara meningen om vad som ingår i lunchen (`included_text`). Övrigt, som priser och öppettider, visas inte.
+- Infotexten under en restaurang börjar alltid med meningen om vad som ingår i lunchen (`included_text`). Därefter kommer korta extrarader i vår egen formulering, till exempel "Pensionärspris 120 kr." eller "145 kr 10:00-11:00, 160 kr 11:00-14:00." Extraraderna skapas av läsaren (`WeekMenu.extras`), inte genom att klippa i restaurangens text. Allt annat i infotexten visas inte.
+- Ett pris kan vara ett intervall (`Dish.price_to`) och visas då som "145-160 kr", men ingen läsare använder det i dag. Saluhallens pris beror på tiden: vid rätterna visas det pris som gäller längst tid under dagen (i dag 160 kr), och alla tider står i infotexten. Saknar restaurangen pris på lunchen visas inget pris.
 - Inga långa streck (– eller —) i sidans egen text. Ett test kontrollerar det.
 - Mobile first: kontrollera varje designändring i 320 och 375 px bredd, utan sidledsscroll.
 - Sidan ska fungera utan JavaScript. Det enda skriptet lägger till dragning i dagväljaren.
