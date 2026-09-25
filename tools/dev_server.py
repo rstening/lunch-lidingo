@@ -24,7 +24,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = urlparse(self.path)
         if url.path not in ("/", "/index.html"):
-            self.send_error(404)
+            self._serve_static(url.path)
             return
         try:
             import scraper.weeks
@@ -44,6 +44,19 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
+
+    def _serve_static(self, path):
+        target = (ROOT / "docs" / path.lstrip("/")).resolve()
+        docs = (ROOT / "docs").resolve()
+        if docs not in target.parents or not target.is_file():
+            self.send_error(404)
+            return
+        types = {".woff2": "font/woff2", ".txt": "text/plain; charset=utf-8",
+                 ".css": "text/css", ".png": "image/png", ".svg": "image/svg+xml"}
+        self.send_response(200)
+        self.send_header("Content-Type", types.get(target.suffix, "application/octet-stream"))
+        self.end_headers()
+        self.wfile.write(target.read_bytes())
 
     def log_message(self, fmt, *args):
         sys.stderr.write("%s\n" % (fmt % args))

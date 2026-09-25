@@ -16,10 +16,12 @@ TZ = ZoneInfo("Europe/Stockholm")
 STALE_AFTER = timedelta(days=7)
 
 CSS = """
+@font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2");
+             font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
 html { font-size: 20px; }
-body { margin: 0; padding: 16px; font: 20px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+body { margin: 0; padding: 16px; font: 20px/1.45 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
        color: #1a1a1a; background: #f6f4ef; }
 main { max-width: 1100px; margin: 0 auto; }
 header h1 { font-size: 1.9rem; margin: 0 0 4px; }
