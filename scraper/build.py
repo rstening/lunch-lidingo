@@ -23,7 +23,7 @@ CSS = """
 html { font-size: 16px; }
 body { margin: 0; padding: 16px; font: 16px/1.5 "Geist", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
        color: var(--text); background: var(--bg); }
-main { max-width: 1100px; margin: 0 auto; }
+main { max-width: 640px; margin: 0 auto; }
 header h1 { font-size: 1rem; margin: 0 0 4px; }
 header p { margin: 0 0 12px; }
 .dagval { position: absolute; opacity: 0; pointer-events: none; }
@@ -35,7 +35,6 @@ header p { margin: 0 0 12px; }
 .dag { display: none; }
 .dag h2.dagrubrik { font-size: 1rem; margin: 0 0 14px; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
-@media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
 .restaurang { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
 .restaurang h3 { font-size: 1rem; margin: 0 0 2px; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
