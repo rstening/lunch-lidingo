@@ -107,7 +107,7 @@ def test_all_text_is_16px_except_footer_and_badges():
 
 def test_dish_li_has_ratt_and_pris_spans():
     html = render(DATA, date(2026, 9, 25))
-    assert '<li><span class="ratt">' in html
+    assert '<li><span class="ratt">Pasta</span>' in html
     assert '<span class="pris">130 kr</span>' in html
 
 
@@ -216,3 +216,17 @@ def test_tags_are_round_calm_badges():
     for rule in ("border-radius: 999px", "background: var(--line)", "color: var(--text-2)"):
         assert rule in badge
     assert "border:" not in badge and "box-shadow" not in badge
+
+
+def test_tag_badge_sits_in_its_own_element_before_the_dish():
+    html = render(DATA, date(2026, 9, 21))
+    assert '<li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Soppa</span>' in html
+
+
+def test_tag_layout_toggle_only_in_dev():
+    live = render(DATA, date(2026, 9, 25))
+    assert 'class="devval"' not in live and 'id="tl-' not in live
+    dev = render(DATA, date(2026, 9, 25), dev=True, tag_layout="kolumn")
+    for key in ("ovan", "kolumn", "hoger"):
+        assert f'id="tl-{key}"' in dev and f'for="tl-{key}"' in dev
+    assert 'id="tl-kolumn" checked' in dev

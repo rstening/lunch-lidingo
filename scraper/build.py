@@ -64,13 +64,22 @@ header p { margin: 0; color: var(--text-2); }
 @media (hover: hover) and (pointer: fine) { .restaurang h3 a:hover { text-decoration: underline; } }
 .tider { color: var(--text-2); font-size: 1rem; }
 .restaurang ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
-.restaurang li { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
-.ratt { flex: 1 1 auto; min-width: 0; }
-.tagg { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; margin-right: 8px;
+/* Dish row. Default layout: badge on its own line above the dish, one shared left edge. */
+.restaurang li { display: grid; grid-template-columns: minmax(0, 1fr) auto;
+                 grid-template-areas: "taggar ." "ratt pris"; column-gap: 16px; align-items: baseline; }
+.taggar { grid-area: taggar; display: flex; gap: 6px; margin-bottom: 6px; }
+.ratt { grid-area: ratt; min-width: 0; }
+.tagg { display: inline-flex; align-items: center; justify-content: center; height: 22px; padding: 0 9px;
         border-radius: 999px; background: var(--line); color: var(--text-2);
-        font-size: 14px; font-weight: 500; line-height: 1; text-transform: capitalize;
-        vertical-align: 1px; white-space: nowrap; }
-.pris { color: var(--text-2); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+        font-size: 14px; font-weight: 500; line-height: 1; text-transform: capitalize; white-space: nowrap; }
+.pris { grid-area: pris; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* Alternative layouts, only reachable through the dev toggle while we compare. */
+#tl-kolumn:checked ~ .dag .restaurang li { grid-template-columns: 64px minmax(0, 1fr) auto;
+                                           grid-template-areas: "taggar ratt pris"; }
+#tl-kolumn:checked ~ .dag .taggar { margin-bottom: 0; flex-direction: column; }
+#tl-hoger:checked ~ .dag .restaurang li { grid-template-columns: minmax(0, 1fr) auto auto;
+                                          grid-template-areas: "ratt taggar pris"; }
+#tl-hoger:checked ~ .dag .taggar { margin-bottom: 0; }
 .notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
 footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
 footer p { margin: 0 0 4px; }
@@ -197,11 +206,12 @@ def _last_success_text(restaurant: dict) -> Optional[str]:
 
 
 def _dish_html(d: dict) -> str:
-    ratt = []
-    for t in d.get("tags") or []:
-        ratt.append(f'<span class="tagg">{escape(t)}</span>')
-    ratt.append(escape(d.get("name", "")))
-    parts = ["<li>", f'<span class="ratt">{"".join(ratt)}</span>']
+    parts = ["<li>"]
+    tags = d.get("tags") or []
+    if tags:
+        badges = "".join(f'<span class="tagg">{escape(t)}</span>' for t in tags)
+        parts.append(f'<span class="taggar">{badges}</span>')
+    parts.append(f'<span class="ratt">{escape(d.get("name", ""))}</span>')
     if d.get("price") is not None:
         parts.append(f'<span class="pris">{int(d["price"])} kr</span>')
     parts.append("</li>")
@@ -239,7 +249,21 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     return "\n".join(out)
 
 
-def render(data: dict, today: date) -> str:
+TAG_LAYOUTS = [("ovan", "Ovanför"), ("kolumn", "Kolumn"), ("hoger", "Höger")]
+
+DEV_CSS = """
+.devval { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 10;
+          display: flex; gap: 2px; align-items: center; padding: 4px; border-radius: 999px;
+          background: rgba(250, 250, 250, 0.8); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+          box-shadow: 0 0 0 1px var(--line), 0 4px 14px rgba(18, 18, 18, 0.1); font-size: 14px; }
+.devval span { padding: 0 8px 0 10px; color: var(--text-2); }
+.devval label { padding: 6px 12px; border-radius: 999px; cursor: pointer; white-space: nowrap; }
+#tl-ovan, #tl-kolumn, #tl-hoger { position: fixed; top: 0; }  /* focusing them must not scroll the page */
+"""
+
+
+def render(data: dict, today: date, dev: bool = False, tag_layout: str = "ovan") -> str:
+    """Render the page. `dev` adds a toggle for comparing tag layouts (never used for docs/)."""
     shown = display_date(today)
     year, week = iso_week(shown)
     dates = week_dates(year, week)
@@ -257,6 +281,10 @@ def render(data: dict, today: date) -> str:
     for n in range(1, 6):
         checked = " checked" if n == shown.isoweekday() else ""
         parts.append(f'<input type="radio" name="dag" class="dagval" id="dag-{n}"{checked}>')
+    if dev:
+        for key, _label in TAG_LAYOUTS:
+            checked = " checked" if key == tag_layout else ""
+            parts.append(f'<input type="radio" name="taggar" class="dagval" id="tl-{key}"{checked}>')
     parts.append("<header><h1>Dagens lunch på Lidingö</h1>")
     parts.append(f"<p>{DAY_NAMES[shown.isoweekday() - 1].capitalize()} {format_date(shown)}, "
                  f"vecka {week}</p></header>")
@@ -276,6 +304,12 @@ def render(data: dict, today: date) -> str:
     parts.append(f"<footer><p>Uppdaterad {format_date(updated.date())} {updated:%H:%M}.</p>"
                  "<p>Menyerna hämtas automatiskt varje morgon från restaurangernas egna "
                  "sidor, så det kan bli fel ibland. Dubbelkolla gärna på restaurangens hemsida.</p></footer>")
+    if dev:
+        labels = "".join(f'<label for="tl-{key}">{label}</label>' for key, label in TAG_LAYOUTS)
+        parts.append(f'<nav class="devval" aria-label="Jämför taggar"><span>Taggar</span>{labels}</nav>')
+        parts.append("<style>" + DEV_CSS + "".join(
+            f'#tl-{key}:checked ~ .devval label[for="tl-{key}"] {{ background: var(--text); color: var(--bg); }}'
+            for key, _label in TAG_LAYOUTS) + "</style>")
     parts.append(f"</main><script>{DRAG_JS}</script></body></html>")
     return "\n".join(parts) + "\n"
 
