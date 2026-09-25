@@ -12,6 +12,12 @@ sida via GitHub Pages från mappen `docs/`.
 2. `python -m scraper.build` gör om JSON-filen till `docs/index.html`.
 3. Actions committar och pushar filerna om de ändrats.
 
+Notiser på sidan: "Kunde inte hämta menyn, se restaurangens sida" betyder att
+läsaren har misslyckats i mer än 7 dagar (eller aldrig lyckats). "Nästa
+veckas meny finns på restaurangens sida" betyder att restaurangen redan
+publicerat nästa veckas meny men innevarande vecka saknas, så ingen meny
+visas som dagens för att undvika att visa fel veckas rätter.
+
 ## Köra lokalt
 
 ```bash
@@ -35,3 +41,6 @@ med funktionen `read(get, url, today)`. Spara en kopia av källan i
    Branch: `main`, mapp `/docs`.
 2. Settings → Actions → General → Workflow permissions: "Read and write permissions".
 3. Actions → "Hämta menyer" → "Run workflow" för att köra första gången.
+
+Repot måste vara publikt för att GitHub Pages ska fungera på ett gratiskonto
+(privata repon kräver GitHub Pro/Team/Enterprise för Pages).

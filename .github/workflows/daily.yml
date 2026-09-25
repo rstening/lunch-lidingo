@@ -12,6 +12,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,5 +33,6 @@ jobs:
             echo "Inga ändringar"
           else
             git commit -m "Uppdatera menyer $(TZ=Europe/Stockholm date '+%Y-%m-%d %H:%M')"
+            git pull --rebase origin main
             git push
           fi

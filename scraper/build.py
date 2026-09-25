@@ -34,9 +34,9 @@ header p { margin: 0 0 12px; color: #444; }
 .lista { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 800px) { .lista { grid-template-columns: 1fr 1fr; } }
 .restaurang { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; }
-.restaurang h2 { font-size: 1.3rem; margin: 0 0 2px; }
-.restaurang h2 a { color: #0b4f9c; text-decoration: none; }
-.restaurang h2 a:hover { text-decoration: underline; }
+.restaurang h3 { font-size: 1.3rem; margin: 0 0 2px; }
+.restaurang h3 a { color: #0b4f9c; text-decoration: none; }
+.restaurang h3 a:hover { text-decoration: underline; }
 .adress { margin: 0 0 8px; color: #555; font-size: 0.9rem; }
 .restaurang ul { list-style: none; margin: 0; padding: 0; }
 .restaurang li { display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
@@ -118,7 +118,7 @@ def _dish_html(d: dict) -> str:
 def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
                day: int, now: datetime) -> str:
     out = ['<article class="restaurang">']
-    out.append(f'<h2><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h2>')
+    out.append(f'<h3><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a></h3>')
     if r.get("address"):
         out.append(f'<p class="adress">{escape(r["address"])}</p>')
     if _is_stale(r, now):
