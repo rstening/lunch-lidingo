@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T13:29:56Z",
+  "generated_at": "2026-09-28T08:26:20Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -278,7 +278,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -416,7 +416,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -982,7 +982,7 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -1033,6 +1033,55 @@
           },
           "notes": "",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 40,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Krämig fiskgryta på lax och kolja med saffransmajo och krutonger",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Kalops på kalvkött med rödbetor och kokt potatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Firrens queneller med räksås och potatismos",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Färskostfylld kyckling med cidersås, stekt äpple och stråpotatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Färserad röding med gräslöksvitvinssås och potatispuré",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "",
+          "extras": []
         }
       ]
     },
@@ -1042,7 +1091,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -1168,7 +1217,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-09-27T13:29:56Z",
+      "last_success": "2026-09-28T08:26:20Z",
       "error": null,
       "weeks": [
         {
@@ -1176,32 +1225,6 @@
           "week": 39,
           "week_known": true,
           "days": {
-            "1": [
-              {
-                "name": "Kalvfärsbiffar serveras med ugnsrostad potatis och gräddsås",
-                "price": 139,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Ugnsbakad röding serveras med krämig tartarsås och kokt potatis",
-                "price": 149,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta pesto med mozzarella och tomat",
-                "price": 139,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
             "2": [
               {
                 "name": "Lövbiff med gorgonzolasås och mos",
@@ -1291,6 +1314,41 @@
               },
               {
                 "name": "Stekt röding med dillsås och kokt potatis",
+                "price": 149,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pasta pesto med mozzarella och tomat",
+                "price": 139,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "",
+          "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 40,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Stekt fläskfilé med portabellosås och rostad potatis",
+                "price": 139,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Ugnsbakad lax serveras med spenatcreme och kokt potatis",
                 "price": 149,
                 "tags": [
                   "fisk"
