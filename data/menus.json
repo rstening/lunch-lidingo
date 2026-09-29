@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T13:22:13Z",
+  "generated_at": "2026-09-29T14:22:24Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
@@ -277,7 +277,79 @@
           "days": {
             "1": [
               {
-                "name": "Vegetarisk frittata, fetaost, oliver, basilikakräm, rostade tomatsallad, babyspenat",
+                "name": "Vegetarisk frittata, fetaost, oliver, basilikakräm, rostade tomatsallad, babyspenat (Laktos, Ägg)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur, Svaveldioxid och Sulfit)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Kyckling i röd curry, kokosmjölk, paprika, purjolök, mango, koriander, röd chili och gurktopping",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök & citron (Gluten, Laktos, Ägg)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur, Svaveldioxid och Sulfit)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Korvstroganoff, ris, smetana, saltgurka (L) (Laktos, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Vegetarisk risbowl, avokado, picklade grönsaker, misomajonnäs, sjögräs, marinerad tofu (Ägg, Soja)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur, Svaveldioxid och Sulfit)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Rostad kycklingklubba, ratatouille, örtkräm, stekt potatis, haricotverts (Ägg, Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Vegetarisk broccolibiffar, rostad sötpotatis, tzatziki, ruccola",
                 "price": 135,
                 "tags": [
                   "veg"
@@ -305,7 +377,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
@@ -443,7 +515,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
@@ -1009,7 +1081,7 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
@@ -1118,7 +1190,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
@@ -1244,7 +1316,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-09-29T13:22:13Z",
+      "last_success": "2026-09-29T14:22:24Z",
       "error": null,
       "weeks": [
         {
