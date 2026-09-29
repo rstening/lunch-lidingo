@@ -51,6 +51,7 @@ Devservern (`lunch-dev` i `.claude/launch.json`) bygger om sidan vid varje omlad
 - En smal spalt, högst 640 px, på alla skärmar.
 - Inga kort eller linjer. Restaurangerna grupperas med luft, och bitext har `--text-2`.
 - Taggarna är runda kapslar och står till höger, direkt före priset. Rättens text börjar alltid vid vänsterkanten.
+- Saknar en rätt tagg från restaurangen gissas den när sidan byggs (`scraper/tags.py`) från orden i rätten: soppa vinner, sedan ett uttryckligt "veg"-ord, annars den huvudråvara som nämns först. Är inget ord känt sätts ingen tagg. Restaurangens egna etiketter ersätts aldrig. Nya ord läggs i ordlistan med ett test i `tests/test_tags.py`.
 - Dagväljaren visar bara veckodagar, ovalda dagar i `--text-2` och vald dag i `--text` och fet stil. Sidhuvudet visar den valda dagens datum, och veckan på en egen rad under som inte flyttar när man byter dag. Dagens veckodag har en grön prick.
 - Lunchtider skrivs alltid som `HH:MM-HH:MM` i `restaurants.yaml`, till exempel `10:00-14:00`. Ett test kontrollerar det.
 - Alla notiser och andra meningar på sidan slutar med punkt. Undantag utan punkt, eftersom de är etiketter: lunchtiden och sidfotens två rader ("Uppdaterad …" och "© …"). Ett test kontrollerar notiserna.

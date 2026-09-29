@@ -382,3 +382,18 @@ def test_extras_without_included_sentence_still_show():
                     "extras": ["Pensionärspris 120 kr."],
                     "days": {"5": [{"name": "Rätt", "price": 135, "tags": []}]}}]}]}
     assert '<p class="info">Pensionärspris 120 kr.</p>' in render(data, date(2026, 9, 25))
+
+
+def test_missing_tag_is_guessed_from_dish_words():
+    data = {"generated_at": "2026-09-28T07:02:11Z", "restaurants": [{
+        "id": "f", "name": "Firren", "url": "https://x", "address": "", "lunch_hours": "11:00-14:00",
+        "last_success": "2026-09-28T07:02:11Z", "error": None,
+        "weeks": [{"year": 2026, "week": 40, "week_known": True, "notes": "",
+                   "days": {"1": [{"name": "Kalops på kalvkött (Gluten, Fisk)", "price": None, "tags": []},
+                                  {"name": "Pannkakor", "price": None, "tags": []},
+                                  {"name": "Räkpasta", "price": None, "tags": ["kött"]}]}}]}]}
+    html = render(data, date(2026, 9, 28))
+    assert '<span class="tagg">kött</span></span><span class="ratt">Kalops på kalvkött</span>' in html
+    assert '<li><span class="ratt">Pannkakor</span>' in html
+    # A tag from the restaurant itself is never replaced by a guess.
+    assert '<span class="tagg">kött</span></span><span class="ratt">Räkpasta</span>' in html

@@ -12,7 +12,10 @@ har visat sig starta flera timmar för sent. GitHubs schema ligger kvar som rese
 1. `python -m scraper` läser `restaurants.yaml`, hämtar varje restaurangs meny
    och skriver `data/menus.json`. Om en restaurang inte går att läsa ligger
    dess senaste meny kvar.
-2. `python -m scraper.build` gör om JSON-filen till `docs/index.html`.
+2. `python -m scraper.build` gör om JSON-filen till `docs/index.html`. Rätter
+   som restaurangen inte märkt själv får en tagg (kött, fisk, veg eller soppa)
+   gissad från orden i rätten, till exempel "kolja" eller "kyckling". Ordlistan
+   ligger i `scraper/tags.py`. Är inget ord känt får rätten ingen tagg.
 3. Actions committar och pushar filerna om de ändrats.
 4. `tools/halsokoll.py` öppnar ett ärende i repot om en restaurang har
    misslyckats i ungefär två dagar, och stänger det när den fungerar igen.
