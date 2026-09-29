@@ -64,20 +64,33 @@ header p { margin: 0; color: var(--text-2); }
 @media (min-width: 640px) { .lista { gap: 64px; } }
 .rubrik { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
           column-gap: 16px; }
+}
 .restaurang h3 { font-size: 1rem; font-weight: 500; margin: 0; }
 .restaurang h3 a { color: var(--text); text-decoration: none; }
 @media (hover: hover) and (pointer: fine) { .restaurang h3 a:hover { text-decoration: underline; } }
 .tider { color: var(--text-2); font-size: 1rem; }
 .restaurang ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
 /* Dish row: the dish always starts at the left edge; badge and price sit together on the right. */
-.restaurang li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
-                 grid-template-areas: "ratt taggar pris"; column-gap: 12px; align-items: baseline; }
-.taggar { grid-area: taggar; display: flex; gap: 6px; }
-.ratt { grid-area: ratt; min-width: 0; }
+.restaurang li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px;
+                 align-items: baseline; }
+.ratt { min-width: 0; }
+.hoger { display: flex; gap: 12px; align-items: baseline; justify-self: end; }
+.taggar { display: flex; gap: 6px; }
 .tagg { display: inline-flex; align-items: center; justify-content: center; height: 22px; padding: 0 9px;
         border-radius: 999px; background: var(--line); color: var(--text-2);
         font-size: 14px; font-weight: 500; line-height: 1; text-transform: capitalize; white-space: nowrap; }
-.pris { grid-area: pris; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pris { color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* The dish column ends 8px before the lunch hours begin: header and dish rows share the same two
+   columns through subgrid, so the right column is as wide as the widest of the hours, badge and price. */
+@supports (grid-template-columns: subgrid) {
+  .restaurang { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }
+  .restaurang > * { grid-column: 1 / -1; }
+  .rubrik { display: grid; grid-template-columns: subgrid; column-gap: 8px; }
+  .rubrik h3 { grid-column: 1; }
+  .tider { grid-column: 2; justify-self: end; white-space: nowrap; }
+  .restaurang ul { grid-template-columns: subgrid; }
+  .restaurang li { grid-column: 1 / -1; grid-template-columns: subgrid; column-gap: 8px; }
+}
 .notis, .info, .tom { margin: 16px 0 0; font-size: 1rem; color: var(--text-2); }
 footer { margin: 96px 0 0; font-size: 14px; color: var(--text-2); }
 footer p { margin: 0 0 4px; }
@@ -231,19 +244,21 @@ def included_text(notes: str) -> str:
 
 
 def _dish_html(d: dict) -> str:
-    parts = ["<li>"]
     name = without_allergens(d.get("name", ""))
     # Restaurants that mark their dishes win; otherwise guess from the words.
     tags = d.get("tags") or guess_tags(name)
+    right = []
     if tags:
         badges = "".join(f'<span class="tagg">{escape(t)}</span>' for t in tags)
-        parts.append(f'<span class="taggar">{badges}</span>')
-    parts.append(f'<span class="ratt">{escape(name)}</span>')
+        right.append(f'<span class="taggar">{badges}</span>')
     if d.get("price") is not None:
         price = str(int(d["price"]))
         if d.get("price_to"):
             price += f"-{int(d['price_to'])}"
-        parts.append(f'<span class="pris">{price} kr</span>')
+        right.append(f'<span class="pris">{price} kr</span>')
+    parts = ["<li>", f'<span class="ratt">{escape(name)}</span>']
+    if right:
+        parts.append(f'<span class="hoger">{"".join(right)}</span>')
     parts.append("</li>")
     return "".join(parts)
 
