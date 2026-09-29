@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
+from scraper.tags import guess_tags
 from scraper.weeks import (DAY_NAMES, DAY_SHORT, display_date, format_date,
                            iso_week, week_dates)
 
@@ -231,11 +232,13 @@ def included_text(notes: str) -> str:
 
 def _dish_html(d: dict) -> str:
     parts = ["<li>"]
-    tags = d.get("tags") or []
+    name = without_allergens(d.get("name", ""))
+    # Restaurants that mark their dishes win; otherwise guess from the words.
+    tags = d.get("tags") or guess_tags(name)
     if tags:
         badges = "".join(f'<span class="tagg">{escape(t)}</span>' for t in tags)
         parts.append(f'<span class="taggar">{badges}</span>')
-    parts.append(f'<span class="ratt">{escape(without_allergens(d.get("name", "")))}</span>')
+    parts.append(f'<span class="ratt">{escape(name)}</span>')
     if d.get("price") is not None:
         price = str(int(d["price"]))
         if d.get("price_to"):
