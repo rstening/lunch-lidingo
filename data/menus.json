@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T18:35:41Z",
+  "generated_at": "2026-09-29T13:22:13Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -269,6 +269,33 @@
           "extras": [
             "Pensionärspris 120 kr."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 41,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Vegetarisk frittata, fetaost, oliver, basilikakräm, rostade tomatsallad, babyspenat",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten",
+          "extras": [
+            "Pensionärspris 120 kr."
+          ]
         }
       ]
     },
@@ -278,7 +305,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -416,7 +443,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -982,7 +1009,7 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -1091,7 +1118,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -1217,7 +1244,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-09-28T18:35:41Z",
+      "last_success": "2026-09-29T13:22:13Z",
       "error": null,
       "weeks": [
         {
@@ -1225,32 +1252,6 @@
           "week": 39,
           "week_known": true,
           "days": {
-            "2": [
-              {
-                "name": "Lövbiff med gorgonzolasås och mos",
-                "price": 139,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pocherad torsk med Bitte blanchsås och kokt potatis",
-                "price": 149,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta pesto med mozzarella och tomat",
-                "price": 139,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
             "3": [
               {
                 "name": "Noisetter med rosemarinsås och ris. Grillad kyckling med ris",
@@ -1349,6 +1350,32 @@
               },
               {
                 "name": "Ugnsbakad lax serveras med spenatcreme och kokt potatis",
+                "price": 149,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pasta pesto med mozzarella och tomat",
+                "price": 139,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Nötschnitzel med rostad potatis serveras med svampsås",
+                "price": 139,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Ugnsbakad röding serveras med Västerbottensås och kokt potatis",
                 "price": 149,
                 "tags": [
                   "fisk"

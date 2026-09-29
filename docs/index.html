@@ -98,8 +98,8 @@ footer p { margin: 0 0 4px; }
 #dag-5:checked ~ .flikar .indikator { transform: translateX(400%); }
 #dag-5:checked ~ .flikar label[for="dag-5"] { font-weight: 600; color: var(--text); }
 #dag-5:focus-visible ~ .flikar .indikator::before { outline: 2px solid var(--text); outline-offset: 2px; }</style></head><body><main>
-<input type="radio" name="dag" class="dagval" id="dag-1" checked>
-<input type="radio" name="dag" class="dagval" id="dag-2">
+<input type="radio" name="dag" class="dagval" id="dag-1">
+<input type="radio" name="dag" class="dagval" id="dag-2" checked>
 <input type="radio" name="dag" class="dagval" id="dag-3">
 <input type="radio" name="dag" class="dagval" id="dag-4">
 <input type="radio" name="dag" class="dagval" id="dag-5">
@@ -113,8 +113,8 @@ footer p { margin: 0 0 4px; }
 </header>
 <nav class="flikar" aria-label="Välj dag">
 <span class="indikator" aria-hidden="true"></span>
-<label for="dag-1" class="idag" aria-label="Mån, idag">Mån</label>
-<label for="dag-2">Tis</label>
+<label for="dag-1">Mån</label>
+<label for="dag-2" class="idag" aria-label="Tis, idag">Tis</label>
 <label for="dag-3">Ons</label>
 <label for="dag-4">Tor</label>
 <label for="dag-5">Fre</label>
@@ -214,7 +214,7 @@ footer p { margin: 0 0 4px; }
 <h3><a href="https://brasseriejernet.se/">Brasserie Jernet</a></h3>
 <span class="tider">Lunch 10:30-14:30</span>
 </div>
-<p class="tom">Ingen meny för den här dagen.</p>
+<ul><li><span class="taggar"><span class="tagg">kött</span></span><span class="ratt">Nötschnitzel med rostad potatis serveras med svampsås</span><span class="pris">139 kr</span></li><li><span class="taggar"><span class="tagg">fisk</span></span><span class="ratt">Ugnsbakad röding serveras med Västerbottensås och kokt potatis</span><span class="pris">149 kr</span></li><li><span class="taggar"><span class="tagg">veg</span></span><span class="ratt">Pasta pesto med mozzarella och tomat</span><span class="pris">139 kr</span></li></ul>
 </article>
 </div></section>
 <section class="dag" id="d-3">
@@ -364,7 +364,7 @@ footer p { margin: 0 0 4px; }
 <p class="tom">Ingen meny för den här dagen.</p>
 </article>
 </div></section>
-<footer><p>Uppdaterad 28 september 20:35</p><p class="upphov">© 2026 Richard Stening</p></footer>
+<footer><p>Uppdaterad 29 september 15:22</p><p class="upphov">© 2026 Richard Stening</p></footer>
 </main><script>
 (function () {
   var nav = document.querySelector(".flikar");
