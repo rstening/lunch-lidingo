@@ -143,7 +143,9 @@ def test_page_uses_only_the_two_brand_colours():
 
 def test_restaurants_are_grouped_by_space_not_boxes():
     css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
-    assert not re.search(r"\.restaurang \{", css)  # no card box at all
+    box = re.search(r"\.restaurang \{([^}]*)\}", css).group(1)  # only the shared columns, no card box
+    for prop in ("border", "background", "padding", "box-shadow"):
+        assert prop not in box
     assert "border-top" not in css                  # no separator lines between dishes
     assert ".lista { display: grid; grid-template-columns: 1fr; gap: 48px; }" in css
     for cls in ("tider", "pris", "tagg"):
@@ -219,17 +221,26 @@ def test_tags_are_round_calm_badges():
     assert "border:" not in badge and "box-shadow" not in badge
 
 
-def test_tag_badge_sits_in_its_own_element_before_the_dish():
+def test_tag_badge_and_price_sit_together_after_the_dish():
     html = render(DATA, date(2026, 9, 21))
-    assert '<li><span class="taggar"><span class="tagg">soppa</span></span><span class="ratt">Soppa</span>' in html
+    assert ('<li><span class="ratt">Soppa</span><span class="hoger"><span class="taggar">'
+            '<span class="tagg">soppa</span></span><span class="pris">120 kr</span></span></li>') in html
 
 
 def test_badge_sits_between_dish_and_price():
     html = render(DATA, date(2026, 9, 25))
     css = html.split("<style>")[1].split("</style>")[0]
-    row = re.search(r"\.restaurang li \{([^}]*)\}", css).group(1)
-    assert 'grid-template-areas: "ratt taggar pris"' in row
+    row = re.search(r"\.restaurang li \{ display: grid;([^}]*)\}", css).group(1)
+    assert "grid-template-columns: minmax(0, 1fr) auto" in row
     assert "tl-" not in html and "devval" not in html
+
+
+def test_dish_column_stops_before_the_lunch_hours():
+    css = render(DATA, date(2026, 9, 25)).split("<style>")[1].split("</style>")[0]
+    shared = css.split("@supports (grid-template-columns: subgrid)")[1]
+    assert ".restaurang { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }" in shared
+    assert ".tider { grid-column: 2;" in shared
+    assert ".restaurang li { grid-column: 1 / -1; grid-template-columns: subgrid;" in shared
 
 
 def test_render_follows_the_given_restaurant_order():
@@ -393,7 +404,7 @@ def test_missing_tag_is_guessed_from_dish_words():
                                   {"name": "Pannkakor", "price": None, "tags": []},
                                   {"name": "Räkpasta", "price": None, "tags": ["kött"]}]}}]}]}
     html = render(data, date(2026, 9, 28))
-    assert '<span class="tagg">kött</span></span><span class="ratt">Kalops på kalvkött</span>' in html
-    assert '<li><span class="ratt">Pannkakor</span>' in html
+    assert '<span class="ratt">Kalops på kalvkött</span><span class="hoger"><span class="taggar"><span class="tagg">kött</span>' in html
+    assert '<li><span class="ratt">Pannkakor</span></li>' in html
     # A tag from the restaurant itself is never replaced by a guess.
-    assert '<span class="tagg">kött</span></span><span class="ratt">Räkpasta</span>' in html
+    assert '<span class="ratt">Räkpasta</span><span class="hoger"><span class="taggar"><span class="tagg">kött</span>' in html
