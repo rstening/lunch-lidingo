@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T10:23:35Z",
+  "generated_at": "2026-10-02T13:13:35Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
@@ -409,7 +409,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
@@ -547,7 +547,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
@@ -1113,7 +1113,7 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
@@ -1213,6 +1213,55 @@
           },
           "notes": "",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 41,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Laxfjäril med trattkantarellsås och kokt potatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Fiskgratäng med skaldjurssås och västerbottenost samt potatispuré",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Stekt fläsk eller stekt salt sill med löksås och kokt potatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Ankbröst med äpple och grönpepparsås samt pomme rösti",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Havets wallenbergare med räkor, ärtor och kokt potatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "",
+          "extras": []
         }
       ]
     },
@@ -1222,7 +1271,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
@@ -1339,6 +1388,121 @@
           },
           "notes": "Lunchens öppettider 11:30-13:00",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 41,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Friterad kyckling med kålsallad, sweet chillimajonnäs samt ris",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Grekisk moussaka med linser, spenat och fetaost",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Tempura friterad kolja med tartarsås, ärtor samt färskpotatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Majs och pico de Galio fritters med avokadoröra samt ris",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Lammfärsbiffar med gemoulata, vispad fetaost samt patatas bravas",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Sesambakad blomkål med pak choi, hoisinmajonäs samt friterade rispapper",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Yakiniku på fläskkarré med salladslök, sesam samt jasminris",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Nudel wok med grönsaker, shiitakesvamp, tofu samt sweet chilisås",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pannkakor",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Grillbuffé - med olika sortes kött & goda tillbehör",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Vegetarisk pizza",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "Lunchens öppettider 11:30-13:00",
+          "extras": []
         }
       ]
     },
@@ -1348,7 +1512,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-10-02T10:23:35Z",
+      "last_success": "2026-10-02T13:13:35Z",
       "error": null,
       "weeks": [
         {
