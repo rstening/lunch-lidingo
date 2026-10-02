@@ -21,18 +21,18 @@
   lunch_hours: "10:00-14:00"
   url: https://www.lidingosaluhall.com/
   reader: saluhallen
-- id: bibliothek
-  name: Bibliothek
-  address: Lejonstigen 5
-  lunch_hours: "11:30-14:30"
-  url: https://bibliothek.nu/menyer
-  reader: bibliothek
 - id: firren
   name: Firren
   address: Friggavägen 18
   lunch_hours: "11:00-14:00"
   url: https://firren.org/bistro/
   reader: firren
+- id: bibliothek
+  name: Bibliothek
+  address: Lejonstigen 5
+  lunch_hours: "11:30-14:30"
+  url: https://bibliothek.nu/menyer
+  reader: bibliothek
 - id: ronneberga
   name: Rönneberga
   address: Rönnebergavägen 1

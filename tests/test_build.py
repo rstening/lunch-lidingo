@@ -254,7 +254,7 @@ def test_render_follows_the_given_restaurant_order():
 
 def test_load_order_reads_restaurants_yaml():
     from scraper.build import load_order
-    assert load_order()[:3] == ["pocket", "saluhallen", "bibliothek"]
+    assert load_order()[:3] == ["pocket", "saluhallen", "firren"]
 
 
 def test_header_date_and_week_format():
