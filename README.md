@@ -5,7 +5,7 @@ En sida med dagens lunch på restaurangerna på Lidingö: https://lunch.richards
 Varje morgon kl 08:47,
 och på vardagar även kl 10:23 och 12:23, hämtar GitHub Actions menyerna, och GitHub Pages visar sidan från mappen
 `docs/`. Körningarna startas av tjänsten cron-job.org, eftersom GitHubs eget schema
-har visat sig starta flera timmar för sent. GitHubs schema ligger kvar som reserv.
+visade sig starta flera timmar för sent. GitHubs schema används inte alls.
 
 ## Så funkar det
 

@@ -1,19 +1,10 @@
 name: Hämta menyer
 on:
-  # De riktiga körningarna startas utifrån av cron-job.org, som anropar workflow_dispatch
-  # kl 08:47 varje dag samt 10:23 och 12:23 på vardagar, svensk tid. GitHubs eget schema
-  # nedan är bara en reserv: GitHub har startat schemalagda jobb fem till åtta timmar för
-  # sent i det här repot, så det går inte att lita på för tiden.
+  # Körningarna startas utifrån av cron-job.org, som anropar workflow_dispatch
+  # kl 08:47 varje dag samt 10:23 och 12:23 på vardagar, svensk tid. GitHubs eget
+  # schema används inte: det startade körningarna fem till åtta timmar för sent i
+  # det här repot, och togs bort i oktober 2026 när det gick igång sex gånger en kväll.
   workflow_dispatch:
-  schedule:
-    # GitHub räknar i UTC, så varje svensk tid behöver en rad för sommartid och en för vintertid.
-    - cron: "47 6 * * *"     # 08:47 svensk sommartid, alla dagar
-    - cron: "47 7 * * *"     # 08:47 svensk vintertid, alla dagar
-    # Extra körningar på vardagar: Brasserie Jernet lägger in dagens rätt mellan ca 08:40 och 12:10.
-    - cron: "23 8 * * 1-5"   # 10:23 svensk sommartid
-    - cron: "23 9 * * 1-5"   # 10:23 svensk vintertid
-    - cron: "17 10 * * 1-5"  # 12:17 svensk sommartid
-    - cron: "17 11 * * 1-5"  # 12:17 svensk vintertid
 permissions:
   contents: write
   issues: write

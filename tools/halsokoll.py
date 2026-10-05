@@ -18,7 +18,7 @@ from scraper.merge import _iso  # noqa: E402  (after sys.path setup)
 
 DATA_PATH = ROOT / "data" / "menus.json"
 # "Two days in a row": the morning run on day 1 and day 2 both failed. 40 hours leaves
-# room for GitHub starting scheduled runs late.
+# room for a run that starts late or is skipped.
 FAILING_AFTER = timedelta(hours=40)
 MARKER = "<!-- lunch-bot:{id} -->"
 
