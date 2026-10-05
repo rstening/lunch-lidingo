@@ -28,7 +28,7 @@ Notiserna på sidan betyder:
   veckans meny. Sidan visar aldrig en gammal veckas rätter som den här veckans.
 - "Veckans meny saknas.": restaurangen har redan bytt till nästa vecka, men vi
   hann inte spara den här veckans meny.
-- "Ingen meny för den här dagen.": veckans meny finns, men inte för just den dagen.
+- "Ingen meny är upplagd för den här dagen än.": veckans meny finns, men inte för just den dagen.
 - "Kunde inte hämta menyn, se restaurangens sida.": hämtningen har inte
   fungerat på mer än 7 dagar, eller aldrig.
 - "Senast hämtad 23 september.": senaste hämtningen misslyckades, men menyn
