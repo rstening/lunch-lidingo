@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T13:29:23Z",
+  "generated_at": "2026-10-05T06:47:26Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,142 +7,9 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Vegetarisk lasagne, sojafärs, grönsaker, parmesankräk, ruccola (Gluten, Laktos, Ägg)",
-                "price": 135,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig kycklingkorma, ris, rostad broccoli, koriander (Laktos, Fågel)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)",
-                "price": 135,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök & citron (Gluten, Laktos, Ägg)",
-                "price": 135,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Fläskkotlett, kantarellsås, persiljeslungad potatis, vitlöksrostade morötter (Laktos, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Falafel, vitlöksdressing, feferoni, tomat, lök, bulgur (Gluten, Laktos, Ägg)",
-                "price": 135,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Coq au vin med krossad potatis, dijonaise och örter (Ägg, Senap, Fågel)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Krämig tryffelpasta, stekt svamp, körvel, ruccola (Gluten, Laktos)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Pannbiff, löksky, stekt potatis, saltgurka (Ägg, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Vegetarisk burgare, briochebröd, pommes, picklad lök, sallad, tomat, hamburgerdressing (Gluten, Laktos, Ägg)",
-                "price": 135,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Thaifisk curry, ris, asiatisk kålmixsallad (Fisk, Soja, Sesam)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Högrevsburgare, briochebröd, pommes, picklad lök, tomat, sallad, dressing (Gluten, Ägg, Sesam, Nötkött)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten",
-          "extras": [
-            "Pensionärspris 120 kr."
-          ]
-        },
         {
           "year": 2026,
           "week": 40,
@@ -396,7 +263,7 @@
               }
             ]
           },
-          "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött efter maten",
+          "notes": "I linchen ingår Pockets hembakade bröd, salladsbuffé, kaffe och något sött bakefter",
           "extras": [
             "Pensionärspris 120 kr."
           ]
@@ -409,7 +276,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -674,58 +541,9 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Scampi Indiana med grönsaksris",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Mandelbakad torsk med vitvinssås smaksatt med brynt smör och kokt potatis",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Fläskschnitzel med kapris, sardeller, citron och stekt potatis",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Skaldjurslasagne med stark cheddar och ruccolasallad",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Kräftmarinerad kolja med chilismaksatt krabbremoulad och potatispuré",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 40,
@@ -832,194 +650,9 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig svampsoppa stekta kantareller, rostade frön och aioli",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig svampsoppa stekta kantareller, rostade frön och aioli",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig svampsoppa stekta kantareller, rostade frön och aioli",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig svampsoppa stekta kantareller, rostade frön och aioli",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Viltfärsbiff rostad gotlandspotatis, svart vinbärsgelé och kantarellsås",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad rotselleri picklad silverlök, rostade valnötter, machesallad och skummad dragonsås",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad kolja kokt gotlandspotatis, pepparrot, dill och brynt smör",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Krämig svampsoppa stekta kantareller, rostade frön och aioli",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Steak minute pommes frites och bearnaisesås",
-                "price": 245,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "Ink sallad, hembakat bröd, kaffe och hembakad kaka",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 40,
@@ -1398,7 +1031,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -1639,44 +1272,9 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-10-04T13:29:23Z",
+      "last_success": "2026-10-05T06:47:26Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 39,
-          "week_known": true,
-          "days": {
-            "5": [
-              {
-                "name": "Schnitzel med rostad potatis och svampsås",
-                "price": 149,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Stekt röding med dillsås och kokt potatis",
-                "price": 149,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta pesto med mozzarella och tomat",
-                "price": 139,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 40,
