@@ -66,7 +66,7 @@ def test_render_friday():
     assert "Ingår kaffe" in html
     assert "Kunde inte hämta menyn" in html          # Beta (stale > 7 days) and Gamma
     assert "Veckans meny saknas." in html            # Delta (week 40 only)
-    assert "Ingen meny för den här dagen" in html             # Alfa has no dishes Tue-Thu
+    assert "Ingen meny är upplagd för den här dagen än" in html             # Alfa has no dishes Tue-Thu
     assert "Uppdaterad 25 september 09:02" in html
     assert html.count('class="restaurang"') == 20    # 4 restaurants x 5 days
 

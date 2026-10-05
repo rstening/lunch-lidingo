@@ -284,7 +284,7 @@ def _card_html(r: dict, week: Optional[dict], notice: Optional[str],
     if dishes:
         out.append("<ul>" + "".join(_dish_html(d) for d in dishes) + "</ul>")
     else:
-        out.append('<p class="tom">Ingen meny för den här dagen.</p>')
+        out.append('<p class="tom">Ingen meny är upplagd för den här dagen än.</p>')
     notices = [n for n in (notice, _last_success_text(r)) if n]
     if notices:
         out.append(f'<p class="notis">{escape(" ".join(notices))}</p>')
