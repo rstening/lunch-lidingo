@@ -25,7 +25,7 @@ Ankarlänkar i de ursprungliga adresserna (`#lunch`, `#meny`) ignoreras; hela si
 
 ## Arkitektur
 
-Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett GitHub Actions-jobb kör varje morgon kl 08:47 svensk tid, och på vardagar även kl 10:23 och 12:23, eftersom Brasserie Jernet lägger in dagens rätt samma förmiddag, mellan ungefär 08:40 och 12:10. Jobbet startas utifrån av tjänsten cron-job.org (gratis, ägarens konto). Två jobb där, "Lunch morgon" och "Lunch vardagar", gör ett POST-anrop till GitHubs `workflow_dispatch` med en finkornig personlig nyckel som bara får starta jobb i det här repot (Actions: read and write, utan utgångsdatum). cron-job.org sköter sommar- och vintertid själv och mejlar ägaren om anropen börjar misslyckas. Bakgrund: i september 2026 startade GitHubs eget schema körningarna fem till åtta timmar för sent, oavsett klockslag, medan en manuell start går igång inom sekunder. GitHubs schema ligger kvar i workflowfilen som reserv (06:47/07:47, 08:23/09:23 och 10:17/11:17 UTC, en rad för sommartid och en för vintertid), så sidan uppdateras ändå, bara sent, om cron-job.org skulle sluta fungera. Att det blir extra körningar är ofarligt: sidan innehåller alltid en "Uppdaterad …"-tidsstämpel, så filerna skiljer sig mellan körningarna även när ingen meny ändrats, och jobbet committar därför flera gånger per dag. Det är avsiktligt accepterat, inte ett fel.
+Statisk sida byggd av Python, publicerad via GitHub Pages från repot `rstening/lunch-lidingo` (privat konto, aldrig jobbkontot). Ett GitHub Actions-jobb kör varje morgon kl 08:47 svensk tid, och på vardagar även kl 10:23 och 12:23, eftersom Brasserie Jernet lägger in dagens rätt samma förmiddag, mellan ungefär 08:40 och 12:10. Jobbet startas utifrån av tjänsten cron-job.org (gratis, ägarens konto). Två jobb där, "Lunch morgon" och "Lunch vardagar", gör ett POST-anrop till GitHubs `workflow_dispatch` med en finkornig personlig nyckel som bara får starta jobb i det här repot (Actions: read and write, utan utgångsdatum). cron-job.org sköter sommar- och vintertid själv och mejlar ägaren om anropen börjar misslyckas. Bakgrund: i september 2026 startade GitHubs eget schema körningarna fem till åtta timmar för sent, oavsett klockslag, medan en manuell start går igång inom sekunder. GitHubs schema låg först kvar i workflowfilen som reserv, men togs bort den 5 oktober 2026: den kvällen gick alla sex reservraderna igång mellan kl 17 och 21:30 i stället för på förmiddagen, och en av körningarna misslyckades för att GitHub inte hittade någon ledig server, vilket gav ett felmejl. En reserv som kommer många timmar för sent hjälper inte den som kollar på morgonen, så nu finns bara `workflow_dispatch`. Slutar cron-job.org fungera körs alltså ingenting, men cron-job.org mejlar ägaren när anropen misslyckas. Varje körning committar om något ändrats, och sidan innehåller alltid en "Uppdaterad …"-tidsstämpel, så filerna skiljer sig mellan körningarna även när ingen meny ändrats. Flera commits per dag är därför avsiktligt, inte ett fel.
 
 Flöde per körning:
 
@@ -56,7 +56,7 @@ lunch-lidingo/
     fixtures/                   Sparade kopior av varje källa
     test_<läsare>.py            Ett test per läsare
     test_build.py, test_merge.py
-  .github/workflows/daily.yml   Schema + commit
+  .github/workflows/daily.yml   Hämta, bygg, committa (startas av cron-job.org)
   .github/workflows/test.yml    Tester vid push
   requirements.txt
 ```
