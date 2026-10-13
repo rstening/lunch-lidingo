@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T10:23:26Z",
+  "generated_at": "2026-10-13T06:47:26Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -263,6 +263,135 @@
           "extras": [
             "Pensionärspris 120 kr."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 43,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Grillad zucchini, broccolipuré, fetaost, kikärtor och olivsallad (Laktos, Baljväxter)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Citronbakad pollock, kokt potatis, vitvinssås, picklad fänkål, persilja (Laktos, Fisk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Citrongrillad kyckling, dragonsås, potatisstomp, picklad morotscruditet (Laktos, Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök & citron (Gluten, Laktos, Ägg)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Citronbakad pollock, kokt potatis, vitvinssås, picklad fänkål, persilja (Laktos, Fisk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Chorizo, rigatoni, rostad paprikasås, parmesan, ruccola (Laktos, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Ingefära- och morotssoppa, med vitlöksbröd (Gluten)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Citronbakad pollock, kokt potatis, vitvinssås, picklad fänkål, persilja (Laktos, Fisk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "BBQ kryddad pannbiff, tomatsås, coleslaw, klyftpotatis, rostad lök (Ägg)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Vegetarisk kålpudding, gräddsås, kokt potatis, lingon & pressgurka (Laktos)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Citronbakad pollock, kokt potatis, vitvinssås, picklad fänkål, persilja (Laktos, Fisk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Fläsk schnitzel, bearnaisesås timjanrostad potatis tricolorebönor (Gluten, Ägg, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Vegetariska kikärts & -morotsbiffar, blomkål, kokt potatis, salsa verde (Laktos, Ägg)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Citronbakad pollock, kokt potatis, vitvinssås, picklad fänkål, persilja (Laktos, Fisk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Wallenbergare, brynt smör, potatismos, ärtor & lingon (Gluten, Laktos, Ägg)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår salladsbuffé, hembakat bröd, kaffe och något gott bakefter",
+          "extras": [
+            "Pensionärspris 120 kr."
+          ]
         }
       ]
     },
@@ -272,7 +401,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -537,7 +666,7 @@
       "url": "https://firren.org/bistro/",
       "address": "Friggavägen 18",
       "lunch_hours": "11:00-14:00",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -646,7 +775,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -1212,7 +1341,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
@@ -1453,7 +1582,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-10-12T10:23:26Z",
+      "last_success": "2026-10-13T06:47:26Z",
       "error": null,
       "weeks": [
         {
