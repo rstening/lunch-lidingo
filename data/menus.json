@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T10:23:25Z",
+  "generated_at": "2026-10-24T06:47:30Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-10-23T10:23:25Z",
+      "last_success": "2026-10-24T06:47:30Z",
       "error": null,
       "weeks": [
         {
@@ -401,7 +401,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-10-23T10:23:25Z",
+      "last_success": "2026-10-24T06:47:30Z",
       "error": null,
       "weeks": [
         {
@@ -657,6 +657,133 @@
           "extras": [
             "145 kr 10:00-11:00, 160 kr 11:00-14:00."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 44,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Citrusmarinerad kycklingklubba med rödvinssås, rotselleripuré & smörkokta morötter L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pocherad lyrtorsk med vitvinssås, rostad blomkål & dillkrossad potatis L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Heta majsbiffar med sweetchilicrème & sallad med rostade betor G,L,Ä",
+                "price": 160,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Raggmunk med stekt rimmat fläsk, rårörda lingon & persilja Ä",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Västerbottensgratinerad flundra i vitvinssås, stekt svamp & potatisstomp L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Heta majsbiffar med sweetchilicrème & sallad med rostade betor G,L,Ä",
+                "price": 160,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Cevapcici med tzatziki, ajvar, rödlök & klyftpotatis G,L,Ä",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Stekt gösfilé Grenoble med brynt smör, rödbetor, kapris & färskpotatis G,L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Heta majsbiffar med sweetchilicrème & sallad med rostade betor G,L,Ä",
+                "price": 160,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Fläskfilé med kantarellsås, ugnsbakade cocktailtomater & smashad potatis L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Spenat-& parmesanbakad laxfilé med frästa sockerärtor & stompad potatis L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Ärtsoppa med pannkakor, sylt & grädde G,L,Ä",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Heta majsbiffar med sweetchilicrème & sallad med rostade betor G,L,Ä",
+                "price": 160,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Saluhallens fluffiga wallenbergare med skirat smör, lingon, ärtor & potatispuré G,L,Ä",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Rödtunga med hummersås, smörslungade grönsaker & kokt potatis L",
+                "price": 160,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Heta majsbiffar med sweetchilicrème & sallad med rostade betor G,L,Ä",
+                "price": 160,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten",
+          "extras": [
+            "145 kr 10:00-11:00, 160 kr 11:00-14:00."
+          ]
         }
       ]
     },
@@ -775,7 +902,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-10-23T10:23:25Z",
+      "last_success": "2026-10-24T06:47:30Z",
       "error": null,
       "weeks": [
         {
@@ -1341,7 +1468,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-10-23T10:23:25Z",
+      "last_success": "2026-10-24T06:47:30Z",
       "error": null,
       "weeks": [
         {
@@ -1573,6 +1700,109 @@
           },
           "notes": "Lunchens öppettider 11:30-13:00",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 44,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Friterad kyckling, ris, chilimajonnäs & krossad gurksallad",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Linsbolognese med pasta",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Fisk- & skaldjursgryta med smak av tomat & saffran, kokt potatis, basilikaaioli & vitlöksbröd",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Vegetarisk pizza",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Biff a la Lindström, anjovis- & kaprissmör, stekt potatis och skysås",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Wok med tofu",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Plommonspäckad karré med gräddsås, kokt potatis & äppelmos",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pannoumi paneer",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pannkakor",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Abonnerat",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "Lunchens öppettider 11:30-13:00",
+          "extras": []
         }
       ]
     },
@@ -1582,7 +1812,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-10-23T10:23:25Z",
+      "last_success": "2026-10-24T06:47:30Z",
       "error": null,
       "weeks": [
         {
