@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T07:47:27Z",
+  "generated_at": "2026-10-26T07:47:25Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,132 +7,9 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-10-25T07:47:27Z",
+      "last_success": "2026-10-26T07:47:25Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 42,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Melazane alla parmigiana, ,auberginegratäng med mozzarella & tomatsås, basilikakräm, parmesan, ruccola (Laktos, Ägg)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Panerad rödspätta, med dansk remouladsås kokt potatis och ärtor (Gluten, Ägg, Fisk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Köttfärslimpa, potatisstomp med örter, ajvargräddfil, rostade morötter, persilja (Laktos, Ägg, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Grönsaksbiff med spenat & fetaost, timjanrostad potatis, tzatziki, ärtskott (Laktos)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Panerad rödspätta, med dansk remouladsås kokt potatis och ärtor (Gluten, Ägg, Fisk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Raggmunk med fläsk, lingon och persilja (Gluten, Laktos, Ägg, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Rotselleri schnitzel, chilibearnaise, rostade rotsaker, vitlöksstekt brysselkål (Gluten, Ägg)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Panerad rödspätta, med dansk remouladsås kokt potatis och ärtor (Gluten, Ägg, Fisk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Köttbullar med potatismos, gräddsås, lingon och pressgurka (Laktos, Ägg, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Grillad spetskål, harissa hummus, bulgursallad, thainidressing, ärtskott",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Panerad rödspätta, med dansk remouladsås kokt potatis och ärtor",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Fläskschnitzel, timjanrostad potatis, surkål & rödvinssås (Gluten, Ägg, Svaveldioxid och Sulfit, Fläsk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Shakshuka med ägg, vitlöksbröd, chili & örtsallad, koriander (G) (Gluten, Laktos, Ägg)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Panerad rödspätta, med dansk remouladsås kokt potatis och ärtor (Gluten, Ägg, Fisk)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Högrevs bolognaise, tagliatelle, riven parmesan, soltorkad tomatkräm, ruccola (Gluten, Laktos, Ägg, Nötkött)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Idag bjuder vi på Vaniljglass, med hemkokt jordgubbssås, strössel (Laktos)",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "I lunchen ingår salladsbuffé, hembakat bröd, kaffe och något gott bakefter",
-          "extras": [
-            "Pensionärspris 120 kr."
-          ]
-        },
         {
           "year": 2026,
           "week": 43,
@@ -388,7 +265,7 @@
               }
             ]
           },
-          "notes": "I lunchen ingår salladsbuffé, hembakat bröd, kaffe och något sött bakefter",
+          "notes": "I lunchen ingår salladsbuffe, pockets hembakde bröd, kaffe och något sött bak efter",
           "extras": [
             "Pensionärspris 120 kr."
           ]
@@ -401,136 +278,9 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-10-25T07:47:27Z",
+      "last_success": "2026-10-26T07:47:25Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 42,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Syrliga isterband med inlagda rödbetor & persiljestuvad potatis L",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Saluhallens fiskgratäng med vitvinssås, fänkål, räkor & potatispuré L",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Tortellini med ricotta och spenat, pesto, ugnsbakade cocktailtomater & buffelmozzarella G,L,Ä 160",
-                "price": 160,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Italienska köttbullar med salviasås, smörkokta morötter & potatisstomp G,L,Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Stekt kolja med brynt citronsmör, haricot verts, sparris & kokt potatis G,L",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Tortellini med ricotta och spenat, pesto, ugnsbakade cocktailtomater & buffelmozzarella G,L,Ä 160",
-                "price": 160,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Kalv tri-tip med kimchimajonnäs, salladslök, koriander & fried rice G,Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Halstrad röding med hollandaisesås, sockerärtor & smashad potatis Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Tortellini med ricotta och spenat, pesto, ugnsbakade cocktailtomater & buffelmozzarella G,L,Ä 160",
-                "price": 160,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Pluma med äppelcidersky, jordärtskockspuré & spetskål L",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Havets wallenbergare med brynt smör, gröna ärtor, rårörda lingon & potatispuré G,L,Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Ärtsoppa med pannkakor, sylt & grädde G,L,Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Tortellini med ricotta och spenat, pesto, ugnsbakade cocktailtomater & buffelmozzarella G,L,Ä 160",
-                "price": 160,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Flankstek med bearnaisesås, tomatsallad & pommes frites Ä",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Pestobakad laxfilé med vitvinssås, grönkål, rostade solrosfrön & potatisstomp L",
-                "price": 160,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Tortellini med ricotta och spenat, pesto, ugnsbakade cocktailtomater & buffelmozzarella G,L,Ä 160",
-                "price": 160,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "I lunchen ingår alltid salladsbuffé, bubbelvatten, kaffe/té och kaka. Dagens lunch kostar 145 :- mellan 10.00-11:00, 160: - mellan 11.00-14.00. 1/2 portion 120:- med lunchkortet 145:- mellan 10-14 (L) = rätten innehåller laktos, (G) = rätten innehåller gluten",
-          "extras": [
-            "145 kr 10:00-11:00, 160 kr 11:00-14:00."
-          ]
-        },
         {
           "year": 2026,
           "week": 43,
@@ -902,194 +652,9 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-10-25T07:47:27Z",
+      "last_success": "2026-10-26T07:47:25Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 42,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Pannbiff löksås, kokt gourmetpotatis, saltgurka och rårörda lingon",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta linguine tomatpesto, riven parmesan och rostad gul zucchini",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad lax kokt gourmetpotatis, picklad silverlök, vitvinssås och machesallad",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Tomatsoppa vitlöksrostade brioche- krutonger och syrad grädde",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Pannbiff löksås, kokt gourmetpotatis, saltgurka och rårörda lingon",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta linguine tomatpesto, riven parmesan och rostad gul zucchini",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad lax kokt gourmetpotatis, picklad silverlök, vitvinssås och machesallad",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Tomatsoppa vitlöksrostade brioche- krutonger och syrad grädde",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Pannbiff löksås, kokt gourmetpotatis, saltgurka och rårörda lingon",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta linguine tomatpesto, riven parmesan och rostad gul zucchini",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad lax kokt gourmetpotatis, picklad silverlök, vitvinssås och machesallad",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Tomatsoppa vitlöksrostade brioche- krutonger och syrad grädde",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Pannbiff löksås, kokt gourmetpotatis, saltgurka och rårörda lingon",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta linguine tomatpesto, riven parmesan och rostad gul zucchini",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad lax kokt gourmetpotatis, picklad silverlök, vitvinssås och machesallad",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Tomatsoppa vitlöksrostade brioche- krutonger och syrad grädde",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Pannbiff löksås, kokt gourmetpotatis, saltgurka och rårörda lingon",
-                "price": 185,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta linguine tomatpesto, riven parmesan och rostad gul zucchini",
-                "price": 175,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Bakad lax kokt gourmetpotatis, picklad silverlök, vitvinssås och machesallad",
-                "price": 185,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Tomatsoppa vitlöksrostade brioche- krutonger och syrad grädde",
-                "price": 175,
-                "tags": [
-                  "soppa"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Steak minute pommes frites och bearnaisesås",
-                "price": 245,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "Ink sallad, hembakat bröd, kaffe och hembakad kaka",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 43,
@@ -1459,6 +1024,191 @@
           },
           "notes": "Ink sallad, hembakat bröd, kaffe och hembakad kaka",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 45,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Wallenbergare på kalv potatispuré, gröna ärtor, rårörda lingon och brynt smör",
+                "price": 185,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Bakad rotselleri syltade gröna tomater, sandefjordsås och gammelknasost från Arla unika",
+                "price": 185,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Gravad lax dillstuvad potatis, hovmästarsås och citron",
+                "price": 185,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Krämig svampsoppa bakat ägg och krispiga trattkantareller",
+                "price": 175,
+                "tags": [
+                  "soppa"
+                ],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Wallenbergare på kalv potatispuré, gröna ärtor, rårörda lingon och brynt smör",
+                "price": 185,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Bakad rotselleri syltade gröna tomater, sandefjordsås och gammelknasost från Arla unika",
+                "price": 185,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Gravad lax dillstuvad potatis, hovmästarsås och citron",
+                "price": 185,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Krämig svampsoppa bakat ägg och krispiga trattkantareller",
+                "price": 175,
+                "tags": [
+                  "soppa"
+                ],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Wallenbergare på kalv potatispuré, gröna ärtor, rårörda lingon och brynt smör",
+                "price": 185,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Bakad rotselleri syltade gröna tomater, sandefjordsås och gammelknasost från Arla unika",
+                "price": 185,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Gravad lax dillstuvad potatis, hovmästarsås och citron",
+                "price": 185,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Krämig svampsoppa bakat ägg och krispiga trattkantareller",
+                "price": 175,
+                "tags": [
+                  "soppa"
+                ],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Wallenbergare på kalv potatispuré, gröna ärtor, rårörda lingon och brynt smör",
+                "price": 185,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Bakad rotselleri syltade gröna tomater, sandefjordsås och gammelknasost från Arla unika",
+                "price": 185,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Gravad lax dillstuvad potatis, hovmästarsås och citron",
+                "price": 185,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Krämig svampsoppa bakat ägg och krispiga trattkantareller",
+                "price": 175,
+                "tags": [
+                  "soppa"
+                ],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Wallenbergare på kalv potatispuré, gröna ärtor, rårörda lingon och brynt smör",
+                "price": 185,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Bakad rotselleri syltade gröna tomater, sandefjordsås och gammelknasost från Arla unika",
+                "price": 185,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Gravad lax dillstuvad potatis, hovmästarsås och citron",
+                "price": 185,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Krämig svampsoppa bakat ägg och krispiga trattkantareller",
+                "price": 175,
+                "tags": [
+                  "soppa"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Steak minute pommes frites och bearnaisesås",
+                "price": 245,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "Ink sallad, hembakat bröd, kaffe och hembakad kaka",
+          "extras": []
         }
       ]
     },
@@ -1468,124 +1218,9 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-10-25T07:47:27Z",
+      "last_success": "2026-10-26T07:47:25Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 42,
-          "week_known": true,
-          "days": {
-            "1": [
-              {
-                "name": "Kycklinggryta Teriyaki med ingefära & ris",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Vegetariska biffar med spiskummin, vitlök med sötpotatis & raita",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "2": [
-              {
-                "name": "Ugnsbakad Lubb med vitvinssås, räkor & potatispuré",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Grönsakslasagne med mozzarella & spenat",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "3": [
-              {
-                "name": "Wallenbergare med skirat smör, gröna ärter, rårörda lingon & potatispuré",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Vegetarisk kålpudding med gräddsås, rårörda lingon, gröna ärter & kokt potatis",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "4": [
-              {
-                "name": "Boeuf Bourguignon med potatispuré",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Pumparisotto med pumpakärnor & grillad zucchini",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Pannkakor",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ],
-            "5": [
-              {
-                "name": "Grillbuffé - med olika sortes kött & goda tillbehör",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Vegetarisk böngryta med ris & nachochips",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              },
-              {
-                "name": "Dagens soppa",
-                "price": null,
-                "tags": [],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "Lunchens öppettider 11:30-13:00",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 43,
@@ -1812,44 +1447,9 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-10-25T07:47:27Z",
+      "last_success": "2026-10-26T07:47:25Z",
       "error": null,
       "weeks": [
-        {
-          "year": 2026,
-          "week": 42,
-          "week_known": true,
-          "days": {
-            "5": [
-              {
-                "name": "Ryggbiff med pommes och bearnaisesås",
-                "price": 149,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Stekt lax med dillsås och kokt potatis",
-                "price": 149,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Pasta pesto med mozzarella och tomat",
-                "price": 139,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ]
-          },
-          "notes": "",
-          "extras": []
-        },
         {
           "year": 2026,
           "week": 43,
