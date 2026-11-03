@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T11:23:25Z",
+  "generated_at": "2026-11-03T07:47:28Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-02T11:23:25Z",
+      "last_success": "2026-11-03T07:47:28Z",
       "error": null,
       "weeks": [
         {
@@ -186,7 +186,7 @@
                 "price_to": null
               },
               {
-                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Ägg, Fisk, Jordnötter, Sesam)",
+                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Laktos, Ägg, Fisk, Jordnötter, Sesam)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -194,19 +194,19 @@
             ],
             "3": [
               {
-                "name": "Grönärtsbiff, aioli, krossad potatis, rödkålssallad med myntha (Ägg)",
-                "price": 135,
-                "tags": [],
-                "price_to": null
-              },
-              {
                 "name": "Örtstekt kyckling, dragonsås, vitlöksstekt brysselkål, rostad potatis (Laktos, Fågel)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Ägg, Fisk, Jordnötter, Sesam)",
+                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Laktos, Ägg, Fisk, Jordnötter, Sesam)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Kikärt & morotsbiff, aioli, krossad potatis, rödkålssallad med myntha (Laktos, Ägg)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -226,7 +226,7 @@
                 "price_to": null
               },
               {
-                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Ägg, Fisk, Jordnötter, Sesam)",
+                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Laktos, Ägg, Fisk, Jordnötter, Sesam)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -252,7 +252,7 @@
                 "price_to": null
               },
               {
-                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Ägg, Fisk, Jordnötter, Sesam)",
+                "name": "Thai fishcake, syrlig gurksallad, ris, söt chilisås (Laktos, Ägg, Fisk, Jordnötter, Sesam)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -272,7 +272,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-02T11:23:25Z",
+      "last_success": "2026-11-03T07:47:28Z",
       "error": null,
       "weeks": [
         {
@@ -646,7 +646,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-11-02T11:23:25Z",
+      "last_success": "2026-11-03T07:47:28Z",
       "error": null,
       "weeks": [
         {
@@ -1027,7 +1027,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-02T11:23:25Z",
+      "last_success": "2026-11-03T07:47:28Z",
       "error": null,
       "weeks": [
         {
@@ -1250,7 +1250,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-02T11:23:25Z",
+      "last_success": "2026-11-03T07:47:28Z",
       "error": null,
       "weeks": [
         {
