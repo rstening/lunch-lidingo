@@ -35,8 +35,18 @@ jobs:
             echo "Inga ändringar"
           else
             git commit -m "Uppdatera menyer $(TZ=Europe/Stockholm date '+%Y-%m-%d %H:%M')"
-            git pull --rebase origin main
-            git push
+            # GitHub answers a push with a temporary server error now and then.
+            # Try three times, waiting a little longer each time, before failing.
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push; then
+                exit 0
+              fi
+              if [ "$attempt" -lt 3 ]; then
+                echo "Push misslyckades (försök $attempt av 3), försöker igen om $((attempt * 20)) sekunder."
+                sleep $((attempt * 20))
+              fi
+            done
+            exit 1
           fi
       - name: Hälsokoll
         # Öppnar ett ärende om en restaurang har misslyckats i ungefär två dagar,

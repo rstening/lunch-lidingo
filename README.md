@@ -16,7 +16,8 @@ visade sig starta flera timmar för sent. GitHubs schema används inte alls.
    som restaurangen inte märkt själv får en tagg (kött, fisk, veg eller soppa)
    gissad från orden i rätten, till exempel "kolja" eller "kyckling". Ordlistan
    ligger i `scraper/tags.py`. Är inget ord känt får rätten ingen tagg.
-3. Actions committar och pushar filerna om de ändrats.
+3. Actions committar och pushar filerna om de ändrats. Svarar GitHub med ett
+   tillfälligt fel försöker jobbet igen, högst tre gånger.
 4. `tools/halsokoll.py` öppnar ett ärende i repot om en restaurang har
    misslyckats i ungefär två dagar, och stänger det när den fungerar igen.
    GitHub mejlar ägaren när ett ärende öppnas. Misslyckas alla restauranger

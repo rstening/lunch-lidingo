@@ -32,7 +32,7 @@ Flöde per körning:
 1. **Scrape.** `python -m scraper` läser `restaurants.yaml` och kör varje restaurangs läsare. Varje läsare returnerar samma datastruktur (se nedan).
 2. **Spara.** Resultatet slås ihop med föregående `data/menus.json`. Veckor slås ihop per läsare nycklat på (år, vecka): ny data skriver över gammal för samma vecka, veckor äldre än förra veckan tas bort. Misslyckade läsare behåller föregående post och får `last_success` oförändrad samt `error` satt.
 3. **Bygg.** `python -m scraper.build` läser `data/menus.json` och skriver `docs/index.html`.
-4. **Publicera.** Actions committar `data/menus.json` och `docs/index.html` och pushar. GitHub Pages serverar `docs/`.
+4. **Publicera.** Actions committar `data/menus.json` och `docs/index.html` och pushar. GitHub Pages serverar `docs/`. Misslyckas pushen hämtar jobbet main igen och gör ett nytt försök efter 20 och sedan 40 sekunder, högst tre försök totalt. Bakgrund: den 4 november 2026 svarade GitHub med "Internal Server Error" på en push, och körningen misslyckades fast menyerna var hämtade.
 
 Om alla läsare misslyckas avbryts jobbet innan bygg och commit, så gårdagens sida ligger kvar.
 
