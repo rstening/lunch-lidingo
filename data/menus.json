@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T07:47:23Z",
+  "generated_at": "2026-11-06T09:23:24Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-06T07:47:23Z",
+      "last_success": "2026-11-06T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -263,6 +263,135 @@
           "extras": [
             "Pensionärspris 120 kr."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 46,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Schnitzel på rotselleri, potatisgratäng, rödvinssås, grillad romansallad (Gluten, Laktos, Selleri, Svaveldioxid och Sulfit)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pankobakad alaska pollock, hummersås, dillrostad potatis, krispig sallad, limevinegrette (Gluten, Laktos, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Prinskorv, stuvad spenat, stekt potatis, rostade morötter (Laktos, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Stekt gnocchi, brynt smör, fänkål, chevrékräm, marinerad rödkållssallad (Gluten, Laktos, Soja, Senap)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pankobakad alaska pollock, hummersås, dillrostad potatis, krispig sallad, limevinegrette (Gluten, Laktos, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Thankgivings limpa, gräddsås, gelé, brysselkål, kokt potatis (Gluten, Laktos, Ägg, Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (G/L) (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Vegetariska kåldolmar, skysås, kokt potatis, lingon, persilja (Soja)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pankobakad alaska pollock, hummersås, dillrostad potatis, krispig sallad, limevinegrette (Gluten, Laktos, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Grillad kycklinglårfile, potatisgratäng, tricolorebönor, salsa verde (Laktos, Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Grillad Zucchini, citronfärskost, rostade mandlar, böncassoulet (Laktos, Nötter)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pankobakad alaska pollock, hummersås, dillrostad potatis, krispig sallad, limevinegrette (Gluten, Laktos, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pulled pork, coleslaw, bbq sås, klyftpotatis, rostad majs (Ägg, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Vegetarisk smash burger, ost, inlagd gurka, senap och sallad, klyftpotatis, burgersås (Gluten, Laktos, Ägg, Soja)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pankobakad alaska pollock, hummersås, dillrostad potatis, krispig sallad, limevinegrette (Gluten, Laktos, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Lasagne Bolognese, tomatsallad, rödlök, ruccola (Gluten, Laktos, Soja, Nötkött)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Vaniljglass, med hemkokt jordgubbssås, strössel (Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött bakefter",
+          "extras": [
+            "Pensionärspris 120 kr."
+          ]
         }
       ]
     },
@@ -272,7 +401,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-06T07:47:23Z",
+      "last_success": "2026-11-06T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -646,7 +775,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-11-06T07:47:23Z",
+      "last_success": "2026-11-06T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -1027,7 +1156,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-06T07:47:23Z",
+      "last_success": "2026-11-06T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -1250,7 +1379,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-06T07:47:23Z",
+      "last_success": "2026-11-06T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -1390,6 +1519,32 @@
               },
               {
                 "name": "Chèvresallad eller Halloumisallad",
+                "price": 139,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Kalvfärsbiffar serveras med gräddsås, lingon och kokt potatis",
+                "price": 139,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Stekt lax serveras med vitvinssås och kokt potatis",
+                "price": 149,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pasta pesto med mozzarella och tomat",
                 "price": 139,
                 "tags": [
                   "veg"
