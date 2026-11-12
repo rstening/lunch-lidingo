@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T07:47:30Z",
+  "generated_at": "2026-11-12T09:23:24Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-12T07:47:30Z",
+      "last_success": "2026-11-12T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -261,6 +261,83 @@
           "extras": [
             "Pensionärspris 120 kr."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 47,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Frittata, potatis, spenat, lök & ruccolapesto (Laktos, Ägg)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Coq au vin, champinjoner, örtkrossad potatis, dijoinaise & haricot verts (Ägg, Svaveldioxid och Sulfit)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Teriyakirostad palsternacka, wasabikräm, grönsaksris, persilja (Ägg)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Chorizo, gurkmajonnäs, rostad lök, paprikastekt potatis (Ägg, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Grillad spetskål, bakad tomat, bulgursallad, tahinidressing & fetaost (Gluten, Laktos, Sesam)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (G) (Gluten, Ägg, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pannbiff, löksky, kokt potatis, saltgurka, lingon (Gluten, Laktos, Ägg, Soja, Nötkött)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött bakefter",
+          "extras": [
+            "Pensionärspris 120 kr."
+          ]
         }
       ]
     },
@@ -270,7 +347,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-12T07:47:30Z",
+      "last_success": "2026-11-12T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -644,7 +721,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-11-12T07:47:30Z",
+      "last_success": "2026-11-12T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -840,7 +917,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-12T07:47:30Z",
+      "last_success": "2026-11-12T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -1069,7 +1146,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-12T07:47:30Z",
+      "last_success": "2026-11-12T09:23:24Z",
       "error": null,
       "weeks": [
         {
@@ -1077,32 +1154,6 @@
           "week": 45,
           "week_known": true,
           "days": {
-            "4": [
-              {
-                "name": "Fläsk med löksås och kokt potatis",
-                "price": 139,
-                "tags": [
-                  "kött"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Stekt Röding med citronsås och kokt potatis",
-                "price": 149,
-                "tags": [
-                  "fisk"
-                ],
-                "price_to": null
-              },
-              {
-                "name": "Chèvresallad eller Halloumisallad",
-                "price": 139,
-                "tags": [
-                  "veg"
-                ],
-                "price_to": null
-              }
-            ],
             "5": [
               {
                 "name": "Kalvfärsbiffar serveras med gräddsås, lingon och kokt potatis",
@@ -1209,6 +1260,32 @@
               },
               {
                 "name": "Pasta pesto med mozzarella och tomat",
+                "price": 139,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "ugnsbakad kycklingfilé serveras med Dranon Vilotesås och jasminris",
+                "price": 139,
+                "tags": [
+                  "kött"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Ugnsbakad lax serveras med dragonsås och kokt potatis",
+                "price": 149,
+                "tags": [
+                  "fisk"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Chèvresallad eller Halloumisallad",
                 "price": 139,
                 "tags": [
                   "veg"
