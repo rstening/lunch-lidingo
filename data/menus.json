@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T09:23:24Z",
+  "generated_at": "2026-11-12T11:23:22Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-12T09:23:24Z",
+      "last_success": "2026-11-12T11:23:22Z",
       "error": null,
       "weeks": [
         {
@@ -332,6 +332,54 @@
                 "tags": [],
                 "price_to": null
               }
+            ],
+            "4": [
+              {
+                "name": "Vegetarisk Chili sin carne, ris, avokadokräm, nachochips, picklad lök (Ägg, Soja, Baljväxter)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (Gluten, Ägg, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Honungs rostad kycklingklubba, kokosmjölk, curry, grönsaker, örtris (Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Thailändska chilifärsbollar, (vegetariska, smaksatta med mynta, chili & citron) krämig kokossås, kimchi samt chili- och sesamfrön, ris (Ägg, Soja, Sesam)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets Bouillabaisse, räkor, crabfish, citron, krutonger & aioli (Gluten, Ägg, Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Fläskkarré, rotfruktsstomp, karamelliserad lök., choronsås, ruccola (Ägg, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Vaniljglass, med hemkokt jordgubbssås, strössel (Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
             ]
           },
           "notes": "I lunchen ingår salladsbuffé, pockets hembakade bröd, kaffe och något sött bakefter",
@@ -347,7 +395,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-12T09:23:24Z",
+      "last_success": "2026-11-12T11:23:22Z",
       "error": null,
       "weeks": [
         {
@@ -721,7 +769,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-11-12T09:23:24Z",
+      "last_success": "2026-11-12T11:23:22Z",
       "error": null,
       "weeks": [
         {
@@ -917,7 +965,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-12T09:23:24Z",
+      "last_success": "2026-11-12T11:23:22Z",
       "error": null,
       "weeks": [
         {
@@ -1146,7 +1194,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-12T09:23:24Z",
+      "last_success": "2026-11-12T11:23:22Z",
       "error": null,
       "weeks": [
         {
@@ -1269,7 +1317,7 @@
             ],
             "4": [
               {
-                "name": "ugnsbakad kycklingfilé serveras med Dranon Vilotesås och jasminris",
+                "name": "Ungabakad kyckling med schalottenkrämsås",
                 "price": 139,
                 "tags": [
                   "kött"
