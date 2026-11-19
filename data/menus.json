@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T11:23:40Z",
+  "generated_at": "2026-11-19T07:47:29Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-18T11:23:40Z",
+      "last_success": "2026-11-19T07:47:29Z",
       "error": null,
       "weeks": [
         {
@@ -263,6 +263,121 @@
           "extras": [
             "Pensionärspris 120 kr."
           ]
+        },
+        {
+          "year": 2026,
+          "week": 48,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Prästost-& sparrispaj, cruditesallad, dillkräm (Gluten, Laktos, Ägg)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Thaifish rödcurry, kokosmjölk, basmatiris, grönsaker & picklad lök (Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Fläskpiccata milanaisè, tomatsås, ris, gröna ärtor, persilja (Gluten, Laktos, Ägg, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Honungsrostade rödbetor, chevrékräm, valnötter, ruccola, bulgur (Gluten, Laktos, Nötter)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Thaifish rödcurry, kokosmjölk, basmatiris, grönsaker & picklad lök",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Kycklingklubba marengo, potatis, smålök, champinjoner, paprika, zucchini (Svaveldioxid och Sulfit, Fågel)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (Gluten, Laktos)",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Falafel, mynthayoghurt, saffransris, rödlök, tomat, persilja (Laktos)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Thaifish rödcurry, kokosmjölk, basmatiris, grönsaker & picklad lök (Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Krämig carbonara, Mezze Rigatoni, champinjoner, parmesan , tomat, gurka, purjolök, vinegrette (Gluten, Laktos, Soja, Senap, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Ugnsbakad rotselleri, apelsinmajo, bulgursallad, rostade hasselnötter (Gluten, Ägg, Nötter, Selleri)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Thaifish rödcurry, kokosmjölk, basmatiris, grönsaker & picklad lök (Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pockets pytt i panna, 64 graders ägg, senapsdijonaise, rödbetor (Ägg, Senap, Fläsk)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Vegetariska vårrullar, vitkål & morotssallad, sesam, sweetechilisauce (Gluten, Ägg, Soja)",
+                "price": 135,
+                "tags": [
+                  "veg"
+                ],
+                "price_to": null
+              },
+              {
+                "name": "Thaifish rödcurry, kokosmjölk, basmatiris, grönsaker & picklad lök (Fisk, Skaldjur)",
+                "price": 135,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "I lunchen ingår salladsbuffé, pockets bakade bröd, kaffe och något gott bakefter",
+          "extras": [
+            "Pensionärspris 120 kr."
+          ]
         }
       ]
     },
@@ -272,7 +387,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-18T11:23:40Z",
+      "last_success": "2026-11-19T07:47:29Z",
       "error": null,
       "weeks": [
         {
@@ -656,7 +771,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-18T11:23:40Z",
+      "last_success": "2026-11-19T07:47:29Z",
       "error": null,
       "weeks": [
         {
@@ -891,7 +1006,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-18T11:23:40Z",
+      "last_success": "2026-11-19T07:47:29Z",
       "error": null,
       "weeks": [
         {
