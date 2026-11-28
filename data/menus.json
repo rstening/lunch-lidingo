@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T11:23:28Z",
+  "generated_at": "2026-11-28T07:47:36Z",
   "restaurants": [
     {
       "id": "pocket",
@@ -7,7 +7,7 @@
       "url": "https://www.nordrest.se/restaurang/pocket-lidingo/",
       "address": "Lidingö stadshus, Stockholmsvägen 50",
       "lunch_hours": "10:30-14:00",
-      "last_success": "2026-11-27T11:23:28Z",
+      "last_success": "2026-11-28T07:47:36Z",
       "error": null,
       "weeks": [
         {
@@ -275,13 +275,13 @@
                 "price_to": null
               },
               {
-                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon",
+                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon (Laktos, Ägg, Fisk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Fläskkarré, gräddsås, stekt potatis, vitkål & äppelfräs med babyspenat",
+                "name": "Fläskkarré, gräddsås, stekt potatis, vitkål & äppelfräs med babyspenat (Laktos, Fläsk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -289,7 +289,7 @@
             ],
             "2": [
               {
-                "name": "Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök & citron",
+                "name": "Vegetarisk raggmunk, tångkaviar, cremefraiche, rödlök & citron (Gluten, Laktos, Ägg)",
                 "price": 135,
                 "tags": [
                   "veg"
@@ -297,19 +297,19 @@
                 "price_to": null
               },
               {
-                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon",
+                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon (Laktos, Ägg, Fisk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Italiensk kycklinggryta, soltorkade tomater, svarta oliver, zucchini,paprika, champinjoner, purjolök",
+                "name": "Italiensk kycklinggryta, soltorkade tomater, svarta oliver, zucchini,paprika, champinjoner, purjolök (Laktos, Fågel)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås",
+                "name": "Idag bjuder vi på Pockets äppelpaj & vaniljsås (Gluten, Laktos)",
                 "price": null,
                 "tags": [],
                 "price_to": null
@@ -317,19 +317,19 @@
             ],
             "3": [
               {
-                "name": "Blomkål-& linscurry, gurkraita, ris, papadums & koriander",
+                "name": "Blomkål-& linscurry, gurkraita, ris, papadums & koriander (Laktos)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon",
+                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon (Laktos, Ägg, Fisk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Isterband, persiljestuvad potatis, rödbetor & persilja",
+                "name": "Isterband, persiljestuvad potatis, rödbetor & persilja (Laktos, Fläsk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -337,7 +337,7 @@
             ],
             "4": [
               {
-                "name": "Vegetarisk ärtsoppa, pannkakor, sylt, grädde & kolasås",
+                "name": "Vegetarisk ärtsoppa, pannkakor, sylt, grädde & kolasås (Gluten, Laktos, Ägg)",
                 "price": 135,
                 "tags": [
                   "veg"
@@ -345,13 +345,13 @@
                 "price_to": null
               },
               {
-                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon",
+                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon (Laktos, Ägg, Fisk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Fläskschnitzel, rosmarinbakad potatis, kryddsmör, rödvinssås, lökfrästa haricotverts",
+                "name": "Fläskschnitzel, rosmarinbakad potatis, kryddsmör, rödvinssås, lökfrästa haricotverts (Gluten, Laktos, Ägg)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
@@ -359,25 +359,25 @@
             ],
             "5": [
               {
-                "name": "Kålpannkaka, soyamajonnäs, rostad sesam, salladslök, koriander",
+                "name": "Kålpannkaka, soyamajonnäs, rostad sesam, salladslök, koriander (Laktos, Ägg, Soja, Sesam)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon",
+                "name": "Havets wallenbergare a´la pocket, potatispuré, brynt smör, gröna ärtor, lingon (Laktos, Ägg, Fisk)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Pankopanerad kyckling, pommes, srirachamajo, coleslaw",
+                "name": "Pankopanerad kyckling, pommes, srirachamajo, coleslaw (Gluten, Ägg, Fågel)",
                 "price": 135,
                 "tags": [],
                 "price_to": null
               },
               {
-                "name": "Idag bjuder vi på mjuk pepparkaka, grädde, lingon",
+                "name": "Idag bjuder vi på mjuk pepparkaka, grädde, lingon (Gluten, Laktos, Ägg)",
                 "price": null,
                 "tags": [],
                 "price_to": null
@@ -397,7 +397,7 @@
       "url": "https://www.lidingosaluhall.com/",
       "address": "Pyrolavägen 7",
       "lunch_hours": "10:00-14:00",
-      "last_success": "2026-11-27T11:23:28Z",
+      "last_success": "2026-11-28T07:47:36Z",
       "error": null,
       "weeks": [
         {
@@ -771,7 +771,7 @@
       "url": "https://bibliothek.nu/menyer",
       "address": "Lejonstigen 5",
       "lunch_hours": "11:30-14:30",
-      "last_success": "2026-11-27T11:23:28Z",
+      "last_success": "2026-11-28T07:47:36Z",
       "error": null,
       "weeks": [
         {
@@ -997,7 +997,7 @@
       "url": "https://ronneberga.se/restaurang/lunchmeny/",
       "address": "Rönnebergavägen 1",
       "lunch_hours": "11:30-13:00",
-      "last_success": "2026-11-27T11:23:28Z",
+      "last_success": "2026-11-28T07:47:36Z",
       "error": null,
       "weeks": [
         {
@@ -1223,6 +1223,103 @@
           },
           "notes": "Lunchens öppettider 11:30-13:00",
           "extras": []
+        },
+        {
+          "year": 2026,
+          "week": 49,
+          "week_known": true,
+          "days": {
+            "1": [
+              {
+                "name": "Abonnerat",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "2": [
+              {
+                "name": "Fiskgratäng med vitvinssås, räkor samt potatispuré",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Majs- och pico de galio fritters med avokadoröra, crème fraiche samt ris",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "3": [
+              {
+                "name": "Lammfärsbiffar med gemoulata, vispad featost och friterad potatis",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Sesambakad blomkål med pak choi-hoisinmajonnäs och friterade rispapper",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "4": [
+              {
+                "name": "Yakiniku på fläskkarré med salladslök, sesam och jasminris",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Nudel wok med grönsaker, shiitakesvamp, tofu samt sweet chillisås",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Dagens soppa",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Pannkakor",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ],
+            "5": [
+              {
+                "name": "Fredagsschnitzel på kalv schnitzel & något juligt",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              },
+              {
+                "name": "Vegetarisk schnizel",
+                "price": null,
+                "tags": [],
+                "price_to": null
+              }
+            ]
+          },
+          "notes": "Lunchens öppettider 11:30-13:00",
+          "extras": []
         }
       ]
     },
@@ -1232,7 +1329,7 @@
       "url": "https://brasseriejernet.se/",
       "address": "Stockholmsvägen 56",
       "lunch_hours": "10:30-14:30",
-      "last_success": "2026-11-27T11:23:28Z",
+      "last_success": "2026-11-28T07:47:36Z",
       "error": null,
       "weeks": [
         {
